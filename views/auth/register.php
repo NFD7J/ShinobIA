@@ -1,7 +1,7 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card p-4">
+            <div class="card p-4" style="transition: none; box-shadow: none !important; transform: none;">
                 <h2 class="text-center mb-4"><i class="bi bi-person-plus"></i> Inscription</h2>
 
                 <?php if (isset($error)): ?>
@@ -13,25 +13,18 @@
                 <form method="POST" action="index.php?controller=auth&action=register">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="nom" class="form-label">Nom</label>
+                            <label for="name" class="form-label">Pseudo</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Votre nom" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="prenom" class="form-label">Prénom</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Votre pseudo" required>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Adresse email</label>
+                        <label for="mail" class="form-label">Adresse email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="votre@email.fr" required>
+                            <input type="email" class="form-control" id="mail" name="mail" placeholder="votre@email.fr" required>
                         </div>
                     </div>
                     <div class="mb-3">

@@ -1,7 +1,7 @@
-<div class="container my-5">
+<div class="container my-5" style="transform: none; box-shadow: none;">
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <div class="card p-4">
+            <div class="card p-4" style="transition: none; box-shadow: none !important; transform: none;">
                 <h2 class="text-center mb-4"><i class="bi bi-box-arrow-in-right"></i> Connexion</h2>
 
                 <?php if (isset($error)): ?>
@@ -12,10 +12,10 @@
 
                 <form method="POST" action="index.php?controller=auth&action=login">
                     <div class="mb-3">
-                        <label for="email" class="form-label">Adresse email</label>
+                        <label for="mail" class="form-label">Adresse email</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="votre@email.fr" required>
+                            <input type="email" class="form-control" id="mail" name="mail" placeholder="votre@email.fr" required>
                         </div>
                     </div>
                     <div class="mb-3">
