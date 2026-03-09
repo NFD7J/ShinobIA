@@ -51,9 +51,9 @@
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold"
                                          style="width:38px; height:38px; background-color: var(--secondary); font-size: 1rem; flex-shrink:0;">
-                                        <?php echo strtoupper(substr((string)$entry->getUserId(), 0, 1)); ?>
+                                        <?php echo strtoupper(substr((string)$entry->getUserName(), 0, 1)); ?>
                                     </div>
-                                    <span>Joueur #<?php echo $entry->getUserId(); ?></span>
+                                    <span><?php echo htmlspecialchars($entry->getUsername()); ?></span>
                                 </div>
                             </td>
 

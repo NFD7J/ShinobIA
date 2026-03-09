@@ -7,15 +7,17 @@ class Leaderboard
 {
     private ?int $id ;
     private int $userId;
+    private string $username;
     private string $difficulty;
     private int $totalPoints;
     private int $rank;
     
 
-    public function __construct(?int $id, int $userId, string $difficulty, int $totalPoints, int $rank)
+    public function __construct(?int $id, int $userId, string $username, string $difficulty, int $totalPoints, int $rank)
     {
         $this->id = $id;
         $this->userId = $userId;
+        $this->username = $username;
         $this->difficulty = $difficulty;
         $this->totalPoints = $totalPoints;
         $this->rank = $rank;
@@ -30,6 +32,11 @@ class Leaderboard
     public function getUserId()
     {
         return $this->userId;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     public function getDifficulty()
@@ -57,6 +64,11 @@ class Leaderboard
     public function setUserId(int $userId)
     {
         $this->userId = $userId;
+    }
+
+    public function setUsername(string $username)
+    {
+        $this->username = $username;
     }
 
     public function setDifficulty(string $difficulty)
