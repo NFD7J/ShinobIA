@@ -124,7 +124,7 @@
                         </span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=auth&action=logout">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalLogout">
                             <i class="bi bi-box-arrow-right"></i> Déconnexion
                         </a>
                     </li>
@@ -166,5 +166,26 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Modal déconnexion -->
+<div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="modalLogoutLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLogoutLabel"><i class="bi bi-box-arrow-right"></i> Déconnexion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir vous déconnecter ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a href="index.php?controller=auth&action=logout" class="btn btn-danger">
+                    <i class="bi bi-box-arrow-right"></i> Se déconnecter
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
