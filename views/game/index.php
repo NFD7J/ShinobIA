@@ -214,7 +214,12 @@
         }
 
         // Debug log
-        console.log('handleCellClick start', { id: button.id, row: button.dataset.row, col: button.dataset.col, value: button.value });
+        console.log('handleCellClick start', {
+            id: button.id,
+            row: button.dataset.row,
+            col: button.dataset.col,
+            value: button.value
+        });
 
         const row = parseInt(button.dataset.row);
         const col = parseInt(button.dataset.col);
@@ -242,7 +247,7 @@
         }
 
         updateProgress();
-        
+
         // Debug: show remaining nulls
         const remaining = playerGrid.flat().filter(v => v === null || v === '').length;
         console.log('handleCellClick updated playerGrid; remaining empty cells:', remaining);
@@ -301,12 +306,14 @@
         const progressPercent = cellsToFill > 0 ? Math.round((cellsFilledByPlayer / cellsToFill) * 100) : 0;
         document.getElementById('progress').textContent = Math.max(0, Math.min(100, progressPercent)) + '%';
     }
-    
+
     // Vérification automatique après chaque clic
     function checkAutomatic() {
-        console.log('checkAutomatic start', { gameFinished });
+        console.log('checkAutomatic start', {
+            gameFinished
+        });
         if (gameFinished) return;
-        
+
         // Vérifier si la grille est complète
         // Count empty cells
         let emptyCount = 0;
@@ -319,9 +326,9 @@
         }
         console.log('checkAutomatic: emptyCount=', emptyCount, 'cellsToFill=', cellsToFill);
         let isComplete = (emptyCount === 0);
-        
+
         if (!isComplete) return; // Pas encore complète
-        
+
         // Vérifier si la solution est correcte (comparer en tant que nombres)
         let isCorrect = true;
         let mismatches = [];
@@ -334,7 +341,14 @@
                 const rn = right === null || right === '' ? null : Number(right);
                 if (ln !== rn) {
                     isCorrect = false;
-                    mismatches.push({i,j,left,right,ln,rn});
+                    mismatches.push({
+                        i,
+                        j,
+                        left,
+                        right,
+                        ln,
+                        rn
+                    });
                     console.debug('Mismatch at', i, j, 'player=', left, 'solution=', right, 'ln=', ln, 'rn=', rn);
                     break;
                 }
@@ -351,11 +365,11 @@
             });
             return; // Solution incorrecte
         }
-        
+
         // 🎉 LA GRILLE EST COMPLÈTE ET CORRECTE!
         finishGame();
     }
-    
+
     // Terminer la partie avec succès
     function finishGame() {
         gameFinished = true;
