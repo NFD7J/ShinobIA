@@ -1,20 +1,9 @@
 <!-- Hero -->
 <div class="py-5 text-center text-white" style="background: linear-gradient(135deg, #2c3e50, #3498db);">
     <div class="container">
-        <div class="mb-3" style="font-size: 5rem;">
-            <span style="display:inline-grid;grid-template-columns:repeat(4,1fr);gap:4px;vertical-align:middle;">
-                <span class="rounded" style="width:28px;height:28px;background:#fff;opacity:.9;"></span>
-                <span class="rounded" style="width:28px;height:28px;background:#3498db;"></span>
-                <span class="rounded" style="width:28px;height:28px;background:#fff;opacity:.9;"></span>
-                <span class="rounded" style="width:28px;height:28px;background:#3498db;"></span>
-                <span class="rounded" style="width:28px;height:28px;background:#3498db;"></span>
-                <span class="rounded" style="width:28px;height:28px;background:#fff;opacity:.9;"></span>
-                <span class="rounded" style="width:28px;height:28px;background:#3498db;"></span>
-                <span class="rounded" style="width:28px;height:28px;background:#fff;opacity:.9;"></span>
-            </span>
+        <div class="mb-4" style="font-size: 5rem;">
+            <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo" style="max-height: 200px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));">
         </div>
-        <h1 class="display-4 fw-bold">Binero</h1>
-        <p class="lead mb-4">Le puzzle logique de 0 et de 1 — Testez votre raisonnement, battez vos records.</p>
         <?php if (!isset($_SESSION['user'])): ?>
             <a href="index.php?controller=auth&action=register" class="btn btn-light btn-lg me-2 fw-semibold">
                 <i class="bi bi-person-plus"></i> Créer un compte
@@ -74,4 +63,3 @@
         <?php endif; ?>
     </div>
 </div>
-
