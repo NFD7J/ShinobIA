@@ -271,8 +271,8 @@
 
 <script>
     // Données du jeu
-    const gridData = <?php echo json_encode($grid); ?>;
-    const solutionData = <?php echo json_encode($solution); ?>;
+    let gridData = <?php echo json_encode($grid); ?>;
+    let solutionData = <?php echo json_encode($solution); ?>;
     const difficulty = '<?php echo $difficulty; ?>';
     const gridSize = <?php echo $size; ?>;
 
@@ -280,9 +280,15 @@
     let startTime = Date.now();
     let errors = 0;
     let hintsUsed = 0;
+    let gameFinished = false;
+    let timerInterval = null;
 
     // Compter le nombre de cellules à remplir (initialement vides)
     let cellsToFill = 0;
+    // Normaliser gridData et solutionData -> Number or null to avoid type mismatches
+    gridData = gridData.map(row => row.map(cell => (cell === null || cell === '') ? null : Number(cell)));
+    solutionData = solutionData.map(row => row.map(cell => (cell === null || cell === '') ? null : Number(cell)));
+
     gridData.forEach(row => {
         row.forEach(cell => {
             if (cell === null || cell === '') {
@@ -304,6 +310,14 @@
             alert('⛔ Cette case est pré-remplie et ne peut pas être modifiée.');
             return;
         }
+
+        // Debug log
+        console.log('handleCellClick start', {
+            id: button.id,
+            row: button.dataset.row,
+            col: button.dataset.col,
+            value: button.value
+        });
 
         const row = parseInt(button.dataset.row);
         const col = parseInt(button.dataset.col);
@@ -334,6 +348,13 @@
         }
 
         updateProgress();
+
+        // Debug: show remaining nulls
+        const remaining = playerGrid.flat().filter(v => v === null || v === '').length;
+        console.log('handleCellClick updated playerGrid; remaining empty cells:', remaining);
+
+        // Vérifier automatiquement si la grille est complète et correcte
+        checkAutomatic();
     }
 
     // Bouton indice
@@ -364,33 +385,7 @@
         document.getElementById('hintCard').classList.add('d-none');
     });
 
-    // Test API
-    document.getElementById('testApiBtn').addEventListener('click', async function() {
-        const response = await fetch('index.php?controller=game&action=testApi');
-        const data = await response.json();
-
-        let message = '📡 Test de connexion API:\n\n';
-        message += '✓ URL: ' + data.apiUrl + '\n';
-        message += '✓ HTTP Code: ' + data.httpCode + '\n';
-
-        if (data.isConnected) {
-            message += '\n✅ L\'API est CONNECTÉE et réactive!\n';
-            message += '⏱️ Temps de connexion: ' + (data.connectTime * 1000).toFixed(2) + 'ms\n';
-            message += '⏱️ Temps total: ' + (data.totalTime * 1000).toFixed(2) + 'ms';
-        } else {
-            message += '\n❌ L\'API n\'est PAS joignable!\n';
-            if (data.error) {
-                message += '🔴 Erreur: ' + data.error;
-            }
-        }
-
-        alert(message);
-    });
-
-    // Bouton soumettre
-    document.getElementById('submitBtn').addEventListener('click', function() {
-        checkSolution();
-    });
+    // Bouton soumettre (removed) - replaced by automatic verification and modal
 
     // Mettre à jour la progression
     function updateProgress() {
@@ -413,6 +408,149 @@
         document.getElementById('progress').textContent = Math.max(0, Math.min(100, progressPercent)) + '%';
     }
 
+    // Vérification automatique après chaque clic
+    function checkAutomatic() {
+        console.log('checkAutomatic start', {
+            gameFinished
+        });
+        if (gameFinished) return;
+
+        // Vérifier si la grille est complète
+        // Count empty cells
+        let emptyCount = 0;
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                if (playerGrid[i][j] === null || playerGrid[i][j] === '') {
+                    emptyCount++;
+                }
+            }
+        }
+        console.log('checkAutomatic: emptyCount=', emptyCount, 'cellsToFill=', cellsToFill);
+        let isComplete = (emptyCount === 0);
+
+        if (!isComplete) return; // Pas encore complète
+
+        // Vérifier si la solution est correcte (comparer en tant que nombres)
+        let isCorrect = true;
+        let mismatches = [];
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                const left = playerGrid[i][j];
+                const right = solutionData[i][j];
+                // coerce to number for robust comparison
+                const ln = left === null || left === '' ? null : Number(left);
+                const rn = right === null || right === '' ? null : Number(right);
+                if (ln !== rn) {
+                    isCorrect = false;
+                    mismatches.push({
+                        i,
+                        j,
+                        left,
+                        right,
+                        ln,
+                        rn
+                    });
+                    console.debug('Mismatch at', i, j, 'player=', left, 'solution=', right, 'ln=', ln, 'rn=', rn);
+                    break;
+                }
+            }
+            if (!isCorrect) break;
+        }
+        if (!isCorrect) {
+            console.log('checkAutomatic: solution incorrect, mismatches=', mismatches);
+            // highlight mismatches visually
+            mismatches.forEach(m => {
+                const id = 'cell_' + m.i + '_' + m.j;
+                const el = document.getElementById(id);
+                if (el) el.style.outline = '3px solid #ffb74d';
+            });
+            return; // Solution incorrecte
+        }
+
+        // 🎉 LA GRILLE EST COMPLÈTE ET CORRECTE!
+        finishGame();
+    }
+
+    // Terminer la partie avec succès
+    function finishGame() {
+        gameFinished = true;
+
+        // Arrêter le timer
+        if (timerInterval) {
+            clearInterval(timerInterval);
+        }
+
+        // Désactiver le bouton d'indice
+        const hintBtnEl = document.getElementById('hintBtn');
+        if (hintBtnEl) hintBtnEl.disabled = true;
+
+        // Envoyer le feedback
+        const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
+        sendFeedback(timeElapsed);
+
+        // Mettre à jour la modale de victoire
+        const timeEl = document.getElementById('victoryTime');
+        const errEl = document.getElementById('victoryErrors');
+        const hintEl = document.getElementById('victoryHints');
+        if (timeEl) timeEl.textContent = formatTime(timeElapsed);
+        if (errEl) errEl.textContent = String(errors);
+        if (hintEl) hintEl.textContent = String(hintsUsed);
+
+        // Afficher la modale (Bootstrap si présent)
+        console.log('finishGame: showing victory modal');
+        let modalEl = document.getElementById('victoryModal');
+        if (typeof bootstrap !== 'undefined') {
+            if (!modalEl) {
+                console.log('finishGame: modal markup missing, creating dynamic modal');
+                // create minimal modal and append to body
+                modalEl = document.createElement('div');
+                modalEl.className = 'modal fade';
+                modalEl.id = 'victoryModal';
+                modalEl.setAttribute('tabindex', '-1');
+                modalEl.innerHTML = `
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">🎉 Bravo !</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="victoryMessage">La grille est correcte.</p>
+                                <ul class="list-unstyled">
+                                    <li>Temps: <strong id="victoryTime">${formatTime(timeElapsed)}</strong></li>
+                                    <li>Erreurs: <strong id="victoryErrors">${errors}</strong></li>
+                                    <li>Indices: <strong id="victoryHints">${hintsUsed}</strong></li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="index.php?controller=game" class="btn btn-primary">Nouvelle partie</a>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>`;
+                document.body.appendChild(modalEl);
+            }
+            try {
+                const vm = new bootstrap.Modal(modalEl);
+                vm.show();
+            } catch (e) {
+                console.error('finishGame: bootstrap modal show error', e);
+                // fallback simple display
+                modalEl.classList.add('show');
+                modalEl.style.display = 'block';
+                document.body.classList.add('modal-open');
+            }
+        } else if (modalEl) {
+            // Fallback simple
+            modalEl.classList.add('show');
+            modalEl.style.display = 'block';
+            document.body.classList.add('modal-open');
+        } else {
+            // Ultimate fallback
+            alert('🎉 BRAVO! Vous avez résolu la grille!\n\n⏱️ Temps: ' + formatTime(timeElapsed) + '\n❌ Erreurs: ' + errors + '\n💡 Indices utilisés: ' + hintsUsed);
+        }
+    }
+
     // Vérifier la solution
     function checkSolution() {
         let isCorrect = true;
@@ -420,7 +558,11 @@
         // Comparer avec la solution
         for (let i = 0; i < gridSize; i++) {
             for (let j = 0; j < gridSize; j++) {
-                if (playerGrid[i][j] !== solutionData[i][j]) {
+                const left = playerGrid[i][j];
+                const right = solutionData[i][j];
+                const ln = left === null || left === '' ? null : Number(left);
+                const rn = right === null || right === '' ? null : Number(right);
+                if (ln !== rn) {
                     isCorrect = false;
                     errors++;
 
@@ -433,6 +575,7 @@
                             cell.style.animation = '';
                         }, 300);
                     }
+                    console.debug('checkSolution mismatch at', i, j, 'player=', left, 'solution=', right, 'ln=', ln, 'rn=', rn);
                 }
             }
         }
@@ -440,11 +583,8 @@
         document.getElementById('errors').textContent = errors;
 
         if (isCorrect) {
-            // Envoyer le feedback
-            const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
-            sendFeedback(timeElapsed);
-
-            alert('🎉 Bravo! Vous avez résolu la grille!\n\nTemps: ' + formatTime(timeElapsed) + '\nErreurs: ' + errors + '\nIndices utilisés: ' + hintsUsed);
+            // Terminer la partie (utilise la même logique que la fin automatique)
+            finishGame();
         } else {
             alert('❌ La solution n\'est pas correcte. Vérifiez les cellules surlignées en rouge.');
         }
@@ -473,10 +613,19 @@
     }
 
     // Chronomètre
-    setInterval(function() {
+    timerInterval = setInterval(function() {
+        if (gameFinished) return; // Ne pas continuer si la partie est finie
         const elapsed = Math.floor((Date.now() - startTime) / 1000);
         document.getElementById('timer').textContent = formatTime(elapsed);
     }, 1000);
+
+    // Nouveau bouton partie: relancer une partie de même difficulté
+    const newGameBtn = document.getElementById('newGameBtn');
+    if (newGameBtn) {
+        newGameBtn.addEventListener('click', function() {
+            window.location.href = 'index.php?controller=game&action=play&difficulty=' + encodeURIComponent(difficulty);
+        });
+    }
 
     function formatTime(seconds) {
         const mins = Math.floor(seconds / 60);
