@@ -1,46 +1,225 @@
-<div class="py-4" style="min-height: 100vh; background: linear-gradient(135deg, #ecf0f1, #bdc3c7);">
-    <div class="container">
-        <div class="row mb-4">
-            <div class="col-md-8">
-                <h2 class="fw-bold">
-                    <i class="bi bi-controller"></i>
-                    Partie - Niveau
-                    <span class="badge bg-<?php
-                                            echo match ($difficulty) {
-                                                'easy' => 'success',
-                                                'medium' => 'warning',
-                                                'hard' => 'danger',
-                                                default => 'secondary'
-                                            };
-                                            ?>">
-                        <?php
-                        echo match ($difficulty) {
-                            'easy' => 'FACILE',
-                            'medium' => 'MOYEN',
-                            'hard' => 'DIFFICILE',
-                            default => $difficulty
-                        };
-                        ?>
-                    </span>
-                </h2>
-            </div>
-            <div class="col-md-4 text-end">
-                <a href="index.php?controller=game" class="btn btn-secondary btn-sm">
-                    <i class="bi bi-house"></i> Retour aux niveaux
-                </a>
-            </div>
-        </div>
+<style>
+.shinobi-game-wrapper {
+    min-height: 100vh;
+    background-image: url('../views/game/images/bckgrd_bois.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    font-family: 'Georgia', serif;
+}
+.shinobi-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #1a0800;
+    text-shadow: 2px 3px 10px rgba(0,0,0,0.6);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    line-height: 1;
+}
+.shinobi-title .red-part { color: #b52020; }
+.game-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1300px;
+}
+.actions-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.shinobi-panel {
+    background: rgba(20, 10, 3, 0.82);
+    border: 2px solid rgba(180, 130, 55, 0.55);
+    border-radius: 10px;
+    color: #f5e6c8;
+    padding: 18px 20px;
+    min-width: 160px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.shinobi-panel small { color: #c8a97e; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+.shinobi-panel h3, .shinobi-panel h4 { color: #fff8e8; }
+.parchemin-zone {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+}
+.parchemin-zone img.parchemin-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.55));
+}
+.parchemin-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 80px;
+    padding-right: 120px;
+}
+.parchemin-inner {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: -60px;
+    margin-top: -90px;
+}
+.parchemin-grid-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.parchemin-timer {
+    text-align: center;
+    color: #3d1a00;
+    font-family: 'Georgia', serif;
+    margin-bottom: 8px;
+}
+.parchemin-timer small {
+    color: #6b4226;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.parchemin-timer h3 {
+    color: #2a1000;
+    margin: 0;
+    font-size: 2rem;
+}
+.parchemin-stats {
+    text-align: center;
+    color: #3d1a00;
+    font-family: 'Georgia', serif;
+}
+.parchemin-stats small {
+    color: #6b4226;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 2px;
+}
+.parchemin-stats h3, .parchemin-stats h4 {
+    color: #2a1000;
+    margin: 0;
+}
+.parchemin-stats .stat-block {
+    margin-bottom: 18px;
+}
+#bineroGrid {
+    border-collapse: collapse;
+    border: 2px solid rgba(80, 50, 20, 0.7);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    background: linear-gradient(135deg, rgba(205, 185, 145, 0.50) 0%, rgba(255, 252, 245, 0.75) 50%, rgba(205, 185, 145, 0.50) 100%);
+}
+#bineroGrid td { padding: 0; }
+.cell-btn {
+    width: 45px;
+    height: 45px;
+    background: transparent;
+    border: 1px solid rgba(80, 50, 20, 0.45);
+    font-weight: bold;
+    font-size: 1.05rem;
+    color: #3d1a00;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background 0.12s, border-color 0.12s;
+    font-family: 'Georgia', serif;
+    padding: 0;
+    outline: none;
+}
+.cell-btn:not([disabled]):hover {
+    background: rgba(255, 220, 80, 0.70) !important;
+    border-color: #7a3b0a !important;
+}
+.cell-btn.locked {
+    background: rgba(180, 160, 120, 0.20) !important;
+    color: #3a1a00 !important;
+    cursor: not-allowed !important;
+    border: 1px solid rgba(80, 50, 20, 0.45) !important;
+    font-weight: 900 !important;
+}
+.btn-hint {
+    background: linear-gradient(135deg, #c8900a, #9a6e08);
+    color: #fffde0;
+    border: 1px solid #7a5808;
+    font-weight: bold;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+.btn-hint:hover { background: linear-gradient(135deg, #e0a812, #b07a0a); color: #fffde0; }
+.btn-validate {
+    background: linear-gradient(135deg, #275c27, #183518);
+    color: #d0f0d0;
+    border: 1px solid #183518;
+    font-weight: bold;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+.btn-validate:hover { background: linear-gradient(135deg, #306830, #204520); color: #d0f0d0; }
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 90% { transform: translateX(-5px); }
+    20%, 80% { transform: translateX(5px); }
+    30%, 70% { transform: translateX(-5px); }
+    40%, 60% { transform: translateX(5px); }
+    50% { transform: translateX(0); }
+}
+</style>
 
-        <div class="row g-4">
-            <!-- Grille principale -->
-            <div class="col-lg-8">
-                <div class="card border-0 shadow-lg">
-                    <div class="card-body p-4">
-                        <h5 class="card-title mb-4">Grille Binero</h5>
+<div class="shinobi-game-wrapper">
 
-                        <div class="table-responsive">
-                            <table class="table table-bordered text-center mb-0" id="bineroGrid">
-                                <tbody>
+    <!-- Titre -->
+    <div class="text-center mb-3">
+        <div class="shinobi-title">Shino<span class="red-part">Binairo</span></div>
+        <span class="badge bg-<?php echo match($difficulty){ 'easy'=>'success','medium'=>'warning','hard'=>'danger',default=>'secondary' }; ?> fs-6 px-3 mt-1">
+            <?php echo match($difficulty){ 'easy'=>'FACILE','medium'=>'MOYEN','hard'=>'DIFFICILE',default=>$difficulty }; ?>
+        </span>
+    </div>
+
+    <!-- Zone principale -->
+    <div class="game-layout">
+
+        <!-- Parchemin + Grille + Stats -->
+        <div class="parchemin-zone">
+            <img src="../views/game/images/parchemin.png" alt="parchemin" class="parchemin-img">
+            <div class="parchemin-content">
+                <div class="parchemin-inner">
+
+                <!-- Stats à gauche (erreurs + progrès) -->
+                <div class="parchemin-stats">
+                    <div class="stat-block">
+                        <small>&#10060; Erreurs</small>
+                        <h4 id="errors" class="fw-bold">0</h4>
+                    </div>
+                    <div class="stat-block">
+                        <small>&#128202; Progres</small>
+                        <h4 id="progress" class="fw-bold">0%</h4>
+                    </div>
+                </div>
+
+                <!-- Timer au-dessus + Grille -->
+                <div class="parchemin-grid-col">
+                    <div class="parchemin-timer">
+                        <small>&#9201; Temps</small>
+                        <h3 id="timer" class="fw-bold">00:00</h3>
+                    </div>
+            <table id="bineroGrid">
+                <tbody>
                                     <?php for ($i = 0; $i < count($grid); $i++): ?>
                                         <tr>
                                             <?php for ($j = 0; $j < count($grid[$i]); $j++): ?>
@@ -49,125 +228,44 @@
                                                 $hasValue = $val !== null && $val !== '';
                                                 $displayValue = $hasValue ? ($val == 1 ? '1' : '0') : '';
                                                 ?>
-                                                <td class="p-2" style="min-width: 45px; min-height: 45px;">
+                                                <td>
                                                     <input type="button"
-                                                        class="btn btn-sm cell-btn <?php echo $hasValue ? 'locked' : ''; ?>"
+                                                        class="cell-btn <?php echo $hasValue ? 'locked' : ''; ?>"
                                                         id="cell_<?php echo $i; ?>_<?php echo $j; ?>"
                                                         value="<?php echo $displayValue; ?>"
                                                         data-row="<?php echo $i; ?>"
                                                         data-col="<?php echo $j; ?>"
                                                         data-value="<?php echo $displayValue; ?>"
                                                         data-locked="<?php echo $hasValue ? 'true' : 'false'; ?>"
-                                                        <?php echo $hasValue ? 'disabled' : ''; ?>
-                                                        style="width: 100%; height: 100%; font-weight: bold; cursor: <?php echo $hasValue ? 'not-allowed' : 'pointer'; ?>;
-                                                                  background-color: <?php
-                                                                                    if ($hasValue) {
-                                                                                        echo '#d0d0d0';  // Gris pour les cellules verrouillées
-                                                                                    } else {
-                                                                                        echo '#fff';
-                                                                                    }
-                                                                                    ?>;
-                                                                  color: <?php echo $hasValue ? '#666' : '#000'; ?>;
-                                                                  border: <?php echo $hasValue ? '2px solid #999' : '1px solid #ddd'; ?>;
-                                                                  opacity: <?php echo $hasValue ? '0.7' : '1'; ?>;">
-                                                    </input>
+                                                        <?php echo $hasValue ? 'disabled' : ''; ?>>
                                                 </td>
                                             <?php endfor; ?>
                                         </tr>
                                     <?php endfor; ?>
                                 </tbody>
                             </table>
-                        </div>
-
-                        <div class="mt-4 text-muted small">
-                            <p>💡 Cliquez sur une case pour entrer 0 ou 1. Cliquez à nouveau pour effacer.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Panneau de contrôle -->
-            <div class="col-lg-4">
-                <!-- Chronomètre et stats -->
-                <div class="card border-0 shadow-lg mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title mb-4">
-                            <i class="bi bi-stopwatch"></i> Statistiques
-                        </h5>
-
-                        <div class="mb-4 p-3 bg-light rounded text-center">
-                            <small class="text-muted d-block mb-2">Temps écoulé</small>
-                            <h3 id="timer" class="fw-bold mb-0">00:00</h3>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <div class="p-3 bg-danger bg-opacity-10 rounded text-center">
-                                    <small class="text-muted d-block">Erreurs</small>
-                                    <h4 id="errors" class="fw-bold mb-0">0</h4>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="p-3 bg-success bg-opacity-10 rounded text-center">
-                                    <small class="text-muted d-block">Progrès</small>
-                                    <h4 id="progress" class="fw-bold mb-0">0%</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Actions -->
-                <div class="card border-0 shadow-lg mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title mb-4">Actions</h5>
-
-                        <button class="btn btn-primary w-100 mb-3" id="hintBtn">
-                            <i class="bi bi-lightbulb"></i> Obtenir un indice
-                        </button>
-
-                        <button class="btn btn-outline-secondary w-100" id="newGameBtn">
-                            <i class="bi bi-arrow-counterclockwise"></i> Nouvelle partie
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Indice affiché -->
-                <div class="card border-0 shadow-lg d-none" id="hintCard">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <h5 class="card-title mb-0">💡 Indice</h5>
-                            <button type="button" class="btn-close" id="closeHintBtn"></button>
-                        </div>
-                        <p id="hintText" class="mt-3 mb-0 text-muted"></p>
-                    </div>
-                </div>
-
-                <!-- Victory modal -->
-                <div class="modal fade" id="victoryModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">🎉 Bravo !</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="victoryCloseBtn"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p id="victoryMessage">La grille est correcte.</p>
-                                <ul class="list-unstyled">
-                                    <li>Temps: <strong id="victoryTime">00:00</strong></li>
-                                    <li>Erreurs: <strong id="victoryErrors">0</strong></li>
-                                    <li>Indices: <strong id="victoryHints">0</strong></li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="index.php?controller=game" class="btn btn-primary">Nouvelle partie</a>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="victoryCloseFooter">Fermer</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Actions sous le parchemin -->
+        <div class="actions-row">
+            <button class="btn btn-hint" id="hintBtn">&#128161; Indice</button>
+            <button class="btn btn-validate" id="submitBtn">&#10003; Valider la solution</button>
+            <a href="index.php?controller=game" class="btn btn-outline-light btn-sm">&#127968; Retour aux niveaux</a>
+            <button class="btn btn-outline-info btn-sm" id="testApiBtn">&#128027; Test API</button>
+        </div>
+
+        <div class="d-none" id="hintCard" style="background: rgba(20,10,3,0.85); border-radius: 8px; padding: 14px 20px; color: #f5e6c8; max-width: 500px;">
+            <div class="d-flex justify-content-between align-items-start">
+                <strong>&#128161; Indice</strong>
+                <button type="button" class="btn-close btn-close-white btn-sm" id="closeHintBtn"></button>
+            </div>
+            <p id="hintText" class="mt-2 mb-0" style="font-size:0.85rem;"></p>
+        </div>
+
     </div>
 </div>
 
@@ -239,11 +337,14 @@
 
         // Changer la couleur
         if (nextValue === '') {
-            button.style.backgroundColor = '#fff';
-            button.style.color = '#000';
+            button.style.backgroundColor = 'rgba(255, 248, 200, 0.40)';
+            button.style.color = '#3d1a00';
+        } else if (nextValue === '0') {
+            button.style.backgroundColor = 'rgba(180, 230, 255, 0.65)';
+            button.style.color = '#0a2a50';
         } else {
-            button.style.backgroundColor = '#e3f2fd';
-            button.style.color = '#1976d2';
+            button.style.backgroundColor = 'rgba(255, 220, 100, 0.65)';
+            button.style.color = '#5c2800';
         }
 
         updateProgress();
@@ -532,36 +633,8 @@
         return (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
     }
 
-    // Animation shake
-    const style = document.createElement('style');
-    style.textContent = `
-    @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        10%, 90% { transform: translateX(-5px); }
-        20%, 80% { transform: translateX(5px); }
-        30%, 70% { transform: translateX(-5px); }
-        40%, 60% { transform: translateX(5px); }
-        50% { transform: translateX(0); }
-    }
-    
-    .cell-btn.locked {
-        background-color: #d0d0d0 !important;
-        color: #666 !important;
-        cursor: not-allowed !important;
-        opacity: 0.7 !important;
-        border: 2px solid #999 !important;
-        font-weight: bold !important;
-    }
-    
-    .cell-btn.locked:hover {
-        background-color: #d0d0d0 !important;
-        opacity: 0.7 !important;
-    }
-    
-    .cell-btn:not(.locked):hover {
-        background-color: #fff9e6 !important;
-        border-color: #ffc107 !important;
-    }
-`;
-    document.head.appendChild(style);
+    // Erreur : animation shake sur les cellules incorrectes
+    document.querySelectorAll('.cell-btn').forEach(cell => {
+        cell.style.transition = 'background 0.15s';
+    });
 </script>

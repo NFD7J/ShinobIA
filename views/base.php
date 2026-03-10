@@ -161,7 +161,7 @@
 
 <footer>
     <div class="container text-center">
-        <p class="mb-0"><i class="bi bi-book"></i> BiblioCEFII &copy; <?= date('Y') ?> — Votre bibliothèque en ligne</p>
+        <p class="mb-0"><i class="bi bi-book"></i> ShinobIA &copy; <?= date('Y') ?> — Votre bibliothèque en ligne</p>
     </div>
 </footer>
 
