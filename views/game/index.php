@@ -44,29 +44,32 @@
                                     <?php for ($i = 0; $i < count($grid); $i++): ?>
                                         <tr>
                                             <?php for ($j = 0; $j < count($grid[$i]); $j++): ?>
+                                                <?php
+                                                $val = $grid[$i][$j];
+                                                $hasValue = $val !== null && $val !== '';
+                                                $displayValue = $hasValue ? ($val == 1 ? '1' : '0') : '';
+                                                ?>
                                                 <td class="p-2" style="min-width: 45px; min-height: 45px;">
                                                     <input type="button"
-                                                        class="btn btn-sm cell-btn"
+                                                        class="btn btn-sm cell-btn <?php echo $hasValue ? 'locked' : ''; ?>"
                                                         id="cell_<?php echo $i; ?>_<?php echo $j; ?>"
-                                                        value="<?php
-                                                                $val = $grid[$i][$j];
-                                                                echo ($val === null || $val === '') ? '' : ($val == 1 ? '1' : '0');
-                                                                ?>"
+                                                        value="<?php echo $displayValue; ?>"
                                                         data-row="<?php echo $i; ?>"
                                                         data-col="<?php echo $j; ?>"
-                                                        data-value="<?php
-                                                                    $val = $grid[$i][$j];
-                                                                    echo ($val === null || $val === '') ? '' : ($val == 1 ? '1' : '0');
-                                                                    ?>"
-                                                        style="width: 100%; height: 100%; font-weight: bold; cursor: pointer;
+                                                        data-value="<?php echo $displayValue; ?>"
+                                                        data-locked="<?php echo $hasValue ? 'true' : 'false'; ?>"
+                                                        <?php echo $hasValue ? 'disabled' : ''; ?>
+                                                        style="width: 100%; height: 100%; font-weight: bold; cursor: <?php echo $hasValue ? 'not-allowed' : 'pointer'; ?>;
                                                                   background-color: <?php
-                                                                                    $val = $grid[$i][$j];
-                                                                                    if ($val === null || $val === '') {
-                                                                                        echo '#fff';
+                                                                                    if ($hasValue) {
+                                                                                        echo '#d0d0d0';  // Gris pour les cellules verrouillées
                                                                                     } else {
-                                                                                        echo '#e3f2fd';
+                                                                                        echo '#fff';
                                                                                     }
-                                                                                    ?>;">
+                                                                                    ?>;
+                                                                  color: <?php echo $hasValue ? '#666' : '#000'; ?>;
+                                                                  border: <?php echo $hasValue ? '2px solid #999' : '1px solid #ddd'; ?>;
+                                                                  opacity: <?php echo $hasValue ? '0.7' : '1'; ?>;">
                                                     </input>
                                                 </td>
                                             <?php endfor; ?>
@@ -164,6 +167,16 @@
     let errors = 0;
     let hintsUsed = 0;
 
+    // Compter le nombre de cellules à remplir (initialement vides)
+    let cellsToFill = 0;
+    gridData.forEach(row => {
+        row.forEach(cell => {
+            if (cell === null || cell === '') {
+                cellsToFill++;
+            }
+        });
+    });
+
     // Initialiser les cellules
     document.querySelectorAll('.cell-btn').forEach(cell => {
         cell.addEventListener('click', handleCellClick);
@@ -171,6 +184,13 @@
 
     function handleCellClick(e) {
         const button = e.target;
+
+        // Vérifier si la cellule est verrouillée
+        if (button.dataset.locked === 'true' || button.disabled) {
+            alert('⛔ Cette case est pré-remplie et ne peut pas être modifiée.');
+            return;
+        }
+
         const row = parseInt(button.dataset.row);
         const col = parseInt(button.dataset.col);
         let currentValue = button.value;
@@ -264,9 +284,16 @@
             });
         });
 
-        const totalCells = gridSize * gridSize;
-        const progressPercent = Math.round((filledCells / totalCells) * 100);
-        document.getElementById('progress').textContent = progressPercent + '%';
+        // Soustraire les cellules pré-remplies du total
+        let cellsFilledByPlayer = filledCells;
+        gridData.forEach(row => {
+            row.forEach(cell => {
+                if (cell !== null && cell !== '') cellsFilledByPlayer--;
+            });
+        });
+
+        const progressPercent = cellsToFill > 0 ? Math.round((cellsFilledByPlayer / cellsToFill) * 100) : 0;
+        document.getElementById('progress').textContent = Math.max(0, Math.min(100, progressPercent)) + '%';
     }
 
     // Vérifier la solution
@@ -350,6 +377,25 @@
         30%, 70% { transform: translateX(-5px); }
         40%, 60% { transform: translateX(5px); }
         50% { transform: translateX(0); }
+    }
+    
+    .cell-btn.locked {
+        background-color: #d0d0d0 !important;
+        color: #666 !important;
+        cursor: not-allowed !important;
+        opacity: 0.7 !important;
+        border: 2px solid #999 !important;
+        font-weight: bold !important;
+    }
+    
+    .cell-btn.locked:hover {
+        background-color: #d0d0d0 !important;
+        opacity: 0.7 !important;
+    }
+    
+    .cell-btn:not(.locked):hover {
+        background-color: #fff9e6 !important;
+        border-color: #ffc107 !important;
     }
 `;
     document.head.appendChild(style);
