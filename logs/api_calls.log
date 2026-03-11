@@ -215,3 +215,39 @@
 [2026-03-10 13:03:24] === APPEL API ===
 [2026-03-10 13:03:24] Endpoint: http://localhost:8080/api/binero/player-feedback
 [2026-03-10 13:03:24] Data: {"difficulty":"easy","timeElapsed":117,"errors":18,"hintsUsed":0,"progress":100}
+[2026-03-10 16:55:42] === APPEL API ===
+[2026-03-10 16:55:42] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-10 16:55:42] Data: {"difficulty":"medium"}
+[2026-03-10 16:55:42] HTTP Code: 200
+[2026-03-10 16:55:42] Response: {"grid":[[1,0,null,null,null,1,null,1],[null,0,null,0,0,null,null,null],[null,1,null,null,null,null,null,null],[null,null,null,null,null,null,1,null],[null,null,null,null,null,1,null,null],[0,null,null,null,1,1,null,null],[null,null,null,null,0,null,null,null],[null,null,null,null,null,null,1,null]],"solution":[[1,0,0,1,0,1,0,1],[1,0,1,0,0,1,1,0],[0,1,0,1,1,0,0,1],[0,1,0,1,0,0,1,1],[1,0,1,0,1,1,0,0],[0,1,0,0,1,1,0,1],[1,0,1,1,0,0,1,0],[0,1,1,0,1,0,1,0]],"difficulty":"medium","size":8}
+[2026-03-10 16:55:42] ✓ Succès! Données reçues.
+[2026-03-11 09:51:03] === APPEL API ===
+[2026-03-11 09:51:03] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 09:51:03] Data: {"difficulty":"medium"}
+[2026-03-11 09:51:06] HTTP Code: 0
+[2026-03-11 09:51:06] Response: 
+[2026-03-11 09:51:06] ERROR - cURL Error: Failed to connect to localhost port 8080 after 2229 ms: Couldn't connect to server
+[2026-03-11 09:52:47] === APPEL API ===
+[2026-03-11 09:52:47] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 09:52:47] Data: {"difficulty":"medium"}
+[2026-03-11 09:52:48] HTTP Code: 200
+[2026-03-11 09:52:48] Response: {"grid":[[1,0,null,null,null,null,null,null],[0,null,null,1,null,0,null,null],[1,0,null,null,null,null,0,null],[null,null,null,null,1,null,0,null],[null,0,null,null,null,null,null,null],[null,null,0,null,null,null,null,null],[1,null,null,null,null,null,null,null],[null,null,1,null,0,null,null,null]],"solution":[[1,0,1,1,0,0,1,0],[0,1,0,1,0,0,1,0],[1,0,1,0,1,1,0,1],[1,1,0,0,1,0,0,1],[0,0,1,1,0,1,1,0],[0,1,0,0,1,1,0,0],[1,1,0,1,1,0,0,1],[1,0,1,0,0,1,1,0]],"difficulty":"medium","size":8}
+[2026-03-11 09:52:48] ✓ Succès! Données reçues.
+[2026-03-11 09:57:16] === APPEL API ===
+[2026-03-11 09:57:16] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 09:57:16] Data: {"difficulty":"medium"}
+[2026-03-11 09:57:16] HTTP Code: 200
+[2026-03-11 09:57:16] Response: {"grid":[[null,null,null,null,null,null,null,null],[null,1,1,null,1,null,null,null],[null,null,null,null,null,null,null,null],[null,null,null,1,null,null,null,0],[null,1,0,null,1,null,null,null],[null,null,null,null,0,0,null,null],[null,1,0,null,null,null,1,null],[null,null,null,null,1,null,0,null]],"solution":[[1,1,0,0,1,1,0,0],[0,1,1,0,1,0,1,0],[1,0,0,1,0,0,1,1],[1,0,1,1,0,1,0,0],[0,1,0,0,1,1,0,1],[1,0,1,1,0,0,1,0],[0,1,0,1,0,0,1,1],[0,0,1,0,1,1,0,1]],"difficulty":"medium","size":8}
+[2026-03-11 09:57:16] ✓ Succès! Données reçues.
+[2026-03-11 09:58:10] === APPEL API ===
+[2026-03-11 09:58:10] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 09:58:10] Data: {"difficulty":"hard"}
+[2026-03-11 09:58:10] HTTP Code: 200
+[2026-03-11 09:58:10] Response: {"grid":[[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,0,1,1],[null,null,null,null,null,0,null,null,null,null],[0,null,null,null,null,null,null,null,null,null],[0,null,null,null,1,null,null,null,null,null],[null,null,null,null,null,null,null,null,0,null],[null,null,0,null,null,null,null,1,1,null],[null,null,0,null,1,null,null,1,0,null],[null,0,null,null,null,1,null,null,null,null],[null,null,null,null,null,null,null,null,null,null]],"solution":[[1,1,0,1,0,0,1,1,0,0],[0,1,1,0,1,1,0,0,1,1],[1,0,0,1,0,0,1,1,0,0],[0,0,1,0,1,1,0,1,1,0],[0,1,0,0,1,1,0,0,1,1],[1,0,1,1,0,0,1,0,0,1],[1,0,0,1,1,0,0,1,1,0],[0,1,0,0,1,1,0,1,0,1],[0,0,1,0,0,1,1,0,1,1],[1,0,1,1,0,0,1,0,1,0]],"difficulty":"hard","size":10}
+[2026-03-11 09:58:10] ✓ Succès! Données reçues.
+[2026-03-11 09:58:23] === APPEL API ===
+[2026-03-11 09:58:23] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 09:58:23] Data: {"difficulty":"easy"}
+[2026-03-11 09:58:23] HTTP Code: 200
+[2026-03-11 09:58:23] Response: {"grid":[[null,null,null,null,null,null],[null,null,0,null,1,null],[null,null,1,null,0,null],[null,null,1,null,null,null],[null,null,null,null,0,1],[null,null,0,1,0,1]],"solution":[[0,1,0,0,1,0],[1,1,0,0,1,0],[1,0,1,1,0,1],[0,1,1,0,1,0],[0,0,0,1,0,1],[1,0,0,1,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 09:58:23] ✓ Succès! Données reçues.

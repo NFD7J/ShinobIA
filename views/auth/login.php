@@ -1,20 +1,29 @@
 <style>
+    main{
+        background-image: url('../views/game/images/bckgrd_bois.jpg'), linear-gradient(180deg, #f8f6f1 0%, #f0ebe3 100%);
+        background-size: cover;
+        background-position: center;
+    }
     .login-container {
-        background: linear-gradient(180deg, #f8f6f1 0%, #f0ebe3 100%);
         min-height: 100vh;
+        position: relative;
+        background-color: #fae4c1;
+        width: 66%;
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 40px 20px;
+        padding: 90px 20px 50px 20px;
     }
 
     .login-logo {
         margin-bottom: 40px;
         text-align: center;
+
     }
 
     .login-logo img {
-        max-height: 100px;
+        max-height: 170px;
         width: auto;
     }
 
@@ -28,11 +37,14 @@
     }
 
     .login-form-card {
-        background: white;
-        border-radius: 12px;
         padding: 40px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding-top: 56px;
         flex: 0 0 400px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .login-form-card h2 {
@@ -42,45 +54,77 @@
         font-size: 1.8rem;
     }
 
-    .login-form-card .form-label {
-        color: #2c3e50;
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
-
-    .login-form-card .input-group-text {
-        background: #f0ebe3;
+    .input-group-text {
+        height: 56px;
+        position: absolute;
+        background: none;
         border: none;
-        color: #3498db;
+        color: #a82a2a;
+        z-index: 1;
+    }
+    .input-group-text.masque {
+        left: -33px;
+    }
+    .input-group-text.rouleau {
+        left: -21px;
+    }
+    .input-group-text img {
+        height: 125%;
+        width: auto;
+    }
+    .input-group-text.masque img {
+        height: 137%;
+        transform: translateY(-5px);
     }
 
-    .login-form-card .form-control {
-        border: 1px solid #ddd;
+    .input-group{
+        position: relative;
+        display: flex;
+        align-items: center;
     }
 
-    .login-form-card .form-control:focus {
-        border-color: #3498db;
-        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    .form-control {
+        background-color: #fff1db;
+        border: 1px solid #a82a2a;
+        border-radius: 0 20px 20px 0;
+        padding-left: 30px;
+        width: 280px !important;
+        height: 48px;
+    }
+    .form-control::placeholder {
+        text-align: center;
+    }
+
+    .form-control:focus {
+        border-color: #a82a2a;
+        background: none;
+        box-shadow: none;
+        z-index: 0 !important;
     }
 
     .login-form-card .btn-primary {
-        background: #3498db;
         border: none;
         font-weight: 600;
+    }
+
+    .btn-primary{
+        border-radius: 20px;
+        width: 240px;
         padding: 10px;
-        margin-top: 15px;
+        margin-top: 104px;
+        background-color: #a82a2a;
     }
-
-    .login-form-card .btn-primary:hover {
-        background: #2980b9;
-    }
-
-    .login-form-card .text-muted {
+    
+    .text-muted {
         text-align: center;
         margin-top: 20px;
+        margin-bottom: 0;
     }
 
     .login-sensei {
+        position: absolute;
+        bottom: 50px;
+        right: 10px;
         flex: 0 0 auto;
         text-align: center;
     }
@@ -102,7 +146,6 @@
     <div class="login-wrapper">
         <!-- Formulaire à gauche -->
         <div class="login-form-card">
-            <h2><i class="bi bi-box-arrow-in-right"></i> Connexion</h2>
 
             <?php if (isset($error)): ?>
                 <div class="alert alert-danger">
@@ -111,24 +154,22 @@
             <?php endif; ?>
 
             <form method="POST" action="index.php?controller=auth&action=login">
-                <div class="mb-3">
-                    <label for="mail" class="form-label">Adresse email</label>
+                <div class="mb-4">
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <span class="input-group-text masque"><img src="image.php?f=icons/user_account_masque.png" alt="Email Icon"></span>
                         <input type="email" class="form-control" id="mail" name="mail" placeholder="votre@email.fr" required>
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
+                <div>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <span class="input-group-text rouleau"><img src="image.php?f=icons/mdp_rouleau.png" alt="Password Icon"></span>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe" required>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">
-                    <i class="bi bi-box-arrow-in-right"></i> Se connecter
+                <button type="submit" class="btn btn-primary">
+                    Connexion
                 </button>
             </form>
 
