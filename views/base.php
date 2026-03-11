@@ -122,36 +122,16 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand" href="index.php">
-            <i class="bi bi-book"></i> ShinobIA
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php"><i class="bi bi-house"></i> Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?controller=game"><i class="bi bi-journal-bookmark"></i> Games</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?controller=leaderboard"><i class="bi bi-journal-bookmark"></i> Leaderboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?controller=succes"><i class="bi bi-trophy"></i> Succès</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <?php if (isset($_SESSION["user"])): ?>
-                    <li class="nav-item">
-                        <span class="nav-link text-light">
-                            <i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION["user"]["name"]) ?>
-                        </span>
-                    </li>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.php">
+                <i class="bi bi-book"></i> ShinobIA
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="index.php"><i class="bi bi-house"></i> Accueil</a>
                     </li>
@@ -160,6 +140,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?controller=leaderboard"><i class="bi bi-journal-bookmark"></i> Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?controller=succes"><i class="bi bi-trophy"></i> Succès</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

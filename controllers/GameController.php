@@ -96,11 +96,24 @@ class GameController extends Controller
             return;
         }
 
-        $difficulty = $_SESSION['current_game']['difficulty'] ?? 'easy';
-        $grid = $_POST['grid'] ?? $_SESSION['current_game']['grid'] ?? [];
+        // Récupérer les données JSON depuis le body
+        $input = json_decode(file_get_contents('php://input'), true);
+
+        $difficulty = $input['difficulty'] ?? $_SESSION['current_game']['difficulty'] ?? 'easy';
+        $grid = $input['grid'] ?? $_SESSION['current_game']['grid'] ?? [];
+
+        // Convertir la grille en format Integer[][] (string -> int, '' -> null)
+        $formattedGrid = array_map(function ($row) {
+            return array_map(function ($cell) {
+                if ($cell === null || $cell === '' || $cell === 'null') {
+                    return null;
+                }
+                return intval($cell);
+            }, $row);
+        }, $grid);
 
         // Appeler l'API pour générer un indice
-        $hintData = $this->bineroService->generateHint($grid, $difficulty);
+        $hintData = $this->bineroService->generateHint($formattedGrid, $difficulty);
 
         if (!$hintData) {
             http_response_code(500);
@@ -194,11 +207,11 @@ class GameController extends Controller
         // 2. Sauvegarder la partie dans la table `game`
         $gameModel = new GameModel();
         $gameModel->save(
-            userId:    $userId,
-            grilleId:  $grilleId,
-            duration:  $timeElapsed,
+            userId: $userId,
+            grilleId: $grilleId,
+            duration: $timeElapsed,
             nbIndices: $hintsUsed,
-            points:    $this->calcPoints($difficulty, $timeElapsed, $hintsUsed)
+            points: $this->calcPoints($difficulty, $timeElapsed, $hintsUsed)
         );
 
         // 3. Vérifier et débloquer les succès
@@ -212,10 +225,15 @@ class GameController extends Controller
         ]);
     }
 
-private function calcPoints(string $difficulty, int $duration, int $hints): int
-{
-    $base = match($difficulty) { 'easy' => 100, 'medium' => 200, 'hard' => 400, default => 100 };
-    $penalty = $hints * 10 + (int)($duration / 30) * 5;
-    return max(0, $base - $penalty);
-}
+    private function calcPoints(string $difficulty, int $duration, int $hints): int
+    {
+        $base = match ($difficulty) {
+            'easy' => 100,
+            'medium' => 200,
+            'hard' => 400,
+            default => 100
+        };
+        $penalty = $hints * 10 + (int)($duration / 30) * 5;
+        return max(0, $base - $penalty);
+    }
 }

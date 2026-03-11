@@ -495,8 +495,17 @@
             delete cellModificationTimers[cellKey];
         }, 900);
 
-        // Appeler l'API tous les 10-15 coups (aléatoirement)
-        if (moveCount - lastAPICallMove >= 10 + Math.random() * 5) {
+        // Appeler l'API à intervalle adapté selon l'avancement et les erreurs
+        // - Plus fréquent si beaucoup d'erreurs ou peu avancé
+        // - Moins fréquent si bien avancé et pas d'erreur
+        const progress = parseInt(document.getElementById('progress').textContent);
+        const errorCount = parseInt(document.getElementById('errors').textContent);
+
+        let apiInterval = 15; // Par défaut : tous les 15 coups
+        if (errorCount >= 3) apiInterval = 12; // Plus fréquent si erreurs
+        if (progress >= 80) apiInterval = 18; // Moins fréquent si bien avancé
+
+        if (moveCount - lastAPICallMove >= apiInterval) {
             lastAPICallMove = moveCount;
             triggerSenseiCommentary('regular');
         }
@@ -510,22 +519,59 @@
     document.getElementById('hintBtn').addEventListener('click', async function() {
         if (!confirm('Utiliser un indice? (cela ne pénalise pas votre score)')) return;
 
-        const response = await fetch('index.php?controller=game&action=hint', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                grid: playerGrid,
-                difficulty: difficulty
-            })
-        });
+        try {
+            // Convertir la grille en format proper pour l'API (Integer[][])
+            const gridToSend = playerGrid.map(row =>
+                row.map(cell => {
+                    if (cell === null || cell === '') return null;
+                    return parseInt(cell);
+                })
+            );
 
-        const data = await response.json();
-        if (data.hint) {
-            document.getElementById('hintText').textContent = data.hint;
-            document.getElementById('hintCard').classList.remove('d-none');
-            hintsUsed++;
+            console.log('Envoi indice avec grille:', gridToSend);
+
+            const response = await fetch('index.php?controller=game&action=hint', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    grid: gridToSend,
+                    difficulty: difficulty
+                })
+            });
+
+            console.log('Réponse HTTP status:', response.status);
+
+            const data = await response.json();
+            console.log('Données reçues:', data);
+
+            if (!response.ok) {
+                console.error('Erreur HTTP:', response.status, data);
+                alert('Erreur du serveur: ' + (data.error || 'Impossible de récupérer l\'indice'));
+                return;
+            }
+
+            if (data.hint) {
+                hintsUsed++;
+
+                // Changer l'emote du sensei en pensif (il réfléchit pour donner l'indice)
+                const senseiImg = document.getElementById('senseiImage');
+                if (senseiImg) {
+                    senseiImg.src = `image.php?f=emotes_sensei/sensei_idea.png`;
+                    senseiImg.alt = 'sensei_idea';
+                }
+
+                // Afficher l'indice dans une bulle à côté du sensei
+                queueSenseiComment('💡 ' + data.hint);
+                console.log('Indice affiché:', data.hint);
+            } else {
+                console.error('Pas d\'indice dans la réponse:', data);
+                queueSenseiComment('Le Sensei n\'a pas d\'indice pour toi en ce moment. Continue à réfléchir!');
+            }
+        } catch (error) {
+            console.error('Erreur réseau lors de la récupération de l\'indice:', error);
+            alert('Impossible de contacter le Sensei. Vérifiez la connexion.');
         }
     });
 
@@ -613,71 +659,116 @@
 
             const data = await response.json();
             if (data.comment) {
-                // Déterminer l'emote bulle basée sur le type
-                let emote = getSenseiEmoteFromStats();
+                // Utiliser l'expression retournée par le backend, sinon fallback
+                let emote = data.expression ? mapExpressionToEmote(data.expression) : getSenseiEmoteFromStats();
+
                 if (type === 'error') {
-                    emote = 'sensei_peur'; // Peur en cas d'erreur
+                    emote = 'sensei_fear'; // Peur en cas d'erreur (override)
                 }
 
-                // Mettre à jour l'image du sensei avec la version bulle
+                // Mettre à jour l'image du sensei
                 const senseiImg = document.getElementById('senseiImage');
                 if (senseiImg) {
-                    senseiImg.src = `image.php?f=emotes_sensei/${emote}_bulle.png`;
+                    senseiImg.src = `image.php?f=emotes_sensei/${emote}.png`;
                     senseiImg.alt = emote;
                 }
 
                 // Afficher le commentaire
-                displaySenseiComment(data.comment);
+                queueSenseiComment(data.comment);
             }
         } catch (error) {
             console.error('Erreur lors de la mise à jour du sensei:', error);
         }
     }
 
-    // Affiche le commentaire du sensei dans la bulle
-    function displaySenseiComment(comment) {
-        const senseiImg = document.getElementById('senseiImage');
-        if (!senseiImg) return;
+    // Queue pour afficher les bulles une par une
+    let commentQueue = [];
+    let isDisplayingComment = false;
 
-        // Créer un placeholder pour le texte dans l'image
-        let textOverlay = senseiImg.nextElementSibling;
-        if (!textOverlay || textOverlay.id !== 'senseiTextOverlay') {
-            textOverlay = document.createElement('div');
-            textOverlay.id = 'senseiTextOverlay';
-            textOverlay.style.cssText = `
-                position: absolute;
-                top: -60px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: linear-gradient(135deg, #faf5f0 0%, #f5ede5 100%);
-                border: 3px solid #6b4226;
-                border-radius: 15px;
-                padding: 16px 20px;
-                max-width: 240px;
-                font-size: 0.95rem;
-                color: #3d1a00;
-                font-family: 'Georgia', serif;
-                font-weight: 500;
-                box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-                z-index: 100;
-                line-height: 1.5;
-                text-align: center;
-                white-space: normal;
-                word-wrap: break-word;
-            `;
-            senseiImg.parentElement.style.position = 'relative';
-            senseiImg.parentElement.insertBefore(textOverlay, senseiImg);
+    // Ajoute un commentaire à la queue (affichage séquentiel)
+    function queueSenseiComment(comment) {
+        commentQueue.push(comment);
+        processCommentQueue();
+    }
+
+    // Traite la queue de commentaires (un par un)
+    async function processCommentQueue() {
+        if (isDisplayingComment || commentQueue.length === 0) return;
+
+        isDisplayingComment = true;
+        const comment = commentQueue.shift();
+
+        await new Promise((resolve) => {
+            displaySenseiComment(comment, resolve);
+        });
+
+        isDisplayingComment = false;
+
+        // Traiter le prochain commentaire après un petit délai
+        if (commentQueue.length > 0) {
+            setTimeout(processCommentQueue, 500);
+        }
+    }
+
+    // Affiche le commentaire du sensei dans la bulle
+    function displaySenseiComment(comment, onComplete) {
+        const senseiImg = document.getElementById('senseiImage');
+        if (!senseiImg) {
+            if (onComplete) onComplete();
+            return;
         }
 
-        textOverlay.textContent = comment;
-        textOverlay.style.display = 'block';
-        textOverlay.style.animation = 'bubbleAppear 0.3s ease-out';
+        // Créer un conteneur parent pour les bulles s'il n'existe pas
+        let bubbleContainer = senseiImg.parentElement.querySelector('#senseiBubbleContainer');
+        if (!bubbleContainer) {
+            bubbleContainer = document.createElement('div');
+            bubbleContainer.id = 'senseiBubbleContainer';
+            bubbleContainer.style.cssText = `
+                position: relative;
+                width: 100%;
+                height: 120px;
+                pointer-events: none;
+            `;
+            senseiImg.parentElement.style.position = 'relative';
+            senseiImg.parentElement.insertBefore(bubbleContainer, senseiImg);
+        }
 
-        // Garder le texte visible 15 secondes
+        // Créer une nouvelle bulle unique
+        const textOverlay = document.createElement('div');
+        textOverlay.className = 'senseiTextBubble';
+        textOverlay.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #faf5f0 0%, #f5ede5 100%);
+            border: 3px solid #6b4226;
+            border-radius: 15px;
+            padding: 16px 20px;
+            max-width: 280px;
+            font-size: 0.95rem;
+            color: #3d1a00;
+            font-family: 'Georgia', serif;
+            font-weight: 500;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            z-index: 1000;
+            line-height: 1.5;
+            text-align: center;
+            white-space: normal;
+            word-wrap: break-word;
+            animation: bubbleAppear 0.3s ease-out;
+            pointer-events: auto;
+        `;
+
+        textOverlay.textContent = comment;
+        bubbleContainer.appendChild(textOverlay);
+
+        // Afficher la bulle 15 secondes, puis la retirer
         setTimeout(() => {
             textOverlay.style.animation = 'bubbleDisappear 0.3s ease-out';
             setTimeout(() => {
-                textOverlay.style.display = 'none';
+                textOverlay.remove();
+                if (onComplete) onComplete();
             }, 300);
         }, 15000);
     }
@@ -711,19 +802,44 @@
         document.head.appendChild(style);
     }
 
-    // Map des emotes basées sur les conditions de performance
+    // Map les expressions du Sensei (du backend) aux fichiers d'emotes
+    function mapExpressionToEmote(expression) {
+        const expressionMap = {
+            'happy': 'sensei_rofl', // Très content = rire
+            'laughing': 'sensei_lol', // Rire bienveillant
+            'thinking': 'sensei_idea', // Pensif = avec ampoule (nouvelle idée)
+            'pointing': 'sensei_kawaii', // Approbation enthousiaste
+            'amused': 'sensei_lol', // Amusé = qui rit
+            'sad': 'sensei_doubt', // Triste/déçu = douteux
+            'shocked': 'sensei_fear', // Choqué/inquiet = peur
+            'crying': 'sensei_fear' // Catastrophe = peur
+        };
+        return expressionMap[expression] || 'sensei_omg'; // Par défaut: surpris
+    }
+
+    // Map des emotes basées sur les conditions de performance (fallback si pas de backend)
     function getSenseiEmoteFromStats() {
         const progress = parseInt(document.getElementById('progress').textContent);
         const errorCount = parseInt(document.getElementById('errors').textContent);
+        const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
 
-        // Détermine l'emote basée sur la performance
-        if (errorCount >= 5) return 'sensei_peur'; // Peur si trop d'erreurs
-        if (errorCount >= 3) return 'sensei_doubt'; // Doute si erreurs
-        if (progress >= 90) return 'sensei_rofl'; // Rire si presque fini
-        if (progress >= 70) return 'sensei_kawaii'; // Heureux si bien avancé
-        if (progress >= 50) return 'sensei_lol'; // Content si moyen
-        if (progress >= 20) return 'sensei_smile'; // Sourire si un peu avancé
-        return 'sensei_omg'; // Surpris par défaut
+        // Priorité 1: États catastrophiques
+        if (errorCount >= 5) return 'sensei_fear'; // Peur si trop d'erreurs (>=5)
+        if (errorCount >= 3 && progress < 30) return 'sensei_fear'; // Peur si beaucoup d'erreurs ET peu avancé
+
+        // Priorité 2: États négatifs
+        if (errorCount >= 3) return 'sensei_doubt'; // Doute si quelques erreurs (3-4)
+        if (timeElapsed > 300 && progress < 50) return 'sensei_doubt'; // Stress si > 5 min et peu avancé
+        if (hintsUsed >= 4) return 'sensei_doubt'; // Frustration si beaucoup d'indices (>=4)
+
+        // Priorité 3: États positifs basés sur la progression
+        if (progress >= 95) return 'sensei_rofl'; // Rire fort si presque parfait (95%+)
+        if (progress >= 80) return 'sensei_kawaii'; // Heureux si bien avancé (80%+)
+        if (progress >= 60) return 'sensei_lol'; // Rire si bon progrès (60%+)
+        if (progress >= 30) return 'sensei_smile'; // Sourire si en bonne voie (30%+)
+
+        // Par défaut: pensif et prêt à aider (même au démarrage)
+        return 'sensei_idea';
     }
 
     // Bouton soumettre (removed) - replaced by automatic verification and modal
@@ -970,9 +1086,11 @@
     async function sendFeedback(timeElapsed) {
         const response = await fetch('index.php?controller=game&action=save', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
-                hintsUsed:   hintsUsed,
+                hintsUsed: hintsUsed,
                 timeElapsed: timeElapsed
             })
         });
@@ -997,9 +1115,9 @@
         `;
 
         const isIcon = icon.startsWith('bi-');
-        const iconHtml = isIcon
-            ? `<i class="bi ${icon}" style="font-size:2rem; color:#f39c12;"></i>`
-            : `<img src="public/images/succes/${icon}" style="width:40px;height:40px;object-fit:contain;">`;
+        const iconHtml = isIcon ?
+            `<i class="bi ${icon}" style="font-size:2rem; color:#f39c12;"></i>` :
+            `<img src="public/images/succes/${icon}" style="width:40px;height:40px;object-fit:contain;">`;
 
         toast.innerHTML = `
             ${iconHtml}
@@ -1023,6 +1141,16 @@
         if (gameFinished) return; // Ne pas continuer si la partie est finie
         const elapsed = Math.floor((Date.now() - startTime) / 1000);
         document.getElementById('timer').textContent = formatTime(elapsed);
+
+        // Mettre à jour l'emote du sensei toutes les 10 secondes pour réagir au temps passé
+        if (elapsed % 10 === 0 && elapsed > 0) {
+            const senseiImg = document.getElementById('senseiImage');
+            if (senseiImg) {
+                const newEmote = getSenseiEmoteFromStats();
+                senseiImg.src = `image.php?f=emotes_sensei/${newEmote}.png`;
+                senseiImg.alt = newEmote;
+            }
+        }
     }, 1000);
 
     // Nouveau bouton partie: relancer une partie de même difficulté
