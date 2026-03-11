@@ -968,24 +968,54 @@
 
     // Envoyer le feedback
     async function sendFeedback(timeElapsed) {
-        const response = await fetch('index.php?controller=game&action=feedback', {
+        const response = await fetch('index.php?controller=game&action=save', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                difficulty: difficulty,
-                timeElapsed: timeElapsed,
-                errors: errors,
-                hintsUsed: hintsUsed,
-                progress: 100
+                hintsUsed:   hintsUsed,
+                timeElapsed: timeElapsed
             })
         });
 
         const data = await response.json();
-        if (data.comment) {
-            console.log('Feedback: ' + data.comment);
+        if (data.newSuccesses && data.newSuccesses.length > 0) {
+            data.newSuccesses.forEach((s, i) => {
+                setTimeout(() => showSuccessToast(s.name, s.icon), i * 800);
+            });
         }
+    }
+
+    function showSuccessToast(name, icon) {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff; border-radius: 12px; padding: 14px 20px;
+            display: flex; align-items: center; gap: 14px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+            animation: slideIn 0.4s ease; min-width: 260px; max-width: 320px;
+        `;
+
+        const isIcon = icon.startsWith('bi-');
+        const iconHtml = isIcon
+            ? `<i class="bi ${icon}" style="font-size:2rem; color:#f39c12;"></i>`
+            : `<img src="public/images/succes/${icon}" style="width:40px;height:40px;object-fit:contain;">`;
+
+        toast.innerHTML = `
+            ${iconHtml}
+            <div>
+                <div style="font-size:0.7rem; color:#f39c12; font-weight:700; letter-spacing:1px; text-transform:uppercase;">
+                    🏆 Succès débloqué !
+                </div>
+                <div style="font-size:0.95rem; font-weight:600; margin-top:2px;">${name}</div>
+            </div>
+        `;
+
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.animation = 'slideOut 0.4s ease forwards';
+            setTimeout(() => toast.remove(), 400);
+        }, 4000);
     }
 
     // Chronomètre
@@ -1009,8 +1039,46 @@
         return (mins < 10 ? '0' : '') + mins + ':' + (secs < 10 ? '0' : '') + secs;
     }
 
-    // Erreur : animation shake sur les cellules incorrectes
-    document.querySelectorAll('.cell-btn').forEach(cell => {
-        cell.style.transition = 'background 0.15s';
-    });
+    // Animation shake
+    const style = document.createElement('style');
+    style.textContent = `
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 90% { transform: translateX(-5px); }
+        20%, 80% { transform: translateX(5px); }
+        30%, 70% { transform: translateX(-5px); }
+        40%, 60% { transform: translateX(5px); }
+        50% { transform: translateX(0); }
+    }
+
+    @keyframes slideIn {
+        from { transform: translateX(120%); opacity: 0; }
+        to   { transform: translateX(0);    opacity: 1; }
+    }
+
+    @keyframes slideOut {
+        from { transform: translateX(0);    opacity: 1; }
+        to   { transform: translateX(120%); opacity: 0; }
+    }
+    
+    .cell-btn.locked {
+        background-color: #d0d0d0 !important;
+        color: #666 !important;
+        cursor: not-allowed !important;
+        opacity: 0.7 !important;
+        border: 2px solid #999 !important;
+        font-weight: bold !important;
+    }
+    
+    .cell-btn.locked:hover {
+        background-color: #d0d0d0 !important;
+        opacity: 0.7 !important;
+    }
+    
+    .cell-btn:not(.locked):hover {
+        background-color: #fff9e6 !important;
+        border-color: #ffc107 !important;
+    }
+`;
+    document.head.appendChild(style);
 </script>
