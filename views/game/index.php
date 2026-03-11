@@ -724,9 +724,11 @@
             bubbleContainer = document.createElement('div');
             bubbleContainer.id = 'senseiBubbleContainer';
             bubbleContainer.style.cssText = `
-                position: relative;
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%;
-                height: 120px;
+                height: 100%;
                 pointer-events: none;
             `;
             senseiImg.parentElement.style.position = 'relative';
@@ -738,19 +740,19 @@
         textOverlay.className = 'senseiTextBubble';
         textOverlay.style.cssText = `
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #faf5f0 0%, #f5ede5 100%);
-            border: 3px solid #6b4226;
-            border-radius: 15px;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #e8d5b5 0%, #d9c49a 100%);
+            border: 3px solid #8b6f47;
+            border-radius: 25px;
             padding: 16px 20px;
             max-width: 280px;
             font-size: 0.95rem;
-            color: #3d1a00;
+            color: #2a1900;
             font-family: 'Georgia', serif;
             font-weight: 500;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             z-index: 1000;
             line-height: 1.5;
             text-align: center;
@@ -778,27 +780,27 @@
         const style = document.createElement('style');
         style.id = 'senseiAnimations';
         style.textContent = `
-            @keyframes bubbleAppear {
-                from {
-                    opacity: 0;
-                    transform: translateX(-50%) translateY(10px);
+                @keyframes bubbleAppear {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-50%) translateX(10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(-50%) translateX(0);
+                    }
                 }
-                to {
-                    opacity: 1;
-                    transform: translateX(-50%) translateY(0);
+                @keyframes bubbleDisappear {
+                    from {
+                        opacity: 1;
+                        transform: translateY(-50%) translateX(0);
+                    }
+                    to {
+                        opacity: 0;
+                        transform: translateY(-50%) translateX(-10px);
+                    }
                 }
-            }
-            @keyframes bubbleDisappear {
-                from {
-                    opacity: 1;
-                    transform: translateX(-50%) translateY(0);
-                }
-                to {
-                    opacity: 0;
-                    transform: translateX(-50%) translateY(-10px);
-                }
-            }
-        `;
+            `;
         document.head.appendChild(style);
     }
 

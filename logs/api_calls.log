@@ -215,3 +215,815 @@
 [2026-03-10 13:03:24] === APPEL API ===
 [2026-03-10 13:03:24] Endpoint: http://localhost:8080/api/binero/player-feedback
 [2026-03-10 13:03:24] Data: {"difficulty":"easy","timeElapsed":117,"errors":18,"hintsUsed":0,"progress":100}
+[2026-03-11 12:54:09] === APPEL API ===
+[2026-03-11 12:54:09] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 12:54:09] Data: {"difficulty":"easy"}
+[2026-03-11 12:54:09] HTTP Code: 200
+[2026-03-11 12:54:09] cURL Error Code: 0
+[2026-03-11 12:54:09] Response: {"grid":[[null,0,1,null,null,null],[1,null,null,null,null,null],[null,null,null,null,0,null],[1,null,null,null,0,null],[0,null,null,null,1,null],[0,null,0,null,1,null]],"solution":[[1,0,1,1,0,0],[1,1,0,0,1,0],[0,0,1,1,0,1],[1,1,0,1,0,0],[0,0,1,0,1,1],[0,1,0,0,1,1]],"difficulty":"easy","size":6}
+[2026-03-11 12:54:09] ✅ Succès! Données reçues: {"grid":[[null,0,1,null,null,null],[1,null,null,null,null,null],[null,null,null,null,0,null],[1,null,null,null,0,null],[0,null,null,null,1,null],[0,null,0,null,1,null]],"solution":[[1,0,1,1,0,0],[1,1,0,0,1,0],[0,0,1,1,0,1],[1,1,0,1,0,0],[0,0,1,0,1,1],[0,1,0,0,1,1]],"difficulty":"easy","size":6}
+[2026-03-11 12:54:12] === APPEL API ===
+[2026-03-11 12:54:12] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 12:54:12] Data: {"grid":[[null,0,1,null,null,null],[1,null,null,null,null,null],[null,null,null,null,0,null],[1,null,null,null,0,null],[0,null,null,null,1,null],[0,null,0,null,1,null]],"difficulty":"easy"}
+[2026-03-11 12:54:42] HTTP Code: 0
+[2026-03-11 12:54:42] cURL Error Code: 28
+[2026-03-11 12:54:42] Response: 
+[2026-03-11 12:54:42] ❌ ERROR - cURL Error: Operation timed out after 30014 milliseconds with 0 bytes received
+[2026-03-11 12:54:42] === APPEL API ===
+[2026-03-11 12:54:42] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 12:54:42] Data: {"grid":[[null,0,1,null,null,null],[1,null,null,null,null,null],[null,null,null,null,0,null],[1,null,null,null,0,null],[0,null,null,null,1,null],[0,null,0,null,1,null]],"difficulty":"easy"}
+[2026-03-11 12:55:04] HTTP Code: 200
+[2026-03-11 12:55:04] cURL Error Code: 0
+[2026-03-11 12:55:04] Response: {"hint":"\"Regarde bien, l'équilibre est essentiel, ajoutez deux zéros à la deuxième ligne pour le rendre harmonieuse.\""}
+[2026-03-11 12:55:04] ✅ Succès! Données reçues: {"hint":"\"Regarde bien, l'\u00e9quilibre est essentiel, ajoutez deux z\u00e9ros \u00e0 la deuxi\u00e8me ligne pour le rendre harmonieuse.\""}
+[2026-03-11 12:55:43] === APPEL API ===
+[2026-03-11 12:55:43] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 12:55:43] Data: {"grid":[[null,0,1,null,null,null],[1,null,null,null,null,null],[null,null,null,null,0,null],[1,null,null,null,0,null],[0,null,null,null,1,null],[0,null,0,null,1,null]],"difficulty":"easy"}
+[2026-03-11 12:55:48] HTTP Code: 200
+[2026-03-11 12:55:48] cURL Error Code: 0
+[2026-03-11 12:55:48] Response: {"hint":"\"Pour que les valeurs s'équilibrent, insérez un zéro dans la ligne 2.\""}
+[2026-03-11 12:55:48] ✅ Succès! Données reçues: {"hint":"\"Pour que les valeurs s'\u00e9quilibrent, ins\u00e9rez un z\u00e9ro dans la ligne 2.\""}
+[2026-03-11 12:57:30] === APPEL API ===
+[2026-03-11 12:57:30] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 12:57:30] Data: {"grid":[[null,0,1,null,null,null],[1,null,null,null,null,null],[null,null,null,null,0,null],[1,null,null,null,0,null],[0,null,null,null,1,null],[0,null,0,null,1,null]],"difficulty":"easy"}
+[2026-03-11 12:57:33] HTTP Code: 200
+[2026-03-11 12:57:33] cURL Error Code: 0
+[2026-03-11 12:57:33] Response: {"hint":"\"La colonne 6 attend un zéro pour compléter son harmonie.\""}
+[2026-03-11 12:57:33] ✅ Succès! Données reçues: {"hint":"\"La colonne 6 attend un z\u00e9ro pour compl\u00e9ter son harmonie.\""}
+[2026-03-11 12:57:35] === APPEL API ===
+[2026-03-11 12:57:35] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 12:57:35] Data: {"difficulty":"easy"}
+[2026-03-11 12:57:35] HTTP Code: 200
+[2026-03-11 12:57:35] cURL Error Code: 0
+[2026-03-11 12:57:35] Response: {"grid":[[null,null,null,null,null,null],[null,null,1,null,0,null],[0,null,null,null,1,null],[1,null,null,1,null,null],[null,0,1,null,null,null],[null,1,null,0,null,0]],"solution":[[1,0,1,1,0,1],[0,0,1,1,0,0],[0,1,0,0,1,1],[1,1,0,1,0,0],[0,0,1,0,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 12:57:35] ✅ Succès! Données reçues: {"grid":[[null,null,null,null,null,null],[null,null,1,null,0,null],[0,null,null,null,1,null],[1,null,null,1,null,null],[null,0,1,null,null,null],[null,1,null,0,null,0]],"solution":[[1,0,1,1,0,1],[0,0,1,1,0,0],[0,1,0,0,1,1],[1,1,0,1,0,0],[0,0,1,0,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 12:57:38] === APPEL API ===
+[2026-03-11 12:57:38] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 12:57:38] Data: {"difficulty":"easy"}
+[2026-03-11 12:57:38] HTTP Code: 200
+[2026-03-11 12:57:38] cURL Error Code: 0
+[2026-03-11 12:57:38] Response: {"grid":[[null,null,null,null,null,null],[null,null,null,null,null,0],[0,1,0,1,null,null],[null,null,null,null,0,null],[null,null,0,0,1,null],[null,null,1,null,null,1]],"solution":[[0,1,0,0,1,1],[1,0,1,1,0,0],[0,1,0,1,1,0],[1,0,1,0,0,1],[1,1,0,0,1,0],[0,0,1,1,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 12:57:38] ✅ Succès! Données reçues: {"grid":[[null,null,null,null,null,null],[null,null,null,null,null,0],[0,1,0,1,null,null],[null,null,null,null,0,null],[null,null,0,0,1,null],[null,null,1,null,null,1]],"solution":[[0,1,0,0,1,1],[1,0,1,1,0,0],[0,1,0,1,1,0],[1,0,1,0,0,1],[1,1,0,0,1,0],[0,0,1,1,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 12:57:41] === APPEL API ===
+[2026-03-11 12:57:41] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 12:57:41] Data: {"grid":[[null,null,null,null,null,null],[null,null,null,null,null,0],[0,1,0,1,null,null],[null,null,null,null,0,null],[null,null,0,0,1,null],[null,null,1,null,null,1]],"difficulty":"easy"}
+[2026-03-11 12:58:05] HTTP Code: 200
+[2026-03-11 12:58:05] cURL Error Code: 0
+[2026-03-11 12:58:05] Response: {"hint":"\"Observe les uns et les vides, apprenez à les équilibrer comme le yin et le yang.\""}
+[2026-03-11 12:58:05] ✅ Succès! Données reçues: {"hint":"\"Observe les uns et les vides, apprenez \u00e0 les \u00e9quilibrer comme le yin et le yang.\""}
+[2026-03-11 12:58:05] === APPEL API ===
+[2026-03-11 12:58:05] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 12:58:05] Data: {"grid":[[null,null,null,null,null,null],[null,null,null,null,null,0],[0,1,0,1,null,null],[null,null,null,null,0,null],[null,null,0,0,1,null],[null,null,1,null,null,1]],"difficulty":"easy"}
+[2026-03-11 12:58:13] HTTP Code: 200
+[2026-03-11 12:58:13] cURL Error Code: 0
+[2026-03-11 12:58:13] Response: {"hint":"\"L'équilibre est essentiel, veille à ce que chacune de vos lignes comporte exactement six carrés, deux pour les zéros et quatre pour les uns.\""}
+[2026-03-11 12:58:13] ✅ Succès! Données reçues: {"hint":"\"L'\u00e9quilibre est essentiel, veille \u00e0 ce que chacune de vos lignes comporte exactement six carr\u00e9s, deux pour les z\u00e9ros et quatre pour les uns.\""}
+[2026-03-11 12:59:09] === APPEL API ===
+[2026-03-11 12:59:09] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 12:59:09] Data: {"difficulty":"easy"}
+[2026-03-11 12:59:09] HTTP Code: 200
+[2026-03-11 12:59:09] cURL Error Code: 0
+[2026-03-11 12:59:09] Response: {"grid":[[0,null,null,null,null,null],[1,null,null,null,null,1],[null,null,null,null,null,0],[1,0,null,0,1,null],[null,null,1,null,0,1],[null,null,null,null,null,null]],"solution":[[0,1,0,1,0,1],[1,0,1,0,0,1],[0,1,0,1,1,0],[1,0,1,0,1,0],[0,0,1,1,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 12:59:09] ✅ Succès! Données reçues: {"grid":[[0,null,null,null,null,null],[1,null,null,null,null,1],[null,null,null,null,null,0],[1,0,null,0,1,null],[null,null,1,null,0,1],[null,null,null,null,null,null]],"solution":[[0,1,0,1,0,1],[1,0,1,0,0,1],[0,1,0,1,1,0],[1,0,1,0,1,0],[0,0,1,1,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 12:59:13] === APPEL API ===
+[2026-03-11 12:59:13] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 12:59:13] Data: {"grid":[[0,null,null,null,null,null],[1,null,null,null,null,1],[null,null,null,null,null,0],[1,0,null,0,1,null],[null,null,1,null,0,1],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 12:59:43] HTTP Code: 0
+[2026-03-11 12:59:43] cURL Error Code: 28
+[2026-03-11 12:59:43] Response: 
+[2026-03-11 12:59:43] ❌ ERROR - cURL Error: Operation timed out after 30015 milliseconds with 0 bytes received
+[2026-03-11 12:59:43] === APPEL API ===
+[2026-03-11 12:59:43] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 12:59:43] Data: {"grid":[[0,null,null,null,null,null],[1,null,null,null,null,1],[null,null,null,null,null,0],[1,0,null,0,1,null],[null,null,1,null,0,1],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 13:00:13] HTTP Code: 0
+[2026-03-11 13:00:13] cURL Error Code: 28
+[2026-03-11 13:00:13] Response: 
+[2026-03-11 13:00:13] ❌ ERROR - cURL Error: Operation timed out after 30005 milliseconds with 0 bytes received
+[2026-03-11 13:00:13] === APPEL API ===
+[2026-03-11 13:00:13] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:00:13] Data: {"grid":[[0,null,null,null,null,null],[1,null,null,null,null,1],[null,null,null,null,null,0],[1,0,null,0,1,null],[null,null,1,null,0,1],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 13:00:43] HTTP Code: 0
+[2026-03-11 13:00:43] cURL Error Code: 28
+[2026-03-11 13:00:43] Response: 
+[2026-03-11 13:00:43] ❌ ERROR - cURL Error: Operation timed out after 30009 milliseconds with 0 bytes received
+[2026-03-11 13:00:43] === APPEL API ===
+[2026-03-11 13:00:43] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:00:43] Data: {"grid":[[0,null,null,null,null,null],[1,null,null,null,null,1],[null,null,null,null,null,0],[1,0,null,0,1,null],[null,null,1,null,0,1],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 13:00:52] HTTP Code: 200
+[2026-03-11 13:00:52] cURL Error Code: 0
+[2026-03-11 13:00:52] Response: {"hint":"\"La troisième ligne est un équilibre parfait, zéro à deux, deux à deux.\""}
+[2026-03-11 13:00:52] ✅ Succès! Données reçues: {"hint":"\"La troisi\u00e8me ligne est un \u00e9quilibre parfait, z\u00e9ro \u00e0 deux, deux \u00e0 deux.\""}
+[2026-03-11 13:00:52] === APPEL API ===
+[2026-03-11 13:00:52] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:00:52] Data: {"grid":[[0,null,null,null,null,null],[1,null,null,null,null,1],[null,null,null,null,null,0],[1,0,null,0,1,null],[null,null,1,null,0,1],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 13:00:59] HTTP Code: 200
+[2026-03-11 13:00:59] cURL Error Code: 0
+[2026-03-11 13:00:59] Response: {"hint":"\"Observe les uns et zéros manquants, cher apprenti, et trouvez l'harmonie par des zéros supplémentaires.\""}
+[2026-03-11 13:00:59] ✅ Succès! Données reçues: {"hint":"\"Observe les uns et z\u00e9ros manquants, cher apprenti, et trouvez l'harmonie par des z\u00e9ros suppl\u00e9mentaires.\""}
+[2026-03-11 13:00:59] === APPEL API ===
+[2026-03-11 13:00:59] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:00:59] Data: {"grid":[[0,null,null,null,null,null],[1,null,null,null,null,1],[null,null,null,null,null,0],[1,0,null,0,1,null],[null,null,1,null,0,1],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 13:01:03] HTTP Code: 200
+[2026-03-11 13:01:03] cURL Error Code: 0
+[2026-03-11 13:01:03] Response: {"hint":"\"Cher, pour la symétrie, ajoutez des zéros dans les lignes manquantes.\""}
+[2026-03-11 13:01:03] ✅ Succès! Données reçues: {"hint":"\"Cher, pour la sym\u00e9trie, ajoutez des z\u00e9ros dans les lignes manquantes.\""}
+[2026-03-11 13:01:07] === APPEL API ===
+[2026-03-11 13:01:07] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:01:07] Data: {"difficulty":"easy"}
+[2026-03-11 13:01:07] HTTP Code: 200
+[2026-03-11 13:01:07] cURL Error Code: 0
+[2026-03-11 13:01:07] Response: {"grid":[[null,null,null,null,null,null],[null,0,null,null,null,null],[0,null,null,null,0,1],[null,null,null,0,null,null],[1,null,null,1,1,0],[null,null,0,1,null,null]],"solution":[[0,0,1,0,1,1],[1,0,1,0,1,0],[0,1,0,1,0,1],[0,1,1,0,0,1],[1,0,0,1,1,0],[1,1,0,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:01:07] ✅ Succès! Données reçues: {"grid":[[null,null,null,null,null,null],[null,0,null,null,null,null],[0,null,null,null,0,1],[null,null,null,0,null,null],[1,null,null,1,1,0],[null,null,0,1,null,null]],"solution":[[0,0,1,0,1,1],[1,0,1,0,1,0],[0,1,0,1,0,1],[0,1,1,0,0,1],[1,0,0,1,1,0],[1,1,0,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:01:14] === APPEL API ===
+[2026-03-11 13:01:14] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:01:14] Data: {"grid":[[null,null,null,null,null,null],[null,0,null,null,null,null],[0,null,null,null,0,1],[null,null,null,0,null,null],[1,null,null,1,1,0],[null,null,0,1,null,null]],"difficulty":"easy"}
+[2026-03-11 13:01:36] HTTP Code: 200
+[2026-03-11 13:01:36] cURL Error Code: 0
+[2026-03-11 13:01:36] Response: {"hint":"\"Cher apprenti, pour une grille équilibrée, ajoutez deux zeros à la ligne 2.\""}
+[2026-03-11 13:01:36] ✅ Succès! Données reçues: {"hint":"\"Cher apprenti, pour une grille \u00e9quilibr\u00e9e, ajoutez deux zeros \u00e0 la ligne 2.\""}
+[2026-03-11 13:02:02] === APPEL API ===
+[2026-03-11 13:02:02] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:02:02] Data: {"grid":[[null,null,null,null,null,null],[null,0,null,null,null,null],[0,null,null,null,0,1],[null,null,null,0,null,null],[1,null,null,1,1,0],[null,null,0,1,null,null]],"difficulty":"easy"}
+[2026-03-11 13:02:08] HTTP Code: 200
+[2026-03-11 13:02:08] cURL Error Code: 0
+[2026-03-11 13:02:08] Response: {"hint":"\"Cher apprenti, l'équilibre est essentiel, ajoutez des zéros pour équilibrer les lignes.\""}
+[2026-03-11 13:02:08] ✅ Succès! Données reçues: {"hint":"\"Cher apprenti, l'\u00e9quilibre est essentiel, ajoutez des z\u00e9ros pour \u00e9quilibrer les lignes.\""}
+[2026-03-11 13:03:11] === APPEL API ===
+[2026-03-11 13:03:11] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:03:11] Data: {"difficulty":"easy"}
+[2026-03-11 13:03:11] HTTP Code: 200
+[2026-03-11 13:03:11] cURL Error Code: 0
+[2026-03-11 13:03:11] Response: {"grid":[[null,null,0,1,null,null],[null,null,null,null,null,null],[1,null,null,null,0,null],[null,1,null,0,null,1],[null,0,null,null,null,null],[1,1,null,0,null,null]],"solution":[[1,1,0,1,0,0],[0,0,1,0,1,1],[1,0,1,1,0,0],[0,1,0,0,1,1],[0,0,1,1,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:03:11] ✅ Succès! Données reçues: {"grid":[[null,null,0,1,null,null],[null,null,null,null,null,null],[1,null,null,null,0,null],[null,1,null,0,null,1],[null,0,null,null,null,null],[1,1,null,0,null,null]],"solution":[[1,1,0,1,0,0],[0,0,1,0,1,1],[1,0,1,1,0,0],[0,1,0,0,1,1],[0,0,1,1,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:03:15] === APPEL API ===
+[2026-03-11 13:03:15] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:03:15] Data: {"grid":[[null,null,0,1,null,null],[null,null,null,null,null,null],[1,null,null,null,0,null],[null,1,null,0,null,1],[null,0,null,null,null,null],[1,1,null,0,null,null]],"difficulty":"easy"}
+[2026-03-11 13:03:38] HTTP Code: 200
+[2026-03-11 13:03:38] cURL Error Code: 0
+[2026-03-11 13:03:38] Response: {"hint":"\"Cher apprenti, pour l'équilibre, laissez 2 zéros venir à la ligne 2 et un zéro à la colonne 4.\""}
+[2026-03-11 13:03:38] ✅ Succès! Données reçues: {"hint":"\"Cher apprenti, pour l'\u00e9quilibre, laissez 2 z\u00e9ros venir \u00e0 la ligne 2 et un z\u00e9ro \u00e0 la colonne 4.\""}
+[2026-03-11 13:06:26] === APPEL API ===
+[2026-03-11 13:06:26] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:06:26] Data: {"difficulty":"easy"}
+[2026-03-11 13:06:26] HTTP Code: 200
+[2026-03-11 13:06:26] cURL Error Code: 0
+[2026-03-11 13:06:26] Response: {"grid":[[null,null,null,null,null,0],[null,null,1,null,0,1],[1,null,null,null,null,null],[null,null,null,0,1,null],[null,null,null,null,0,1],[null,0,null,1,null,null]],"solution":[[1,0,0,1,1,0],[0,0,1,0,0,1],[1,1,0,1,0,0],[0,1,1,0,1,0],[0,0,1,0,0,1],[1,0,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:06:26] ✅ Succès! Données reçues: {"grid":[[null,null,null,null,null,0],[null,null,1,null,0,1],[1,null,null,null,null,null],[null,null,null,0,1,null],[null,null,null,null,0,1],[null,0,null,1,null,null]],"solution":[[1,0,0,1,1,0],[0,0,1,0,0,1],[1,1,0,1,0,0],[0,1,1,0,1,0],[0,0,1,0,0,1],[1,0,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:06:28] === APPEL API ===
+[2026-03-11 13:06:28] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:06:28] Data: {"grid":[[null,null,null,null,null,0],[null,null,1,null,0,1],[1,null,null,null,null,null],[null,null,null,0,1,null],[null,null,null,null,0,1],[null,0,null,1,null,null]],"difficulty":"easy"}
+[2026-03-11 13:06:50] HTTP Code: 200
+[2026-03-11 13:06:50] cURL Error Code: 0
+[2026-03-11 13:06:50] Response: {"hint":"Hum, il manque deux zéros sur la troisième ligne pour équilibrer les chiffres, comme la balance des forces."}
+[2026-03-11 13:06:50] ✅ Succès! Données reçues: {"hint":"Hum, il manque deux z\u00e9ros sur la troisi\u00e8me ligne pour \u00e9quilibrer les chiffres, comme la balance des forces."}
+[2026-03-11 13:08:37] === APPEL API ===
+[2026-03-11 13:08:37] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:08:37] Data: {"grid":[[null,null,null,null,null,0],[null,null,1,null,0,1],[1,null,null,null,null,null],[null,null,null,0,1,null],[null,null,null,null,0,1],[null,0,null,1,null,null]],"difficulty":"easy"}
+[2026-03-11 13:08:42] HTTP Code: 200
+[2026-03-11 13:08:42] cURL Error Code: 0
+[2026-03-11 13:08:42] Response: {"hint":"\"Cher apprenti, regarde la colonne 4: elle a besoin d'un zéro pour compléter son harmonie.\""}
+[2026-03-11 13:08:42] ✅ Succès! Données reçues: {"hint":"\"Cher apprenti, regarde la colonne 4: elle a besoin d'un z\u00e9ro pour compl\u00e9ter son harmonie.\""}
+[2026-03-11 13:09:34] === APPEL API ===
+[2026-03-11 13:09:34] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:09:34] Data: {"grid":[[null,null,null,null,null,0],[null,null,1,null,0,1],[1,null,null,null,null,null],[null,null,null,0,1,null],[null,null,null,null,0,1],[null,0,null,1,null,null]],"difficulty":"easy"}
+[2026-03-11 13:09:41] HTTP Code: 200
+[2026-03-11 13:09:41] cURL Error Code: 0
+[2026-03-11 13:09:41] Response: {"hint":"\"L'équilibre est essentiel, veille à équilibrer les uns et les zéros, pour que chaque ligne soit harmonieuse.\""}
+[2026-03-11 13:09:41] ✅ Succès! Données reçues: {"hint":"\"L'\u00e9quilibre est essentiel, veille \u00e0 \u00e9quilibrer les uns et les z\u00e9ros, pour que chaque ligne soit harmonieuse.\""}
+[2026-03-11 13:13:18] === APPEL API ===
+[2026-03-11 13:13:18] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:13:18] Data: {"difficulty":"easy"}
+[2026-03-11 13:13:18] HTTP Code: 200
+[2026-03-11 13:13:18] cURL Error Code: 0
+[2026-03-11 13:13:18] Response: {"grid":[[null,1,null,null,null,null],[null,0,1,0,null,null],[null,null,0,null,1,null],[null,null,1,null,null,0],[null,null,0,null,null,1],[null,null,null,1,null,null]],"solution":[[1,1,0,1,0,0],[0,0,1,0,1,1],[0,1,0,0,1,1],[1,0,1,1,0,0],[0,1,0,0,1,1],[1,0,1,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:13:18] ✅ Succès! Données reçues: {"grid":[[null,1,null,null,null,null],[null,0,1,0,null,null],[null,null,0,null,1,null],[null,null,1,null,null,0],[null,null,0,null,null,1],[null,null,null,1,null,null]],"solution":[[1,1,0,1,0,0],[0,0,1,0,1,1],[0,1,0,0,1,1],[1,0,1,1,0,0],[0,1,0,0,1,1],[1,0,1,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:13:21] === APPEL API ===
+[2026-03-11 13:13:21] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:13:21] Data: {"grid":[[null,1,null,null,null,null],[null,0,1,0,null,null],[null,null,0,null,1,null],[null,null,1,null,null,0],[null,null,0,null,null,1],[null,null,null,1,null,null]],"difficulty":"easy"}
+[2026-03-11 13:13:43] HTTP Code: 200
+[2026-03-11 13:13:43] cURL Error Code: 0
+[2026-03-11 13:13:43] Response: {"hint":"\"Regardez le motif: chaque ligne devrait finir par deux uns pour l'équilibre. Il manque deux uns dans la ligne 2.\""}
+[2026-03-11 13:13:43] ✅ Succès! Données reçues: {"hint":"\"Regardez le motif: chaque ligne devrait finir par deux uns pour l'\u00e9quilibre. Il manque deux uns dans la ligne 2.\""}
+[2026-03-11 13:29:05] === APPEL API ===
+[2026-03-11 13:29:05] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:29:05] Data: {"difficulty":"easy"}
+[2026-03-11 13:29:05] HTTP Code: 200
+[2026-03-11 13:29:05] cURL Error Code: 0
+[2026-03-11 13:29:05] Response: {"grid":[[null,0,null,null,1,1],[null,0,null,null,0,null],[null,1,null,null,null,0],[null,null,null,null,null,null],[1,null,null,null,null,0],[null,1,null,null,1,null]],"solution":[[0,0,1,0,1,1],[1,0,1,0,0,1],[1,1,0,1,0,0],[0,1,0,0,1,1],[1,0,1,1,0,0],[0,1,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:29:05] ✅ Succès! Données reçues: {"grid":[[null,0,null,null,1,1],[null,0,null,null,0,null],[null,1,null,null,null,0],[null,null,null,null,null,null],[1,null,null,null,null,0],[null,1,null,null,1,null]],"solution":[[0,0,1,0,1,1],[1,0,1,0,0,1],[1,1,0,1,0,0],[0,1,0,0,1,1],[1,0,1,1,0,0],[0,1,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:35:14] === APPEL API ===
+[2026-03-11 13:35:14] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:35:14] Data: {"difficulty":"easy"}
+[2026-03-11 13:35:14] HTTP Code: 200
+[2026-03-11 13:35:14] cURL Error Code: 0
+[2026-03-11 13:35:14] Response: {"grid":[[0,null,null,null,null,null],[null,null,null,1,null,0],[0,null,null,null,1,1],[null,null,null,null,null,null],[null,null,1,null,null,null],[1,1,null,0,1,null]],"solution":[[0,0,1,1,0,1],[1,0,0,1,1,0],[0,1,0,0,1,1],[0,1,1,0,0,1],[1,0,1,1,0,0],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:35:14] ✅ Succès! Données reçues: {"grid":[[0,null,null,null,null,null],[null,null,null,1,null,0],[0,null,null,null,1,1],[null,null,null,null,null,null],[null,null,1,null,null,null],[1,1,null,0,1,null]],"solution":[[0,0,1,1,0,1],[1,0,0,1,1,0],[0,1,0,0,1,1],[0,1,1,0,0,1],[1,0,1,1,0,0],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:35:18] === APPEL API ===
+[2026-03-11 13:35:18] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:35:18] Data: {"grid":[[0,null,null,null,null,null],[null,null,null,1,null,0],[0,null,null,null,1,1],[null,null,null,null,null,null],[null,null,1,null,null,null],[1,1,null,0,1,null]],"difficulty":"easy"}
+[2026-03-11 13:35:48] HTTP Code: 0
+[2026-03-11 13:35:48] cURL Error Code: 28
+[2026-03-11 13:35:48] Response: 
+[2026-03-11 13:35:48] ❌ ERROR - cURL Error: Operation timed out after 30010 milliseconds with 0 bytes received
+[2026-03-11 13:35:53] === APPEL API ===
+[2026-03-11 13:35:53] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:35:53] Data: {"grid":[[0,null,null,null,null,null],[null,null,null,1,null,0],[0,null,null,null,1,1],[null,null,null,null,null,null],[null,null,1,null,null,null],[1,1,null,0,1,null]],"difficulty":"easy"}
+[2026-03-11 13:36:19] HTTP Code: 200
+[2026-03-11 13:36:19] cURL Error Code: 0
+[2026-03-11 13:36:19] Response: {"hint":"Ligne 3: 6 vides - insuffisant pour l'équilibre.\n\n\n\nSensei Binero. Grille:\n\nLigne 0: 2 zéros, 1 un"}
+[2026-03-11 13:36:19] ✅ Succès! Données reçues: {"hint":"Ligne 3: 6 vides - insuffisant pour l'\u00e9quilibre.\n\n\n\nSensei Binero. Grille:\n\nLigne 0: 2 z\u00e9ros, 1 un"}
+[2026-03-11 13:36:31] === APPEL API ===
+[2026-03-11 13:36:31] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:36:31] Data: {"grid":[[0,null,null,null,null,null],[null,null,null,1,null,0],[0,null,null,null,1,1],[null,null,null,null,null,null],[null,null,1,null,null,null],[1,1,null,0,1,null]],"difficulty":"easy"}
+[2026-03-11 13:36:36] HTTP Code: 200
+[2026-03-11 13:36:36] cURL Error Code: 0
+[2026-03-11 13:36:36] Response: {"hint":"Ligne 2: 3 zéros, 2 uns - équilibre à vérifier."}
+[2026-03-11 13:36:36] ✅ Succès! Données reçues: {"hint":"Ligne 2: 3 z\u00e9ros, 2 uns - \u00e9quilibre \u00e0 v\u00e9rifier."}
+[2026-03-11 13:36:36] === APPEL API ===
+[2026-03-11 13:36:36] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:36:36] Data: {"grid":[[0,null,null,null,null,null],[null,null,null,1,null,0],[0,null,null,null,1,1],[null,null,null,null,null,null],[null,null,1,null,null,null],[1,1,null,0,1,null]],"difficulty":"easy"}
+[2026-03-11 13:36:40] HTTP Code: 200
+[2026-03-11 13:36:40] cURL Error Code: 0
+[2026-03-11 13:36:40] Response: {"hint":"Ligne 2: 3 zéros, 2 uns - équilibre à améliorer."}
+[2026-03-11 13:36:40] ✅ Succès! Données reçues: {"hint":"Ligne 2: 3 z\u00e9ros, 2 uns - \u00e9quilibre \u00e0 am\u00e9liorer."}
+[2026-03-11 13:36:40] === APPEL API ===
+[2026-03-11 13:36:40] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:36:40] Data: {"grid":[[0,null,null,null,null,null],[null,null,null,1,null,0],[0,null,null,null,1,1],[null,null,null,null,null,null],[null,null,1,null,null,null],[1,1,null,0,1,null]],"difficulty":"easy"}
+[2026-03-11 13:36:43] HTTP Code: 200
+[2026-03-11 13:36:43] cURL Error Code: 0
+[2026-03-11 13:36:43] Response: {"hint":"Ligne 2: 3 zéros, 2 uns - équilibre à revoir."}
+[2026-03-11 13:36:43] ✅ Succès! Données reçues: {"hint":"Ligne 2: 3 z\u00e9ros, 2 uns - \u00e9quilibre \u00e0 revoir."}
+[2026-03-11 13:37:38] === APPEL API ===
+[2026-03-11 13:37:38] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:37:38] Data: {"grid":[[0,null,null,null,null,null],[null,null,null,1,null,0],[0,null,null,null,1,1],[null,null,null,null,null,null],[null,null,1,null,null,null],[1,1,0,0,1,0]],"difficulty":"easy"}
+[2026-03-11 13:37:48] HTTP Code: 200
+[2026-03-11 13:37:48] cURL Error Code: 0
+[2026-03-11 13:37:48] Response: {"hint":"Ligne 2: 3 zéros, 2 uns - équilibre à améliorer."}
+[2026-03-11 13:37:48] ✅ Succès! Données reçues: {"hint":"Ligne 2: 3 z\u00e9ros, 2 uns - \u00e9quilibre \u00e0 am\u00e9liorer."}
+[2026-03-11 13:47:11] === APPEL API ===
+[2026-03-11 13:47:11] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:47:11] Data: {"grid":[[0,null,null,null,null,null],[null,null,null,1,null,0],[0,null,null,null,1,1],[null,null,null,null,null,null],[null,null,1,null,null,null],[1,1,0,0,1,0]],"difficulty":"easy"}
+[2026-03-11 13:47:13] HTTP Code: 0
+[2026-03-11 13:47:13] cURL Error Code: 7
+[2026-03-11 13:47:13] Response: 
+[2026-03-11 13:47:13] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2230 ms: Couldn't connect to server
+[2026-03-11 13:47:42] === APPEL API ===
+[2026-03-11 13:47:42] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:47:42] Data: {"difficulty":"easy"}
+[2026-03-11 13:47:42] HTTP Code: 200
+[2026-03-11 13:47:42] cURL Error Code: 0
+[2026-03-11 13:47:42] Response: {"grid":[[null,null,null,null,0,1],[0,null,null,null,null,1],[null,null,null,null,null,0],[null,null,0,null,1,null],[null,null,null,0,1,null],[1,null,null,null,null,0]],"solution":[[0,1,0,1,0,1],[0,0,1,0,1,1],[1,0,1,1,0,0],[1,1,0,0,1,0],[0,0,1,0,1,1],[1,1,0,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:47:42] ✅ Succès! Données reçues: {"grid":[[null,null,null,null,0,1],[0,null,null,null,null,1],[null,null,null,null,null,0],[null,null,0,null,1,null],[null,null,null,0,1,null],[1,null,null,null,null,0]],"solution":[[0,1,0,1,0,1],[0,0,1,0,1,1],[1,0,1,1,0,0],[1,1,0,0,1,0],[0,0,1,0,1,1],[1,1,0,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:47:45] === APPEL API ===
+[2026-03-11 13:47:45] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:47:45] Data: {"grid":[[null,null,null,null,0,1],[0,null,null,null,null,1],[null,null,null,null,null,0],[null,null,0,null,1,null],[null,null,null,0,1,null],[1,null,null,null,null,0]],"difficulty":"easy"}
+[2026-03-11 13:48:15] HTTP Code: 0
+[2026-03-11 13:48:15] cURL Error Code: 28
+[2026-03-11 13:48:15] Response: 
+[2026-03-11 13:48:15] ❌ ERROR - cURL Error: Operation timed out after 30011 milliseconds with 0 bytes received
+[2026-03-11 13:48:20] === APPEL API ===
+[2026-03-11 13:48:20] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:48:20] Data: {"grid":[[null,null,null,null,0,1],[0,null,null,null,null,1],[null,null,null,null,null,0],[null,null,0,null,1,null],[null,null,null,0,1,null],[1,null,null,null,null,0]],"difficulty":"easy"}
+[2026-03-11 13:48:50] HTTP Code: 0
+[2026-03-11 13:48:50] cURL Error Code: 28
+[2026-03-11 13:48:50] Response: 
+[2026-03-11 13:48:50] ❌ ERROR - cURL Error: Operation timed out after 30009 milliseconds with 0 bytes received
+[2026-03-11 13:48:55] === APPEL API ===
+[2026-03-11 13:48:55] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:48:55] Data: {"grid":[[null,null,null,null,0,1],[0,null,null,null,null,1],[null,null,null,null,null,0],[null,null,0,null,1,null],[null,null,null,0,1,null],[1,null,null,null,null,0]],"difficulty":"easy"}
+[2026-03-11 13:49:07] HTTP Code: 200
+[2026-03-11 13:49:07] cURL Error Code: 0
+[2026-03-11 13:49:07] Response: {"hint":"Ligne 2: remplir par 0.\n\n\nExplication: Ligne 2 est la seule ligne où une seule cellule est vide et peut être remplacée sans affecter les autres lignes. En rempl"}
+[2026-03-11 13:49:07] ✅ Succès! Données reçues: {"hint":"Ligne 2: remplir par 0.\n\n\nExplication: Ligne 2 est la seule ligne o\u00f9 une seule cellule est vide et peut \u00eatre remplac\u00e9e sans affecter les autres lignes. En rempl"}
+[2026-03-11 13:49:49] === APPEL API ===
+[2026-03-11 13:49:49] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:49:49] Data: {"difficulty":"easy"}
+[2026-03-11 13:49:49] HTTP Code: 200
+[2026-03-11 13:49:49] cURL Error Code: 0
+[2026-03-11 13:49:49] Response: {"grid":[[1,null,null,1,null,null],[null,1,null,null,1,null],[0,null,null,1,null,null],[null,null,null,null,null,null],[1,0,null,null,1,0],[null,null,null,null,null,1]],"solution":[[1,0,1,1,0,0],[0,1,0,0,1,1],[0,0,1,1,0,1],[1,1,0,0,1,0],[1,0,1,0,1,0],[0,1,0,1,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 13:49:49] ✅ Succès! Données reçues: {"grid":[[1,null,null,1,null,null],[null,1,null,null,1,null],[0,null,null,1,null,null],[null,null,null,null,null,null],[1,0,null,null,1,0],[null,null,null,null,null,1]],"solution":[[1,0,1,1,0,0],[0,1,0,0,1,1],[0,0,1,1,0,1],[1,1,0,0,1,0],[1,0,1,0,1,0],[0,1,0,1,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 13:49:52] === APPEL API ===
+[2026-03-11 13:49:52] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:49:52] Data: {"grid":[[1,null,null,1,null,null],[null,1,null,null,1,null],[0,null,null,1,null,null],[null,null,null,null,null,null],[1,0,null,null,1,0],[null,null,null,null,null,1]],"difficulty":"easy"}
+[2026-03-11 13:50:22] HTTP Code: 200
+[2026-03-11 13:50:22] cURL Error Code: 0
+[2026-03-11 13:50:22] Response: {"hint":"Ligne 2: 0__1__ - remplace la première case par un '0'.\n\n\n--- Conseils utiles ---\n\nLigne 0: 1__1__ - aucun changement nécessaire."}
+[2026-03-11 13:50:22] ✅ Succès! Données reçues: {"hint":"Ligne 2: 0__1__ - remplace la premi\u00e8re case par un '0'.\n\n\n--- Conseils utiles ---\n\nLigne 0: 1__1__ - aucun changement n\u00e9cessaire."}
+[2026-03-11 13:58:55] === APPEL API ===
+[2026-03-11 13:58:55] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:58:55] Data: {"difficulty":"easy"}
+[2026-03-11 13:58:55] HTTP Code: 0
+[2026-03-11 13:58:55] cURL Error Code: 52
+[2026-03-11 13:58:55] Response: 
+[2026-03-11 13:58:55] ❌ ERROR - cURL Error: Empty reply from server
+[2026-03-11 13:58:59] === APPEL API ===
+[2026-03-11 13:58:59] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:58:59] Data: {"difficulty":"easy"}
+[2026-03-11 13:58:59] HTTP Code: 200
+[2026-03-11 13:58:59] cURL Error Code: 0
+[2026-03-11 13:58:59] Response: {"grid":[[null,null,null,null,null,1],[null,null,null,0,null,null],[null,1,0,1,0,null],[null,null,null,0,null,null],[1,null,null,null,null,null],[null,null,null,1,0,1]],"solution":[[0,0,1,0,1,1],[1,0,1,0,1,0],[1,1,0,1,0,0],[0,1,1,0,0,1],[1,0,0,1,1,0],[0,1,0,1,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 13:58:59] ✅ Succès! Données reçues: {"grid":[[null,null,null,null,null,1],[null,null,null,0,null,null],[null,1,0,1,0,null],[null,null,null,0,null,null],[1,null,null,null,null,null],[null,null,null,1,0,1]],"solution":[[0,0,1,0,1,1],[1,0,1,0,1,0],[1,1,0,1,0,0],[0,1,1,0,0,1],[1,0,0,1,1,0],[0,1,0,1,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 13:59:03] === APPEL API ===
+[2026-03-11 13:59:03] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:59:03] Data: {"grid":[[null,null,null,null,null,1],[null,null,null,0,null,null],[null,1,0,1,0,null],[null,null,null,0,null,null],[1,null,null,null,null,null],[null,null,null,1,0,1]],"difficulty":"easy"}
+[2026-03-11 13:59:04] HTTP Code: 500
+[2026-03-11 13:59:04] cURL Error Code: 0
+[2026-03-11 13:59:04] Response: {"timestamp":"2026-03-11T13:59:04.822+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:04] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T13:59:04.822+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:07] === APPEL API ===
+[2026-03-11 13:59:07] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:59:07] Data: {"grid":[[null,null,null,null,null,1],[null,null,null,0,null,null],[null,1,0,1,0,null],[null,null,null,0,null,null],[1,null,null,null,null,null],[null,null,null,1,0,1]],"difficulty":"easy"}
+[2026-03-11 13:59:07] HTTP Code: 500
+[2026-03-11 13:59:07] cURL Error Code: 0
+[2026-03-11 13:59:07] Response: {"timestamp":"2026-03-11T13:59:07.995+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:07] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T13:59:07.995+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:14] === APPEL API ===
+[2026-03-11 13:59:14] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:59:14] Data: {"grid":[[null,null,null,null,null,1],[null,null,null,0,null,null],[null,1,0,1,0,null],[null,null,null,0,null,null],[1,null,null,null,null,null],[null,null,null,1,0,1]],"difficulty":"easy"}
+[2026-03-11 13:59:14] HTTP Code: 500
+[2026-03-11 13:59:14] cURL Error Code: 0
+[2026-03-11 13:59:14] Response: {"timestamp":"2026-03-11T13:59:14.680+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:14] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T13:59:14.680+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:21] === APPEL API ===
+[2026-03-11 13:59:21] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:59:21] Data: {"grid":[[null,null,null,null,null,1],[null,null,null,0,null,null],[null,1,0,1,0,null],[null,null,null,0,null,null],[1,null,null,null,null,null],[null,null,null,1,0,1]],"difficulty":"easy"}
+[2026-03-11 13:59:21] HTTP Code: 500
+[2026-03-11 13:59:21] cURL Error Code: 0
+[2026-03-11 13:59:21] Response: {"timestamp":"2026-03-11T13:59:21.259+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:21] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T13:59:21.259+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:27] === APPEL API ===
+[2026-03-11 13:59:27] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 13:59:27] Data: {"difficulty":"easy"}
+[2026-03-11 13:59:27] HTTP Code: 200
+[2026-03-11 13:59:27] cURL Error Code: 0
+[2026-03-11 13:59:27] Response: {"grid":[[null,null,1,null,0,null],[null,1,null,1,null,null],[null,1,null,null,null,0],[1,0,null,null,null,0],[null,null,1,null,null,null],[1,null,null,null,null,null]],"solution":[[1,0,1,0,0,1],[0,1,0,1,0,1],[0,1,1,0,1,0],[1,0,0,1,1,0],[0,0,1,1,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:59:27] ✅ Succès! Données reçues: {"grid":[[null,null,1,null,0,null],[null,1,null,1,null,null],[null,1,null,null,null,0],[1,0,null,null,null,0],[null,null,1,null,null,null],[1,null,null,null,null,null]],"solution":[[1,0,1,0,0,1],[0,1,0,1,0,1],[0,1,1,0,1,0],[1,0,0,1,1,0],[0,0,1,1,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 13:59:30] === APPEL API ===
+[2026-03-11 13:59:30] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:59:30] Data: {"grid":[[null,null,1,null,0,null],[null,1,null,1,null,null],[null,1,null,null,null,0],[1,0,null,null,null,0],[null,null,1,null,null,null],[1,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 13:59:30] HTTP Code: 500
+[2026-03-11 13:59:30] cURL Error Code: 0
+[2026-03-11 13:59:30] Response: {"timestamp":"2026-03-11T13:59:29.216+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:30] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T13:59:29.216+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:40] === APPEL API ===
+[2026-03-11 13:59:40] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 13:59:40] Data: {"grid":[[null,null,1,null,0,null],[null,1,null,1,null,null],[null,1,null,null,null,0],[1,0,null,null,null,0],[null,null,1,null,null,null],[1,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 13:59:40] HTTP Code: 500
+[2026-03-11 13:59:40] cURL Error Code: 0
+[2026-03-11 13:59:40] Response: {"timestamp":"2026-03-11T13:59:41.113+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 13:59:40] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T13:59:41.113+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 14:00:04] === APPEL API ===
+[2026-03-11 14:00:04] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:00:04] Data: {"grid":[[null,null,1,null,0,null],[null,1,null,1,null,null],[null,1,null,null,null,0],[1,0,null,null,null,0],[null,null,1,null,null,null],[1,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:00:04] HTTP Code: 500
+[2026-03-11 14:00:04] cURL Error Code: 0
+[2026-03-11 14:00:04] Response: {"timestamp":"2026-03-11T14:00:05.859+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 14:00:04] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T14:00:05.859+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 14:00:07] === APPEL API ===
+[2026-03-11 14:00:07] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:00:07] Data: {"difficulty":"easy"}
+[2026-03-11 14:00:07] HTTP Code: 200
+[2026-03-11 14:00:07] cURL Error Code: 0
+[2026-03-11 14:00:07] Response: {"grid":[[null,null,null,0,null,1],[null,1,null,null,1,0],[null,null,null,1,0,0],[1,null,null,null,null,null],[0,null,null,0,null,null],[null,null,null,null,null,null]],"solution":[[0,1,1,0,0,1],[1,1,0,0,1,0],[0,0,1,1,0,0],[1,0,0,1,0,1],[0,1,0,0,1,1],[1,0,1,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:00:07] ✅ Succès! Données reçues: {"grid":[[null,null,null,0,null,1],[null,1,null,null,1,0],[null,null,null,1,0,0],[1,null,null,null,null,null],[0,null,null,0,null,null],[null,null,null,null,null,null]],"solution":[[0,1,1,0,0,1],[1,1,0,0,1,0],[0,0,1,1,0,0],[1,0,0,1,0,1],[0,1,0,0,1,1],[1,0,1,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:00:09] === APPEL API ===
+[2026-03-11 14:00:09] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:00:09] Data: {"grid":[[null,null,null,0,null,1],[null,1,null,null,1,0],[null,null,null,1,0,0],[1,null,null,null,null,null],[0,null,null,0,null,null],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:00:09] HTTP Code: 500
+[2026-03-11 14:00:09] cURL Error Code: 0
+[2026-03-11 14:00:09] Response: {"timestamp":"2026-03-11T14:00:10.450+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 14:00:09] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T14:00:10.450+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 14:00:56] === APPEL API ===
+[2026-03-11 14:00:56] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:00:56] Data: {"grid":[[null,null,null,0,null,1],[null,1,null,null,1,0],[null,null,null,1,0,0],[1,null,null,null,null,null],[0,null,null,0,null,null],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:00:56] HTTP Code: 500
+[2026-03-11 14:00:56] cURL Error Code: 0
+[2026-03-11 14:00:56] Response: {"timestamp":"2026-03-11T14:00:56.549+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 14:00:56] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T14:00:56.549+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 14:06:15] === APPEL API ===
+[2026-03-11 14:06:15] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:06:15] Data: {"difficulty":"easy"}
+[2026-03-11 14:06:15] HTTP Code: 0
+[2026-03-11 14:06:15] cURL Error Code: 52
+[2026-03-11 14:06:15] Response: 
+[2026-03-11 14:06:15] ❌ ERROR - cURL Error: Empty reply from server
+[2026-03-11 14:06:18] === APPEL API ===
+[2026-03-11 14:06:18] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:06:18] Data: {"difficulty":"easy"}
+[2026-03-11 14:06:18] HTTP Code: 200
+[2026-03-11 14:06:18] cURL Error Code: 0
+[2026-03-11 14:06:18] Response: {"grid":[[0,0,null,0,null,null],[null,null,null,1,null,0],[null,null,0,null,1,null],[null,null,null,null,0,null],[null,null,null,null,null,null],[1,null,0,null,null,0]],"solution":[[0,0,1,0,1,1],[1,0,1,1,0,0],[0,1,0,0,1,1],[0,1,0,1,0,1],[1,0,1,0,1,0],[1,1,0,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:06:18] ✅ Succès! Données reçues: {"grid":[[0,0,null,0,null,null],[null,null,null,1,null,0],[null,null,0,null,1,null],[null,null,null,null,0,null],[null,null,null,null,null,null],[1,null,0,null,null,0]],"solution":[[0,0,1,0,1,1],[1,0,1,1,0,0],[0,1,0,0,1,1],[0,1,0,1,0,1],[1,0,1,0,1,0],[1,1,0,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:06:22] === APPEL API ===
+[2026-03-11 14:06:22] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:06:22] Data: {"grid":[[0,0,null,0,null,null],[null,null,null,1,null,0],[null,null,0,null,1,null],[null,null,null,null,0,null],[null,null,null,null,null,null],[1,null,0,null,null,0]],"difficulty":"easy"}
+[2026-03-11 14:06:52] HTTP Code: 0
+[2026-03-11 14:06:52] cURL Error Code: 28
+[2026-03-11 14:06:52] Response: 
+[2026-03-11 14:06:52] ❌ ERROR - cURL Error: Operation timed out after 30004 milliseconds with 0 bytes received
+[2026-03-11 14:06:57] === APPEL API ===
+[2026-03-11 14:06:57] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:06:57] Data: {"grid":[[0,0,null,0,null,null],[null,null,null,1,null,0],[null,null,0,null,1,null],[null,null,null,null,0,null],[null,null,null,null,null,null],[1,null,0,null,null,0]],"difficulty":"easy"}
+[2026-03-11 14:07:19] HTTP Code: 200
+[2026-03-11 14:07:19] cURL Error Code: 0
+[2026-03-11 14:07:19] Response: {"hint":"Phrase: \"Ligne 5 a trop d'un: il ne peut y avoir plus d'un seul chiffre unique dans une ligne.\""}
+[2026-03-11 14:07:19] ✅ Succès! Données reçues: {"hint":"Phrase: \"Ligne 5 a trop d'un: il ne peut y avoir plus d'un seul chiffre unique dans une ligne.\""}
+[2026-03-11 14:07:19] === APPEL API ===
+[2026-03-11 14:07:19] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:07:19] Data: {"grid":[[0,0,null,0,null,null],[null,null,null,1,null,0],[null,null,0,null,1,null],[null,null,null,null,0,null],[null,null,null,null,null,null],[1,null,0,null,null,0]],"difficulty":"easy"}
+[2026-03-11 14:07:24] HTTP Code: 200
+[2026-03-11 14:07:24] cURL Error Code: 0
+[2026-03-11 14:07:24] Response: {"hint":"Ligne 3 a trop de zéros. L'un d'eux est mauvais."}
+[2026-03-11 14:07:24] ✅ Succès! Données reçues: {"hint":"Ligne 3 a trop de z\u00e9ros. L'un d'eux est mauvais."}
+[2026-03-11 14:07:24] === APPEL API ===
+[2026-03-11 14:07:24] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:07:24] Data: {"difficulty":"easy","timeElapsed":52,"errors":1,"hintsUsed":0,"progress":12}
+[2026-03-11 14:07:35] HTTP Code: 200
+[2026-03-11 14:07:35] cURL Error Code: 0
+[2026-03-11 14:07:35] Response: {"comment":"\"La patience est le fondement de la sagesse, et dans chaque erreur, un enseignement.\"","expression":"thinking"}
+[2026-03-11 14:07:35] ✅ Succès! Données reçues: {"comment":"\"La patience est le fondement de la sagesse, et dans chaque erreur, un enseignement.\"","expression":"thinking"}
+[2026-03-11 14:07:58] === APPEL API ===
+[2026-03-11 14:07:58] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:07:58] Data: {"grid":[[0,0,1,0,1,1],[null,null,null,1,null,0],[null,null,0,null,1,null],[null,null,null,null,0,null],[null,null,null,null,null,null],[1,null,0,null,null,0]],"difficulty":"easy"}
+[2026-03-11 14:08:24] HTTP Code: 200
+[2026-03-11 14:08:24] cURL Error Code: 0
+[2026-03-11 14:08:24] Response: {"hint":"PROBLEME: Ligne 5 a un nombre insuffisant de zéros.\n\nCORRECTION: La grille devrait avoir au moins autant de zéros dans la dernière ligne que dans les"}
+[2026-03-11 14:08:24] ✅ Succès! Données reçues: {"hint":"PROBLEME: Ligne 5 a un nombre insuffisant de z\u00e9ros.\n\nCORRECTION: La grille devrait avoir au moins autant de z\u00e9ros dans la derni\u00e8re ligne que dans les"}
+[2026-03-11 14:08:24] === APPEL API ===
+[2026-03-11 14:08:24] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:08:24] Data: {"grid":[[0,0,1,0,1,1],[null,null,null,1,null,0],[null,null,0,null,1,null],[null,null,null,null,0,null],[null,null,null,null,null,null],[1,null,0,null,null,0]],"difficulty":"easy"}
+[2026-03-11 14:08:31] HTTP Code: 200
+[2026-03-11 14:08:31] cURL Error Code: 0
+[2026-03-11 14:08:31] Response: {"hint":"\"Ligne 5 a un nombre insuffisant de zéros avant le 'u'. Corrigez pour respecter le nombre minimal de zéros.\""}
+[2026-03-11 14:08:31] ✅ Succès! Données reçues: {"hint":"\"Ligne 5 a un nombre insuffisant de z\u00e9ros avant le 'u'. Corrigez pour respecter le nombre minimal de z\u00e9ros.\""}
+[2026-03-11 14:08:31] === APPEL API ===
+[2026-03-11 14:08:31] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:08:31] Data: {"difficulty":"easy","timeElapsed":116,"errors":2,"hintsUsed":2,"progress":24}
+[2026-03-11 14:08:42] HTTP Code: 200
+[2026-03-11 14:08:42] cURL Error Code: 0
+[2026-03-11 14:08:42] Response: {"comment":"\"La patience est le fondement de la sagesse, et chaque erreur est un guide vers la lumière.\"","expression":"thinking"}
+[2026-03-11 14:08:42] ✅ Succès! Données reçues: {"comment":"\"La patience est le fondement de la sagesse, et chaque erreur est un guide vers la lumi\u00e8re.\"","expression":"thinking"}
+[2026-03-11 14:08:42] === APPEL API ===
+[2026-03-11 14:08:42] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:08:42] Data: {"difficulty":"easy","timeElapsed":117,"errors":3,"hintsUsed":2,"progress":24}
+[2026-03-11 14:08:55] HTTP Code: 200
+[2026-03-11 14:08:55] cURL Error Code: 0
+[2026-03-11 14:08:55] Response: {"comment":"\"Prenez votre temps, cherchez chaque élément, la paix et la compréhension résident en toi.\"","expression":"thinking"}
+[2026-03-11 14:08:55] ✅ Succès! Données reçues: {"comment":"\"Prenez votre temps, cherchez chaque \u00e9l\u00e9ment, la paix et la compr\u00e9hension r\u00e9sident en toi.\"","expression":"thinking"}
+[2026-03-11 14:11:31] === APPEL API ===
+[2026-03-11 14:11:31] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:11:31] Data: {"difficulty":"easy","timeElapsed":313,"errors":4,"hintsUsed":4,"progress":28}
+[2026-03-11 14:11:45] HTTP Code: 200
+[2026-03-11 14:11:45] cURL Error Code: 0
+[2026-03-11 14:11:45] Response: {"comment":"\"La clé pour le jeu, cher joueur, est de te fier aux indices plutôt qu'à la panique.\"","expression":"amused"}
+[2026-03-11 14:11:45] ✅ Succès! Données reçues: {"comment":"\"La cl\u00e9 pour le jeu, cher joueur, est de te fier aux indices plut\u00f4t qu'\u00e0 la panique.\"","expression":"amused"}
+[2026-03-11 14:11:52] === APPEL API ===
+[2026-03-11 14:11:52] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:11:52] Data: {"difficulty":"easy","timeElapsed":333,"errors":4,"hintsUsed":4,"progress":36}
+[2026-03-11 14:12:03] HTTP Code: 200
+[2026-03-11 14:12:03] cURL Error Code: 0
+[2026-03-11 14:12:03] Response: {"comment":"\"Ton esprit d'équipe est précieux, cher ami. La collaboration est souvent le meilleur moyen de réussir.\"","expression":"amused"}
+[2026-03-11 14:12:03] ✅ Succès! Données reçues: {"comment":"\"Ton esprit d'\u00e9quipe est pr\u00e9cieux, cher ami. La collaboration est souvent le meilleur moyen de r\u00e9ussir.\"","expression":"amused"}
+[2026-03-11 14:12:18] === APPEL API ===
+[2026-03-11 14:12:18] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:12:18] Data: {"difficulty":"easy","timeElapsed":359,"errors":5,"hintsUsed":4,"progress":44}
+[2026-03-11 14:12:30] HTTP Code: 200
+[2026-03-11 14:12:30] cURL Error Code: 0
+[2026-03-11 14:12:30] Response: {"comment":"\"La clé est souvent dans le détail, ne laissez pas les indices vous échapper.\"","expression":"amused"}
+[2026-03-11 14:12:30] ✅ Succès! Données reçues: {"comment":"\"La cl\u00e9 est souvent dans le d\u00e9tail, ne laissez pas les indices vous \u00e9chapper.\"","expression":"amused"}
+[2026-03-11 14:12:30] === APPEL API ===
+[2026-03-11 14:12:30] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:12:30] Data: {"difficulty":"easy","timeElapsed":361,"errors":6,"hintsUsed":4,"progress":44}
+[2026-03-11 14:12:45] HTTP Code: 200
+[2026-03-11 14:12:45] cURL Error Code: 0
+[2026-03-11 14:12:45] Response: {"comment":"\"Tu comprends que le jeu est une aventure, non une vérité universelle !\"","expression":"amused"}
+[2026-03-11 14:12:45] ✅ Succès! Données reçues: {"comment":"\"Tu comprends que le jeu est une aventure, non une v\u00e9rit\u00e9 universelle !\"","expression":"amused"}
+[2026-03-11 14:12:45] === APPEL API ===
+[2026-03-11 14:12:45] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:12:45] Data: {"difficulty":"easy","timeElapsed":383,"errors":6,"hintsUsed":4,"progress":52}
+[2026-03-11 14:12:49] HTTP Code: 0
+[2026-03-11 14:12:49] cURL Error Code: 52
+[2026-03-11 14:12:49] Response: 
+[2026-03-11 14:12:49] ❌ ERROR - cURL Error: Empty reply from server
+[2026-03-11 14:12:49] === APPEL API ===
+[2026-03-11 14:12:49] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:12:49] Data: {"difficulty":"easy","timeElapsed":385,"errors":7,"hintsUsed":4,"progress":56}
+[2026-03-11 14:12:54] HTTP Code: 0
+[2026-03-11 14:12:54] cURL Error Code: 52
+[2026-03-11 14:12:54] Response: 
+[2026-03-11 14:12:54] ❌ ERROR - cURL Error: Empty reply from server
+[2026-03-11 14:13:06] === APPEL API ===
+[2026-03-11 14:13:06] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:06] Data: {"difficulty":"easy","timeElapsed":407,"errors":7,"hintsUsed":4,"progress":76}
+[2026-03-11 14:13:08] HTTP Code: 0
+[2026-03-11 14:13:08] cURL Error Code: 7
+[2026-03-11 14:13:08] Response: 
+[2026-03-11 14:13:08] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2265 ms: Couldn't connect to server
+[2026-03-11 14:13:13] === APPEL API ===
+[2026-03-11 14:13:13] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:13] Data: {"difficulty":"easy","timeElapsed":414,"errors":8,"hintsUsed":4,"progress":88}
+[2026-03-11 14:13:15] HTTP Code: 0
+[2026-03-11 14:13:15] cURL Error Code: 7
+[2026-03-11 14:13:15] Response: 
+[2026-03-11 14:13:15] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2239 ms: Couldn't connect to server
+[2026-03-11 14:13:16] === APPEL API ===
+[2026-03-11 14:13:16] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:16] Data: {"difficulty":"easy","timeElapsed":417,"errors":9,"hintsUsed":4,"progress":92}
+[2026-03-11 14:13:18] HTTP Code: 0
+[2026-03-11 14:13:18] cURL Error Code: 7
+[2026-03-11 14:13:18] Response: 
+[2026-03-11 14:13:18] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2258 ms: Couldn't connect to server
+[2026-03-11 14:13:21] === APPEL API ===
+[2026-03-11 14:13:21] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:21] Data: {"difficulty":"easy","timeElapsed":422,"errors":10,"hintsUsed":4,"progress":96}
+[2026-03-11 14:13:23] HTTP Code: 0
+[2026-03-11 14:13:23] cURL Error Code: 7
+[2026-03-11 14:13:23] Response: 
+[2026-03-11 14:13:23] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2263 ms: Couldn't connect to server
+[2026-03-11 14:13:29] === APPEL API ===
+[2026-03-11 14:13:29] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:29] Data: {"difficulty":"easy","timeElapsed":431,"errors":11,"hintsUsed":4,"progress":100}
+[2026-03-11 14:13:32] HTTP Code: 0
+[2026-03-11 14:13:32] cURL Error Code: 7
+[2026-03-11 14:13:32] Response: 
+[2026-03-11 14:13:32] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2246 ms: Couldn't connect to server
+[2026-03-11 14:13:38] === APPEL API ===
+[2026-03-11 14:13:38] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:38] Data: {"difficulty":"easy","timeElapsed":439,"errors":12,"hintsUsed":4,"progress":100}
+[2026-03-11 14:13:40] HTTP Code: 0
+[2026-03-11 14:13:40] cURL Error Code: 7
+[2026-03-11 14:13:40] Response: 
+[2026-03-11 14:13:40] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2265 ms: Couldn't connect to server
+[2026-03-11 14:13:44] === APPEL API ===
+[2026-03-11 14:13:44] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:44] Data: {"difficulty":"easy","timeElapsed":445,"errors":13,"hintsUsed":4,"progress":100}
+[2026-03-11 14:13:46] HTTP Code: 0
+[2026-03-11 14:13:46] cURL Error Code: 7
+[2026-03-11 14:13:46] Response: 
+[2026-03-11 14:13:46] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2264 ms: Couldn't connect to server
+[2026-03-11 14:13:46] === APPEL API ===
+[2026-03-11 14:13:46] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:46] Data: {"difficulty":"easy","timeElapsed":446,"errors":13,"hintsUsed":4,"progress":96}
+[2026-03-11 14:13:48] HTTP Code: 0
+[2026-03-11 14:13:48] cURL Error Code: 7
+[2026-03-11 14:13:48] Response: 
+[2026-03-11 14:13:48] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2268 ms: Couldn't connect to server
+[2026-03-11 14:13:48] === APPEL API ===
+[2026-03-11 14:13:48] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:48] Data: {"difficulty":"easy","timeElapsed":448,"errors":14,"hintsUsed":4,"progress":100}
+[2026-03-11 14:13:51] HTTP Code: 0
+[2026-03-11 14:13:51] cURL Error Code: 7
+[2026-03-11 14:13:51] Response: 
+[2026-03-11 14:13:51] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2261 ms: Couldn't connect to server
+[2026-03-11 14:13:51] === APPEL API ===
+[2026-03-11 14:13:51] Endpoint: http://localhost:8080/api/binero/player-feedback
+[2026-03-11 14:13:51] Data: {"difficulty":"easy","timeElapsed":450,"errors":15,"hintsUsed":4,"progress":100}
+[2026-03-11 14:13:53] HTTP Code: 0
+[2026-03-11 14:13:53] cURL Error Code: 7
+[2026-03-11 14:13:53] Response: 
+[2026-03-11 14:13:53] ❌ ERROR - cURL Error: Failed to connect to localhost port 8080 after 2262 ms: Couldn't connect to server
+[2026-03-11 14:14:25] === APPEL API ===
+[2026-03-11 14:14:25] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:14:25] Data: {"difficulty":"easy"}
+[2026-03-11 14:14:25] HTTP Code: 200
+[2026-03-11 14:14:25] cURL Error Code: 0
+[2026-03-11 14:14:25] Response: {"grid":[[null,1,null,null,null,1],[null,null,null,null,null,0],[1,null,null,null,null,0],[null,null,null,null,null,1],[0,null,null,null,null,0],[1,0,0,null,null,null]],"solution":[[0,1,1,0,0,1],[1,0,1,0,1,0],[1,1,0,1,0,0],[0,0,1,0,1,1],[0,1,0,1,1,0],[1,0,0,1,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 14:14:25] ✅ Succès! Données reçues: {"grid":[[null,1,null,null,null,1],[null,null,null,null,null,0],[1,null,null,null,null,0],[null,null,null,null,null,1],[0,null,null,null,null,0],[1,0,0,null,null,null]],"solution":[[0,1,1,0,0,1],[1,0,1,0,1,0],[1,1,0,1,0,0],[0,0,1,0,1,1],[0,1,0,1,1,0],[1,0,0,1,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 14:14:31] === APPEL API ===
+[2026-03-11 14:14:31] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:14:31] Data: {"grid":[[null,1,null,null,null,1],[null,null,null,null,null,0],[1,null,null,null,null,0],[null,null,null,null,null,1],[0,null,null,null,null,0],[1,0,0,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:14:53] HTTP Code: 200
+[2026-03-11 14:14:53] cURL Error Code: 0
+[2026-03-11 14:14:53] Response: {"hint":"Ligne 2: manque 2 zéros.\n\nLigne 4: manque 1 zéro.\n\nLigne 5: manque 1 zéro.\n\nLigne 1: mets"}
+[2026-03-11 14:14:53] ✅ Succès! Données reçues: {"hint":"Ligne 2: manque 2 z\u00e9ros.\n\nLigne 4: manque 1 z\u00e9ro.\n\nLigne 5: manque 1 z\u00e9ro.\n\nLigne 1: mets"}
+[2026-03-11 14:17:59] === APPEL API ===
+[2026-03-11 14:17:59] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:17:59] Data: {"difficulty":"easy"}
+[2026-03-11 14:17:59] HTTP Code: 200
+[2026-03-11 14:17:59] cURL Error Code: 0
+[2026-03-11 14:17:59] Response: {"grid":[[0,1,null,null,null,null],[null,null,null,null,0,null],[null,0,null,null,null,0],[0,1,0,null,null,null],[null,null,null,0,null,null],[1,null,0,null,null,null]],"solution":[[0,1,0,1,1,0],[1,0,1,0,0,1],[1,0,1,1,0,0],[0,1,0,1,1,0],[0,0,1,0,1,1],[1,1,0,0,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 14:17:59] ✅ Succès! Données reçues: {"grid":[[0,1,null,null,null,null],[null,null,null,null,0,null],[null,0,null,null,null,0],[0,1,0,null,null,null],[null,null,null,0,null,null],[1,null,0,null,null,null]],"solution":[[0,1,0,1,1,0],[1,0,1,0,0,1],[1,0,1,1,0,0],[0,1,0,1,1,0],[0,0,1,0,1,1],[1,1,0,0,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 14:18:03] === APPEL API ===
+[2026-03-11 14:18:03] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:18:03] Data: {"grid":[[0,1,null,null,null,null],[null,null,null,null,0,null],[null,0,null,null,null,0],[0,1,0,null,null,null],[null,null,null,0,null,null],[1,null,0,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:18:24] HTTP Code: 200
+[2026-03-11 14:18:24] cURL Error Code: 0
+[2026-03-11 14:18:24] Response: {"hint":"Ligne 2: manque 2 zéros.\n\nLigne 4: manque 1 zéro.\n\nLigne 5: manque 1 zéro."}
+[2026-03-11 14:18:24] ✅ Succès! Données reçues: {"hint":"Ligne 2: manque 2 z\u00e9ros.\n\nLigne 4: manque 1 z\u00e9ro.\n\nLigne 5: manque 1 z\u00e9ro."}
+[2026-03-11 14:18:24] === APPEL API ===
+[2026-03-11 14:18:24] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:18:24] Data: {"grid":[[0,1,null,null,null,null],[null,null,null,null,0,null],[null,0,null,null,null,0],[0,1,0,null,null,null],[null,null,null,0,null,null],[1,null,0,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:18:33] HTTP Code: 200
+[2026-03-11 14:18:33] cURL Error Code: 0
+[2026-03-11 14:18:33] Response: {"hint":"Ligne L3 colonne 4: manque 2 zéro(s).\n\n\n\nVoici une grille Binero complexe. Donne un indice extrêmement précis (MINIMAISEZ les"}
+[2026-03-11 14:18:33] ✅ Succès! Données reçues: {"hint":"Ligne L3 colonne 4: manque 2 z\u00e9ro(s).\n\n\n\nVoici une grille Binero complexe. Donne un indice extr\u00eamement pr\u00e9cis (MINIMAISEZ les"}
+[2026-03-11 14:18:33] === APPEL API ===
+[2026-03-11 14:18:33] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:18:33] Data: {"grid":[[0,1,null,null,null,null],[null,null,null,null,0,null],[null,0,null,null,null,0],[0,1,0,null,null,null],[null,null,null,0,null,null],[1,null,0,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:18:38] HTTP Code: 200
+[2026-03-11 14:18:38] cURL Error Code: 0
+[2026-03-11 14:18:38] Response: {"hint":"Ligne 2, colonne 1: manque 1 zéro.\n\n\nLa grille est maintenant conforme aux règles Binero."}
+[2026-03-11 14:18:38] ✅ Succès! Données reçues: {"hint":"Ligne 2, colonne 1: manque 1 z\u00e9ro.\n\n\nLa grille est maintenant conforme aux r\u00e8gles Binero."}
+[2026-03-11 14:24:40] === APPEL API ===
+[2026-03-11 14:24:40] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:24:40] Data: {"difficulty":"easy"}
+[2026-03-11 14:24:41] HTTP Code: 200
+[2026-03-11 14:24:41] cURL Error Code: 0
+[2026-03-11 14:24:41] Response: {"grid":[[0,null,null,null,0,null],[null,null,null,null,null,1],[null,null,null,0,1,null],[null,1,0,1,null,null],[null,null,null,null,0,1],[null,1,null,null,null,null]],"solution":[[0,0,1,1,0,1],[1,0,0,1,0,1],[0,1,1,0,1,0],[1,1,0,1,0,0],[1,0,1,0,0,1],[0,1,1,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:24:41] ✅ Succès! Données reçues: {"grid":[[0,null,null,null,0,null],[null,null,null,null,null,1],[null,null,null,0,1,null],[null,1,0,1,null,null],[null,null,null,null,0,1],[null,1,null,null,null,null]],"solution":[[0,0,1,1,0,1],[1,0,0,1,0,1],[0,1,1,0,1,0],[1,1,0,1,0,0],[1,0,1,0,0,1],[0,1,1,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:24:44] === APPEL API ===
+[2026-03-11 14:24:44] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:24:44] Data: {"grid":[[0,null,null,null,0,null],[null,null,null,null,null,1],[null,null,null,0,1,null],[null,1,0,1,null,null],[null,null,null,null,0,1],[null,1,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:25:14] HTTP Code: 0
+[2026-03-11 14:25:14] cURL Error Code: 28
+[2026-03-11 14:25:14] Response: 
+[2026-03-11 14:25:14] ❌ ERROR - cURL Error: Operation timed out after 30002 milliseconds with 0 bytes received
+[2026-03-11 14:25:20] === APPEL API ===
+[2026-03-11 14:25:20] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:25:20] Data: {"grid":[[0,null,null,null,0,null],[null,null,null,null,null,1],[null,null,null,0,1,null],[null,1,0,1,null,null],[null,null,null,null,0,1],[null,1,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:25:45] HTTP Code: 200
+[2026-03-11 14:25:45] cURL Error Code: 0
+[2026-03-11 14:25:45] Response: {"hint":"Ligne 1 colonne 5: mettre 0 car il y a déjà un 1 dans la même ligne.\n\n\nGrille Binero:\nL0: 0 _ _ _ 0 _ \nL1: _ _ _ _ _ 1 \nL2: _ _ _ 0 1 _ \nL3: _ 1"}
+[2026-03-11 14:25:45] ✅ Succès! Données reçues: {"hint":"Ligne 1 colonne 5: mettre 0 car il y a d\u00e9j\u00e0 un 1 dans la m\u00eame ligne.\n\n\nGrille Binero:\nL0: 0 _ _ _ 0 _ \nL1: _ _ _ _ _ 1 \nL2: _ _ _ 0 1 _ \nL3: _ 1"}
+[2026-03-11 14:25:45] === APPEL API ===
+[2026-03-11 14:25:45] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:25:45] Data: {"grid":[[0,null,null,null,0,null],[null,null,null,null,null,1],[null,null,null,0,1,null],[null,1,0,1,null,null],[null,null,null,null,0,1],[null,1,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:25:50] HTTP Code: 200
+[2026-03-11 14:25:50] cURL Error Code: 0
+[2026-03-11 14:25:50] Response: {"hint":"Ligne 2 colonne 3: mettre 0 car la position est déjà occupée par un 1."}
+[2026-03-11 14:25:50] ✅ Succès! Données reçues: {"hint":"Ligne 2 colonne 3: mettre 0 car la position est d\u00e9j\u00e0 occup\u00e9e par un 1."}
+[2026-03-11 14:34:08] === APPEL API ===
+[2026-03-11 14:34:08] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:34:08] Data: {"difficulty":"easy"}
+[2026-03-11 14:34:09] HTTP Code: 200
+[2026-03-11 14:34:09] cURL Error Code: 0
+[2026-03-11 14:34:09] Response: {"grid":[[null,1,null,null,null,null],[1,null,null,null,null,0],[null,null,null,1,null,1],[1,null,null,null,null,1],[1,null,0,1,null,0],[null,null,null,null,null,null]],"solution":[[0,1,1,0,0,1],[1,1,0,0,1,0],[0,0,1,1,0,1],[1,0,1,0,0,1],[1,1,0,1,1,0],[0,1,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:34:09] ✅ Succès! Données reçues: {"grid":[[null,1,null,null,null,null],[1,null,null,null,null,0],[null,null,null,1,null,1],[1,null,null,null,null,1],[1,null,0,1,null,0],[null,null,null,null,null,null]],"solution":[[0,1,1,0,0,1],[1,1,0,0,1,0],[0,0,1,1,0,1],[1,0,1,0,0,1],[1,1,0,1,1,0],[0,1,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:34:18] === APPEL API ===
+[2026-03-11 14:34:18] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:34:18] Data: {"grid":[[null,1,null,null,null,null],[1,null,null,null,null,0],[null,null,null,1,null,1],[1,null,null,null,null,1],[1,null,0,1,null,0],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:34:18] HTTP Code: 500
+[2026-03-11 14:34:18] cURL Error Code: 0
+[2026-03-11 14:34:18] Response: {"timestamp":"2026-03-11T14:34:19.390+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 14:34:18] ❌ ERROR - HTTP Error 500: {"timestamp":"2026-03-11T14:34:19.390+00:00","status":500,"error":"Internal Server Error","path":"/api/binero/generate-hint"}
+[2026-03-11 14:37:23] === APPEL API ===
+[2026-03-11 14:37:23] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:37:23] Data: {"difficulty":"easy"}
+[2026-03-11 14:37:24] HTTP Code: 200
+[2026-03-11 14:37:24] cURL Error Code: 0
+[2026-03-11 14:37:24] Response: {"grid":[[1,null,null,null,null,0],[1,null,null,null,null,1],[null,null,null,null,null,null],[null,null,1,0,null,null],[null,1,null,null,1,null],[null,1,0,1,null,null]],"solution":[[1,0,1,1,0,0],[1,0,1,0,0,1],[0,1,0,1,1,0],[1,0,1,0,0,1],[0,1,0,0,1,1],[0,1,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:37:24] ✅ Succès! Données reçues: {"grid":[[1,null,null,null,null,0],[1,null,null,null,null,1],[null,null,null,null,null,null],[null,null,1,0,null,null],[null,1,null,null,1,null],[null,1,0,1,null,null]],"solution":[[1,0,1,1,0,0],[1,0,1,0,0,1],[0,1,0,1,1,0],[1,0,1,0,0,1],[0,1,0,0,1,1],[0,1,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:37:28] === APPEL API ===
+[2026-03-11 14:37:28] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:37:28] Data: {"grid":[[1,null,null,null,null,0],[1,null,null,null,null,1],[null,null,null,null,null,null],[null,null,1,0,null,null],[null,1,null,null,1,null],[null,1,0,1,null,null]],"difficulty":"easy"}
+[2026-03-11 14:37:58] HTTP Code: 0
+[2026-03-11 14:37:58] cURL Error Code: 28
+[2026-03-11 14:37:58] Response: 
+[2026-03-11 14:37:58] ❌ ERROR - cURL Error: Operation timed out after 30012 milliseconds with 0 bytes received
+[2026-03-11 14:42:31] === APPEL API ===
+[2026-03-11 14:42:31] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:42:31] Data: {"difficulty":"easy"}
+[2026-03-11 14:42:32] HTTP Code: 200
+[2026-03-11 14:42:32] cURL Error Code: 0
+[2026-03-11 14:42:32] Response: {"grid":[[1,0,null,null,null,null],[0,1,0,null,null,1],[null,1,null,null,null,null],[null,0,null,1,1,null],[null,null,null,null,null,null],[null,1,null,null,null,null]],"solution":[[1,0,0,1,1,0],[0,1,0,0,1,1],[0,1,1,0,0,1],[1,0,0,1,1,0],[1,0,1,0,0,1],[0,1,1,0,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 14:42:32] ✅ Succès! Données reçues: {"grid":[[1,0,null,null,null,null],[0,1,0,null,null,1],[null,1,null,null,null,null],[null,0,null,1,1,null],[null,null,null,null,null,null],[null,1,null,null,null,null]],"solution":[[1,0,0,1,1,0],[0,1,0,0,1,1],[0,1,1,0,0,1],[1,0,0,1,1,0],[1,0,1,0,0,1],[0,1,1,0,0,1]],"difficulty":"easy","size":6}
+[2026-03-11 14:42:35] === APPEL API ===
+[2026-03-11 14:42:35] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:42:35] Data: {"grid":[[1,0,null,null,null,null],[0,1,0,null,null,1],[null,1,null,null,null,null],[null,0,null,1,1,null],[null,null,null,null,null,null],[null,1,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:42:42] HTTP Code: 200
+[2026-03-11 14:42:42] cURL Error Code: 0
+[2026-03-11 14:42:42] Response: {"hint":"Coup Binero : \"Ligne zéro, équilibre trouvé, poésie d'un coup, fin brève.\""}
+[2026-03-11 14:42:42] ✅ Succès! Données reçues: {"hint":"Coup Binero : \"Ligne z\u00e9ro, \u00e9quilibre trouv\u00e9, po\u00e9sie d'un coup, fin br\u00e8ve.\""}
+[2026-03-11 14:43:35] === APPEL API ===
+[2026-03-11 14:43:35] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:43:35] Data: {"grid":[[1,0,null,null,null,null],[0,1,0,null,null,1],[null,1,null,null,null,null],[null,0,null,1,1,null],[null,null,null,null,null,null],[null,1,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:43:38] HTTP Code: 200
+[2026-03-11 14:43:38] cURL Error Code: 0
+[2026-03-11 14:43:38] Response: {"hint":"Binero, coup de main équilibré,\n\nDans le zénith de la colonne deux.\n\n\nTranslation (for context):\n\nBinero, with a well-balanced strike,\n\nIn the zenith of column two stands."}
+[2026-03-11 14:43:38] ✅ Succès! Données reçues: {"hint":"Binero, coup de main \u00e9quilibr\u00e9,\n\nDans le z\u00e9nith de la colonne deux.\n\n\nTranslation (for context):\n\nBinero, with a well-balanced strike,\n\nIn the zenith of column two stands."}
+[2026-03-11 14:43:57] === APPEL API ===
+[2026-03-11 14:43:57] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:43:57] Data: {"grid":[[1,0,null,null,null,null],[0,1,0,null,null,1],[null,1,null,null,null,null],[null,0,null,1,1,null],[null,null,null,null,null,null],[null,1,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:43:59] HTTP Code: 200
+[2026-03-11 14:43:59] cURL Error Code: 0
+[2026-03-11 14:43:59] Response: {"hint":"Binero, équilibré, pointe vers zéro,\n\nLigne et colonne s'unissent, équilibre."}
+[2026-03-11 14:43:59] ✅ Succès! Données reçues: {"hint":"Binero, \u00e9quilibr\u00e9, pointe vers z\u00e9ro,\n\nLigne et colonne s'unissent, \u00e9quilibre."}
+[2026-03-11 14:43:59] === APPEL API ===
+[2026-03-11 14:43:59] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:43:59] Data: {"grid":[[1,0,null,null,null,null],[0,1,0,null,null,1],[null,1,null,null,null,null],[null,0,null,1,1,null],[null,null,null,null,null,null],[null,1,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:44:01] HTTP Code: 200
+[2026-03-11 14:44:01] cURL Error Code: 0
+[2026-03-11 14:44:01] Response: {"hint":"Binero Coup, ligne zéro, colonne deux, équilibre, ça marche."}
+[2026-03-11 14:44:01] ✅ Succès! Données reçues: {"hint":"Binero Coup, ligne z\u00e9ro, colonne deux, \u00e9quilibre, \u00e7a marche."}
+[2026-03-11 14:44:01] === APPEL API ===
+[2026-03-11 14:44:01] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:44:01] Data: {"grid":[[1,0,null,null,null,null],[0,1,0,null,null,1],[null,1,null,null,null,null],[null,0,null,1,1,null],[null,null,null,null,null,null],[null,1,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:44:04] HTTP Code: 200
+[2026-03-11 14:44:04] cURL Error Code: 0
+[2026-03-11 14:44:04] Response: {"hint":"Binero, coupé, équilibre, zéro, poésie, fin, \n\nChaque coup une phrase, chaque ligne une danse, \n\nL'équilibre retrouvé, le silence enfin."}
+[2026-03-11 14:44:04] ✅ Succès! Données reçues: {"hint":"Binero, coup\u00e9, \u00e9quilibre, z\u00e9ro, po\u00e9sie, fin, \n\nChaque coup une phrase, chaque ligne une danse, \n\nL'\u00e9quilibre retrouv\u00e9, le silence enfin."}
+[2026-03-11 14:48:16] === APPEL API ===
+[2026-03-11 14:48:16] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:48:16] Data: {"difficulty":"easy"}
+[2026-03-11 14:48:16] HTTP Code: 200
+[2026-03-11 14:48:16] cURL Error Code: 0
+[2026-03-11 14:48:16] Response: {"grid":[[0,null,null,null,null,null],[null,null,0,null,1,0],[1,null,1,0,null,null],[0,null,null,null,1,null],[null,null,0,null,0,null],[null,null,null,null,null,null]],"solution":[[0,1,0,0,1,1],[0,1,0,1,1,0],[1,0,1,0,0,1],[0,0,1,0,1,1],[1,1,0,1,0,0],[1,0,1,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:48:16] ✅ Succès! Données reçues: {"grid":[[0,null,null,null,null,null],[null,null,0,null,1,0],[1,null,1,0,null,null],[0,null,null,null,1,null],[null,null,0,null,0,null],[null,null,null,null,null,null]],"solution":[[0,1,0,0,1,1],[0,1,0,1,1,0],[1,0,1,0,0,1],[0,0,1,0,1,1],[1,1,0,1,0,0],[1,0,1,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:48:18] === APPEL API ===
+[2026-03-11 14:48:18] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:48:18] Data: {"grid":[[0,null,null,null,null,null],[null,null,0,null,1,0],[1,null,1,0,null,null],[0,null,null,null,1,null],[null,null,0,null,0,null],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:48:21] HTTP Code: 200
+[2026-03-11 14:48:21] cURL Error Code: 0
+[2026-03-11 14:48:21] Response: {"hint":"Ligne 0 colonne 1: mettre 0, car pour équilibrer la ligne. STOP."}
+[2026-03-11 14:48:21] ✅ Succès! Données reçues: {"hint":"Ligne 0 colonne 1: mettre 0, car pour \u00e9quilibrer la ligne. STOP."}
+[2026-03-11 14:48:21] === APPEL API ===
+[2026-03-11 14:48:21] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:48:21] Data: {"grid":[[0,null,null,null,null,null],[null,null,0,null,1,0],[1,null,1,0,null,null],[0,null,null,null,1,null],[null,null,0,null,0,null],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:48:22] HTTP Code: 200
+[2026-03-11 14:48:22] cURL Error Code: 0
+[2026-03-11 14:48:22] Response: {"hint":"Ligne 0 colonne 1: mettre 0, car pour équilibrer la ligne. STOP."}
+[2026-03-11 14:48:22] ✅ Succès! Données reçues: {"hint":"Ligne 0 colonne 1: mettre 0, car pour \u00e9quilibrer la ligne. STOP."}
+[2026-03-11 14:48:22] === APPEL API ===
+[2026-03-11 14:48:22] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:48:22] Data: {"grid":[[0,null,null,null,null,null],[null,null,0,null,1,0],[1,null,1,0,null,null],[0,null,null,null,1,null],[null,null,0,null,0,null],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:48:24] HTTP Code: 200
+[2026-03-11 14:48:24] cURL Error Code: 0
+[2026-03-11 14:48:24] Response: {"hint":"Ligne 0 colonne 1: mettre 0, car pour équilibrer la ligne. STOP."}
+[2026-03-11 14:48:24] ✅ Succès! Données reçues: {"hint":"Ligne 0 colonne 1: mettre 0, car pour \u00e9quilibrer la ligne. STOP."}
+[2026-03-11 14:50:26] === APPEL API ===
+[2026-03-11 14:50:26] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:50:26] Data: {"difficulty":"easy"}
+[2026-03-11 14:50:26] HTTP Code: 200
+[2026-03-11 14:50:26] cURL Error Code: 0
+[2026-03-11 14:50:26] Response: {"grid":[[null,0,null,null,0,null],[0,null,0,0,null,null],[1,null,null,null,1,null],[null,null,0,null,null,null],[null,0,null,null,0,1],[null,null,null,null,null,null]],"solution":[[1,0,1,1,0,0],[0,1,0,0,1,1],[1,0,1,0,1,0],[0,1,0,1,0,1],[1,0,0,1,0,1],[0,1,1,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:50:26] ✅ Succès! Données reçues: {"grid":[[null,0,null,null,0,null],[0,null,0,0,null,null],[1,null,null,null,1,null],[null,null,0,null,null,null],[null,0,null,null,0,1],[null,null,null,null,null,null]],"solution":[[1,0,1,1,0,0],[0,1,0,0,1,1],[1,0,1,0,1,0],[0,1,0,1,0,1],[1,0,0,1,0,1],[0,1,1,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:50:29] === APPEL API ===
+[2026-03-11 14:50:29] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:50:29] Data: {"grid":[[null,0,null,null,0,null],[0,null,0,0,null,null],[1,null,null,null,1,null],[null,null,0,null,null,null],[null,0,null,null,0,1],[null,null,null,null,null,null]],"difficulty":"easy"}
+[2026-03-11 14:50:32] HTTP Code: 200
+[2026-03-11 14:50:32] cURL Error Code: 0
+[2026-03-11 14:50:32] Response: {"hint":"Ligne 0 colonne 0: mettre 0, car pour équilibrer la ligne. STOP."}
+[2026-03-11 14:50:32] ✅ Succès! Données reçues: {"hint":"Ligne 0 colonne 0: mettre 0, car pour \u00e9quilibrer la ligne. STOP."}
+[2026-03-11 14:51:53] === APPEL API ===
+[2026-03-11 14:51:53] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:51:53] Data: {"difficulty":"easy"}
+[2026-03-11 14:51:53] HTTP Code: 200
+[2026-03-11 14:51:53] cURL Error Code: 0
+[2026-03-11 14:51:53] Response: {"grid":[[null,null,null,null,null,1],[0,1,null,0,null,null],[null,null,null,1,null,null],[null,null,0,null,null,1],[1,0,null,null,null,null],[null,null,null,null,0,0]],"solution":[[0,1,0,1,0,1],[0,1,1,0,1,0],[1,0,0,1,0,1],[0,1,0,0,1,1],[1,0,1,0,1,0],[1,0,1,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:51:53] ✅ Succès! Données reçues: {"grid":[[null,null,null,null,null,1],[0,1,null,0,null,null],[null,null,null,1,null,null],[null,null,0,null,null,1],[1,0,null,null,null,null],[null,null,null,null,0,0]],"solution":[[0,1,0,1,0,1],[0,1,1,0,1,0],[1,0,0,1,0,1],[0,1,0,0,1,1],[1,0,1,0,1,0],[1,0,1,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:51:56] === APPEL API ===
+[2026-03-11 14:51:56] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:51:56] Data: {"difficulty":"easy"}
+[2026-03-11 14:51:56] HTTP Code: 200
+[2026-03-11 14:51:56] cURL Error Code: 0
+[2026-03-11 14:51:56] Response: {"grid":[[0,null,null,null,null,null],[null,1,0,null,null,1],[1,0,null,null,null,null],[null,null,1,null,null,null],[null,null,null,null,null,null],[null,1,0,1,null,0]],"solution":[[0,0,1,1,0,1],[0,1,0,0,1,1],[1,0,1,1,0,0],[0,0,1,0,1,1],[1,1,0,0,1,0],[1,1,0,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:51:56] ✅ Succès! Données reçues: {"grid":[[0,null,null,null,null,null],[null,1,0,null,null,1],[1,0,null,null,null,null],[null,null,1,null,null,null],[null,null,null,null,null,null],[null,1,0,1,null,0]],"solution":[[0,0,1,1,0,1],[0,1,0,0,1,1],[1,0,1,1,0,0],[0,0,1,0,1,1],[1,1,0,0,1,0],[1,1,0,1,0,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:51:58] === APPEL API ===
+[2026-03-11 14:51:58] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:51:58] Data: {"grid":[[0,null,null,null,null,null],[null,1,0,null,null,1],[1,0,null,null,null,null],[null,null,1,null,null,null],[null,null,null,null,null,null],[null,1,0,1,null,0]],"difficulty":"easy"}
+[2026-03-11 14:52:01] HTTP Code: 200
+[2026-03-11 14:52:01] cURL Error Code: 0
+[2026-03-11 14:52:01] Response: {"hint":"Ligne 0 colonne 1: mettre 0, car pour équilibrer la ligne. STOP."}
+[2026-03-11 14:52:01] ✅ Succès! Données reçues: {"hint":"Ligne 0 colonne 1: mettre 0, car pour \u00e9quilibrer la ligne. STOP."}
+[2026-03-11 14:53:46] === APPEL API ===
+[2026-03-11 14:53:46] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:53:46] Data: {"difficulty":"easy"}
+[2026-03-11 14:53:48] HTTP Code: 200
+[2026-03-11 14:53:48] cURL Error Code: 0
+[2026-03-11 14:53:48] Response: {"grid":[[null,null,null,1,null,null],[null,null,0,null,null,null],[0,null,null,null,1,null],[null,0,null,1,0,null],[null,null,1,0,null,null],[null,null,0,null,1,null]],"solution":[[1,0,1,1,0,1],[1,0,0,1,1,0],[0,1,0,0,1,1],[1,0,1,1,0,0],[0,1,1,0,0,1],[0,1,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:53:48] ✅ Succès! Données reçues: {"grid":[[null,null,null,1,null,null],[null,null,0,null,null,null],[0,null,null,null,1,null],[null,0,null,1,0,null],[null,null,1,0,null,null],[null,null,0,null,1,null]],"solution":[[1,0,1,1,0,1],[1,0,0,1,1,0],[0,1,0,0,1,1],[1,0,1,1,0,0],[0,1,1,0,0,1],[0,1,0,1,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:53:48] === APPEL API ===
+[2026-03-11 14:53:48] Endpoint: http://localhost:8080/api/binero/generate-grid
+[2026-03-11 14:53:48] Data: {"difficulty":"easy"}
+[2026-03-11 14:53:48] HTTP Code: 200
+[2026-03-11 14:53:48] cURL Error Code: 0
+[2026-03-11 14:53:48] Response: {"grid":[[null,null,1,0,null,null],[null,null,null,null,0,null],[0,null,null,0,null,null],[null,null,0,1,null,null],[null,null,1,null,null,null],[1,null,0,0,null,null]],"solution":[[0,0,1,0,1,1],[1,0,1,1,0,0],[0,1,0,0,1,1],[1,1,0,1,0,0],[0,0,1,1,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:53:48] ✅ Succès! Données reçues: {"grid":[[null,null,1,0,null,null],[null,null,null,null,0,null],[0,null,null,0,null,null],[null,null,0,1,null,null],[null,null,1,null,null,null],[1,null,0,0,null,null]],"solution":[[0,0,1,0,1,1],[1,0,1,1,0,0],[0,1,0,0,1,1],[1,1,0,1,0,0],[0,0,1,1,0,1],[1,1,0,0,1,0]],"difficulty":"easy","size":6}
+[2026-03-11 14:53:51] === APPEL API ===
+[2026-03-11 14:53:51] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:53:51] Data: {"grid":[[null,null,1,0,null,null],[null,null,null,null,0,null],[0,null,null,0,null,null],[null,null,0,1,null,null],[null,null,1,null,null,null],[1,null,0,0,null,null]],"difficulty":"easy"}
+[2026-03-11 14:53:53] HTTP Code: 200
+[2026-03-11 14:53:53] cURL Error Code: 0
+[2026-03-11 14:53:53] Response: {"hint":"Ligne 1 colonne 2: mettre un '0', car l'équilibre voulu."}
+[2026-03-11 14:53:53] ✅ Succès! Données reçues: {"hint":"Ligne 1 colonne 2: mettre un '0', car l'\u00e9quilibre voulu."}
+[2026-03-11 14:54:06] === APPEL API ===
+[2026-03-11 14:54:06] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:54:06] Data: {"grid":[[null,0,1,0,null,null],[null,null,null,null,0,null],[0,null,null,0,null,null],[null,null,0,1,null,null],[null,null,1,null,null,null],[1,null,0,0,null,null]],"difficulty":"easy"}
+[2026-03-11 14:54:36] HTTP Code: 0
+[2026-03-11 14:54:36] cURL Error Code: 28
+[2026-03-11 14:54:36] Response: 
+[2026-03-11 14:54:36] ❌ ERROR - cURL Error: Operation timed out after 30011 milliseconds with 0 bytes received
+[2026-03-11 14:54:39] === APPEL API ===
+[2026-03-11 14:54:39] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:54:39] Data: {"grid":[[null,0,1,0,null,null],[null,null,null,null,0,null],[0,null,null,0,null,null],[null,null,0,1,null,null],[null,null,1,null,null,null],[1,null,0,0,null,null]],"difficulty":"easy"}
+[2026-03-11 14:55:09] HTTP Code: 0
+[2026-03-11 14:55:09] cURL Error Code: 28
+[2026-03-11 14:55:09] Response: 
+[2026-03-11 14:55:09] ❌ ERROR - cURL Error: Operation timed out after 30004 milliseconds with 0 bytes received
+[2026-03-11 14:55:50] === APPEL API ===
+[2026-03-11 14:55:50] Endpoint: http://localhost:8080/api/binero/generate-hint
+[2026-03-11 14:55:50] Data: {"grid":[[null,0,1,0,null,null],[null,null,null,null,0,null],[0,null,null,0,null,null],[null,null,0,1,null,null],[null,null,1,null,null,null],[1,null,0,0,null,null]],"difficulty":"easy"}
+[2026-03-11 14:56:20] HTTP Code: 0
+[2026-03-11 14:56:20] cURL Error Code: 28
+[2026-03-11 14:56:20] Response: 
+[2026-03-11 14:56:20] ❌ ERROR - cURL Error: Operation timed out after 30010 milliseconds with 0 bytes received
