@@ -1,20 +1,28 @@
 <style>
+    main{
+        background-image: url('../views/game/images/bckgrd_bois.jpg'), linear-gradient(180deg, #f8f6f1 0%, #f0ebe3 100%);
+        background-size: cover;
+        background-position: center;
+    }
     .register-container {
-        background: linear-gradient(180deg, #f8f6f1 0%, #f0ebe3 100%);
         min-height: 100vh;
+        position: relative;
+        background-color: #fae4c1;
+        width: 66%;
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 40px 20px;
+        padding: 90px 20px 50px 20px;
     }
 
     .register-logo {
-        margin-bottom: 40px;
         text-align: center;
+
     }
 
     .register-logo img {
-        max-height: 100px;
+        max-height: 170px;
         width: auto;
     }
 
@@ -27,7 +35,117 @@
         margin-bottom: 40px;
     }
 
+    .register-form-card {
+        padding: 56px 40px 0 40px;
+        flex: 0 0 400px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .register-form-card h5 {
+        color: #2c3e50;
+
+    }
+
+    .input-group-text {
+        height: 56px;
+        position: absolute;
+        background: none;
+        border: none;
+        color: #a82a2a;
+        z-index: 1;
+    }
+    .input-group-text.masque {
+        left: -33px;
+    }
+    .input-group-text.rouleau {
+        left: -21px;
+    }
+    .input-group-text img {
+        height: 125%;
+        width: auto;
+    }
+    .input-group-text.masque img {
+        height: 137%;
+        transform: translateY(-5px);
+    }
+
+    .input-group{
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .input-group span{
+        font-size: 0.8rem;
+        color: #4b4b4b;
+        text-align: left;
+        padding-left: 15px;
+        width: 100%;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+    }
+
+    .form-control {
+        background-color: #fff1db;
+        border: 1px solid #a82a2a;
+        border-radius: 20px !important;
+        padding-left: 30px;
+        width: 300px !important;
+        height: 48px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+    }
+    .form-control::placeholder {
+        text-align: start;
+    }
+
+    .form-control:focus {
+        border-color: #a82a2a;
+        background: none;
+        box-shadow: none;
+        z-index: 0 !important;
+    }
+
+    .register-form-card .btn-primary {
+        border: none;
+        font-weight: 600;
+    }
+
+    .btn-primary{
+        border-radius: 20px;
+        width: 240px;
+        padding: 10px;
+        background-color: #a82a2a;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+    }
+    .btn-primary:hover {
+        background-color: #922020;
+    }
+    
+    .text-muted {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    .text-muted a {
+        color: #a82a2a;
+        font-weight: 500;
+        font-family: "Montserrat", sans-serif;
+    }
+
     .register-sensei {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
         flex: 0 0 auto;
         text-align: center;
     }
@@ -37,64 +155,6 @@
         width: auto;
         filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
     }
-
-    .register-form-card {
-        background: white;
-        border-radius: 12px;
-        padding: 40px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        flex: 0 0 400px;
-    }
-
-    .register-form-card h2 {
-        text-align: center;
-        color: #2c3e50;
-        margin-bottom: 30px;
-        font-size: 1.8rem;
-    }
-
-    .register-form-card .form-label {
-        color: #2c3e50;
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
-
-    .register-form-card .input-group-text {
-        background: #f0ebe3;
-        border: none;
-        color: #3498db;
-    }
-
-    .register-form-card .form-control {
-        border: 1px solid #ddd;
-    }
-
-    .register-form-card .form-control:focus {
-        border-color: #3498db;
-        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
-    }
-
-    .register-form-card .btn-primary {
-        background: #3498db;
-        border: none;
-        font-weight: 600;
-        padding: 10px;
-        margin-top: 15px;
-    }
-
-    .register-form-card .btn-primary:hover {
-        background: #2980b9;
-    }
-
-    .register-form-card .text-muted {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .register-form-card .form-text {
-        color: #7f8c8d;
-        font-size: 0.85rem;
-    }
 </style>
 
 <div class="register-container">
@@ -103,17 +163,11 @@
         <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo">
     </div>
 
-    <!-- Layout: Sensei + Formulaire -->
+    <!-- Layout: Formulaire + Sensei -->
     <div class="register-wrapper">
-        <!-- Sensei à gauche -->
-        <div class="register-sensei">
-            <img src="image.php?f=sensei_inscription.png" alt="Sensei Inscription">
-        </div>
-
         <!-- Formulaire à droite -->
         <div class="register-form-card">
-            <h2><i class="bi bi-person-plus"></i> Inscription</h2>
-
+            <h5>Inscrivez-vous</h5>
             <?php if (isset($error)): ?>
                 <div class="alert alert-danger">
                     <i class="bi bi-exclamation-triangle"></i> <?= $error ?>
@@ -121,33 +175,30 @@
             <?php endif; ?>
 
             <form method="POST" action="index.php?controller=auth&action=register">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Pseudo</label>
+                <div>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Votre pseudo" required>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Pseudo*" required>
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="mail" class="form-label">Adresse email</label>
+                <div>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                        <input type="email" class="form-control" id="mail" name="mail" placeholder="votre@email.fr" required>
+                        <input type="email" class="form-control" id="mail" name="mail" placeholder="votre@email.fr*" required>
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="password" class="form-label">Mot de passe</label>
+                <div>
                     <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Choisissez un mot de passe" required minlength="6">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe*" required>
+                        <span style="font-weight: 400;">Votre mot de passe doit contenir :</span>
+                        <span  id="nb">- 12 caractère minimum</span>
+                        <span  id="maj_int">- 1 majuscule et 1 chiffre</span>
+                        <span  id="special">- 1 caractère spécial</span>
                     </div>
-                    <div class="form-text">Minimum 6 caractères</div>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">
-                    <i class="bi bi-person-plus"></i> S'inscrire
+                <button type="submit" class="btn btn-primary">
+                    Inscription
                 </button>
             </form>
 
@@ -155,5 +206,19 @@
                 Déjà un compte ? <a href="index.php?controller=auth&action=login">Connectez-vous</a>
             </p>
         </div>
+
+        <!-- Sensei à gauche -->
+        <div class="register-sensei">
+            <img src="image.php?f=sensei_inscription.png" alt="Sensei Inscription">
+        </div>
     </div>
 </div>
+<script>
+    const passwordInput = document.getElementById('password');
+    passwordInput.addEventListener('input', function() {
+        const value = passwordInput.value;
+        document.getElementById('nb').style.color = value.length >= 12 ? 'green' : '#4b4b4b';
+        document.getElementById('maj_int').style.color = /[A-Z]/.test(value) && /\d/.test(value) ? 'green' : '#4b4b4b';
+        document.getElementById('special').style.color = /[!@#$%^&*(),.?":{}|<>]/.test(value) ? 'green' : '#4b4b4b';
+    });
+</script>

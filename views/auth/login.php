@@ -90,6 +90,9 @@
         padding-left: 30px;
         width: 280px !important;
         height: 48px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-style: italic;
     }
     .form-control::placeholder {
         text-align: center;
@@ -113,12 +116,24 @@
         padding: 10px;
         margin-top: 104px;
         background-color: #a82a2a;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+    }
+    .btn-primary:hover {
+        background-color: #922020;
     }
     
     .text-muted {
         text-align: center;
         margin-top: 20px;
         margin-bottom: 0;
+    }
+    
+     .text-muted a {
+        color: #a82a2a;
+        font-weight: 400;
+        font-family: "Montserrat", sans-serif;
     }
 
     .login-sensei {
