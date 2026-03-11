@@ -34,9 +34,9 @@ class BineroService
     /**
      * Génère un indice basé sur l'état de la grille
      * 
-     * @param array $grid L'état actuel de la grille
-     * @param string $difficulty Le niveau de difficulté
-     * @return array|false La réponse de l'API ou false en cas d'erreur
+     * @param array $grid L'état actuel de la grille au format Integer[][]
+     * @param string $difficulty Le niveau de difficulté ('easy', 'medium', 'hard')
+     * @return array|false La réponse de l'API au format ['hint' => '...'] ou false en cas d'erreur
      */
     public function generateHint(array $grid, string $difficulty)
     {
@@ -109,20 +109,22 @@ class BineroService
             $response = curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             $error = curl_error($ch);
+            $curlError = curl_errno($ch);
             curl_close($ch);
 
             $this->log("HTTP Code: {$httpCode}");
+            $this->log("cURL Error Code: {$curlError}");
             $this->log("Response: {$response}");
 
             // Vérifier les erreurs cURL
             if ($error) {
-                $this->log("ERROR - cURL Error: {$error}");
+                $this->log("❌ ERROR - cURL Error: {$error}");
                 return false;
             }
 
             // Vérifier le code HTTP
             if ($httpCode !== 200) {
-                $this->log("ERROR - HTTP Error {$httpCode}: {$response}");
+                $this->log("❌ ERROR - HTTP Error {$httpCode}: {$response}");
                 return false;
             }
 
@@ -130,14 +132,14 @@ class BineroService
             $decoded = json_decode($response, true);
 
             if ($decoded === null) {
-                $this->log("ERROR - Invalid JSON: {$response}");
+                $this->log("❌ ERROR - Invalid JSON: {$response}");
                 return false;
             }
 
-            $this->log("✓ Succès! Données reçues.");
+            $this->log("✅ Succès! Données reçues: " . json_encode($decoded));
             return $decoded;
         } catch (\Exception $e) {
-            $this->log("ERROR - Exception: " . $e->getMessage());
+            $this->log("❌ ERROR - Exception: " . $e->getMessage());
             return false;
         }
     }

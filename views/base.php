@@ -3,11 +3,137 @@
 
 <head>
     <meta charset="UTF-8">
-    <title><?= $title ?? 'Binero' ?></title>
+    <title><?= $title ?? 'ShinoBinairo' ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-Thin.ttf') format('truetype');
+            font-weight: 100;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-ThinItalic.ttf') format('truetype');
+            font-weight: 100;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-ExtraLight.ttf') format('truetype');
+            font-weight: 200;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-ExtraLightItalic.ttf') format('truetype');
+            font-weight: 200;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-LightItalic.ttf') format('truetype');
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-Italic.ttf') format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-MediumItalic.ttf') format('truetype');
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-SemiBold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-SemiBoldItalic.ttf') format('truetype');
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-BoldItalic.ttf') format('truetype');
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-ExtraBold.ttf') format('truetype');
+            font-weight: 800;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-ExtraBoldItalic.ttf') format('truetype');
+            font-weight: 800;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-Black.ttf') format('truetype');
+            font-weight: 900;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('public/fonts/montserra/Montserrat-BlackItalic.ttf') format('truetype');
+            font-weight: 900;
+            font-style: italic;
+        }
+
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
@@ -16,12 +142,14 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-light);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
+
+
 
         .navbar {
             background: linear-gradient(135deg, var(--primary), #34495e) !important;
@@ -102,10 +230,11 @@
         }
 
         footer {
-            background: #d81c1cdb;
+            background: #a82a2a;
             color: rgba(255, 255, 255, 0.7);
             padding: 1.5rem 0;
             margin-top: auto;
+            z-index: 1000;
         }
 
         main {
@@ -122,30 +251,28 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand" href="index.php">
-            <i class="bi bi-book"></i> ShinobIA
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php"><i class="bi bi-house"></i> Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?controller=game"><i class="bi bi-journal-bookmark"></i> Games</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?controller=leaderboard"><i class="bi bi-journal-bookmark"></i> Leaderboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php?controller=succes"><i class="bi bi-trophy"></i> Succès</a>
-                </li>
-            </ul>
-
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.php">
+                <i class="bi bi-book"></i> ShinobIA
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php"><i class="bi bi-house"></i> Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?controller=game"><i class="bi bi-journal-bookmark"></i> Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?controller=leaderboard"><i class="bi bi-journal-bookmark"></i> Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?controller=succes"><i class="bi bi-trophy"></i> Succès</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     <?php if (isset($_SESSION["user"])): ?>
@@ -219,4 +346,5 @@
         </div>
     </div>
 </body>
+
 </html>
