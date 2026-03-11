@@ -8,7 +8,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 24px 16px;
         font-family: 'Georgia', serif;
     }
 
@@ -29,6 +28,18 @@
     .game-logo {
         max-height: 110px;
         display: inline-block;
+    }
+
+    .game-container {
+        min-height: 100vh;
+        position: relative;
+        background-color: #fae4c1;
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 20px 50px 20px;
     }
 
     .game-layout {
@@ -74,7 +85,7 @@
     .parchemin-zone {
         position: relative;
         width: 100%;
-        max-width: 1200px;
+        max-width: 1400px;
     }
 
     .parchemin-zone img.parchemin-img {
@@ -192,13 +203,16 @@
     }
 
     .cell-btn {
-        width: 45px;
-        height: 45px;
+        width: 60px;
+        height: 60px;
         background: transparent;
+        background-size: 70%;
+        background-repeat: no-repeat;
+        background-position: center;
         border: 1px solid rgba(80, 50, 20, 0.45);
         font-weight: bold;
-        font-size: 1.05rem;
-        color: #3d1a00;
+        font-size: 0;
+        color: transparent;
         cursor: pointer;
         border-radius: 0;
         transition: background 0.12s, border-color 0.12s;
@@ -207,17 +221,25 @@
         outline: none;
     }
 
+    .cell-btn[data-value="0"] {
+        background-image: url('image.php?f=shuriken.svg');
+    }
+
+    .cell-btn[data-value="1"] {
+        background-image: url('image.php?f=kunai.svg');
+    }
+
     .cell-btn:not([disabled]):hover {
-        background: rgba(255, 220, 80, 0.70) !important;
+        background-color: rgba(255, 220, 80, 0.70) !important;
         border-color: #7a3b0a !important;
     }
 
     .cell-btn.locked {
-        background: rgba(180, 160, 120, 0.20) !important;
-        color: #3a1a00 !important;
+        color: transparent !important;
         cursor: not-allowed !important;
-        border: 1px solid rgba(80, 50, 20, 0.45) !important;
+        border: 2px solid rgba(80, 50, 20, 0.7) !important;
         font-weight: 900 !important;
+        opacity: 0.75;
     }
 
     .btn-hint {
@@ -282,105 +304,106 @@
 </style>
 
 <div class="shinobi-game-wrapper">
-
-    <!-- Titre -->
-    <div class="text-center mb-3">
-        <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo" class="game-logo">
-        <div>
-            <span class="badge bg-<?php echo match ($difficulty) {
-                                        'easy' => 'success',
-                                        'medium' => 'warning',
-                                        'hard' => 'danger',
-                                        default => 'secondary'
-                                    }; ?> fs-6 px-3 mt-1">
-                <?php echo match ($difficulty) {
-                    'easy' => 'FACILE',
-                    'medium' => 'MOYEN',
-                    'hard' => 'DIFFICILE',
-                    default => $difficulty
-                }; ?>
-            </span>
+    <div class="game-container">
+        <!-- Titre -->
+        <div class="text-center mb-3">
+            <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo" class="game-logo">
+            <div>
+                <span class="badge bg-<?php echo match ($difficulty) {
+                                            'easy' => 'success',
+                                            'medium' => 'warning',
+                                            'hard' => 'danger',
+                                            default => 'secondary'
+                                        }; ?> fs-6 px-3 mt-1">
+                    <?php echo match ($difficulty) {
+                        'easy' => 'FACILE',
+                        'medium' => 'MOYEN',
+                        'hard' => 'DIFFICILE',
+                        default => $difficulty
+                    }; ?>
+                </span>
+            </div>
         </div>
-    </div>
 
-    <!-- Zone principale -->
-    <div class="game-layout">
+        <!-- Zone principale -->
+        <div class="game-layout">
 
-        <!-- Parchemin + Grille + Stats -->
-        <div class="parchemin-zone">
-            <img src="../views/game/images/parchemin.png" alt="parchemin" class="parchemin-img">
-            <div class="parchemin-content">
-                <div class="parchemin-inner">
+            <!-- Parchemin + Grille + Stats -->
+            <div class="parchemin-zone">
+                <img src="../views/game/images/parchemin.png" alt="parchemin" class="parchemin-img">
+                <div class="parchemin-content">
+                    <div class="parchemin-inner">
 
-                    <!-- Stats à gauche (erreurs + progrès) -->
-                    <div class="parchemin-stats">
-                        <div class="stat-block">
-                            <small>&#10060; Erreurs</small>
-                            <h4 id="errors" class="fw-bold">0</h4>
+                        <!-- Stats à gauche (erreurs + progrès) -->
+                        <div class="parchemin-stats">
+                            <div class="stat-block">
+                                <small>&#10060; Erreurs</small>
+                                <h4 id="errors" class="fw-bold">0</h4>
+                            </div>
+                            <div class="stat-block">
+                                <small>&#128202; Progres</small>
+                                <h4 id="progress" class="fw-bold">0%</h4>
+                            </div>
                         </div>
-                        <div class="stat-block">
-                            <small>&#128202; Progres</small>
-                            <h4 id="progress" class="fw-bold">0%</h4>
+
+                        <!-- Grille au milieu -->
+                        <div class="parchemin-grid-col">
+                            <div class="parchemin-timer">
+                                <small>&#9201; Temps</small>
+                                <h3 id="timer" class="fw-bold">00:00</h3>
+                            </div>
+                            <table id="bineroGrid">
+                                <tbody>
+                                    <?php for ($i = 0; $i < count($grid); $i++): ?>
+                                        <tr>
+                                            <?php for ($j = 0; $j < count($grid[$i]); $j++): ?>
+                                                <?php
+                                                $val = $grid[$i][$j];
+                                                $hasValue = $val !== null && $val !== '';
+                                                $displayValue = $hasValue ? ($val == 1 ? '1' : '0') : '';
+                                                ?>
+                                                <td>
+                                                    <input type="button"
+                                                        class="cell-btn <?php echo $hasValue ? 'locked' : ''; ?>"
+                                                        id="cell_<?php echo $i; ?>_<?php echo $j; ?>"
+                                                        value="<?php echo $displayValue; ?>"
+                                                        data-row="<?php echo $i; ?>"
+                                                        data-col="<?php echo $j; ?>"
+                                                        data-value="<?php echo $displayValue; ?>"
+                                                        data-locked="<?php echo $hasValue ? 'true' : 'false'; ?>"
+                                                        <?php echo $hasValue ? 'disabled' : ''; ?>>
+                                                </td>
+                                            <?php endfor; ?>
+                                        </tr>
+                                    <?php endfor; ?>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
 
-                    <!-- Grille au milieu -->
-                    <div class="parchemin-grid-col">
-                        <div class="parchemin-timer">
-                            <small>&#9201; Temps</small>
-                            <h3 id="timer" class="fw-bold">00:00</h3>
+                        <!-- Sensei à droite -->
+                        <div class="parchemin-sensei">
+                            <img id="senseiImage" src="image.php?f=sensei_landingpage.png" alt="Sensei">
                         </div>
-                        <table id="bineroGrid">
-                            <tbody>
-                                <?php for ($i = 0; $i < count($grid); $i++): ?>
-                                    <tr>
-                                        <?php for ($j = 0; $j < count($grid[$i]); $j++): ?>
-                                            <?php
-                                            $val = $grid[$i][$j];
-                                            $hasValue = $val !== null && $val !== '';
-                                            $displayValue = $hasValue ? ($val == 1 ? '1' : '0') : '';
-                                            ?>
-                                            <td>
-                                                <input type="button"
-                                                    class="cell-btn <?php echo $hasValue ? 'locked' : ''; ?>"
-                                                    id="cell_<?php echo $i; ?>_<?php echo $j; ?>"
-                                                    value="<?php echo $displayValue; ?>"
-                                                    data-row="<?php echo $i; ?>"
-                                                    data-col="<?php echo $j; ?>"
-                                                    data-value="<?php echo $displayValue; ?>"
-                                                    data-locked="<?php echo $hasValue ? 'true' : 'false'; ?>"
-                                                    <?php echo $hasValue ? 'disabled' : ''; ?>>
-                                            </td>
-                                        <?php endfor; ?>
-                                    </tr>
-                                <?php endfor; ?>
-                            </tbody>
-                        </table>
-                    </div>
 
-                    <!-- Sensei à droite -->
-                    <div class="parchemin-sensei">
-                        <img id="senseiImage" src="image.php?f=sensei_landingpage.png" alt="Sensei">
                     </div>
-
                 </div>
             </div>
-        </div>
 
-        <!-- Actions sous le parchemin -->
-        <div class="actions-row">
-            <button class="btn btn-hint" id="hintBtn">&#128161; Indice</button>
-            <a href="index.php?controller=game" class="btn btn-outline-light btn-sm">&#127968; Retour aux niveaux</a>
-        </div>
-
-        <div class="d-none" id="hintCard" style="background: rgba(20,10,3,0.85); border-radius: 8px; padding: 14px 20px; color: #f5e6c8; max-width: 500px;">
-            <div class="d-flex justify-content-between align-items-start">
-                <strong>&#128161; Indice</strong>
-                <button type="button" class="btn-close btn-close-white btn-sm" id="closeHintBtn"></button>
+            <!-- Actions sous le parchemin -->
+            <div class="actions-row">
+                <button class="btn btn-hint" id="hintBtn">&#128161; Indice</button>
+                <a href="index.php?controller=game" class="btn btn-outline-light btn-sm">&#127968; Retour aux niveaux</a>
             </div>
-            <p id="hintText" class="mt-2 mb-0" style="font-size:0.85rem;"></p>
-        </div>
 
+            <div class="d-none" id="hintCard" style="background: rgba(20,10,3,0.85); border-radius: 8px; padding: 14px 20px; color: #f5e6c8; max-width: 500px;">
+                <div class="d-flex justify-content-between align-items-start">
+                    <strong>&#128161; Indice</strong>
+                    <button type="button" class="btn-close btn-close-white btn-sm" id="closeHintBtn"></button>
+                </div>
+                <p id="hintText" class="mt-2 mb-0" style="font-size:0.85rem;"></p>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -451,6 +474,7 @@
 
         // Mettre à jour le bouton et les données
         button.value = nextValue;
+        button.dataset.value = nextValue;
         playerGrid[row][col] = nextValue === '' ? null : (nextValue === '0' ? 0 : 1);
 
         // Incrémenter le compteur de coups
@@ -1192,17 +1216,16 @@
     }
     
     .cell-btn.locked {
-        background-color: #d0d0d0 !important;
-        color: #666 !important;
+        color: transparent !important;
         cursor: not-allowed !important;
-        opacity: 0.7 !important;
-        border: 2px solid #999 !important;
+        opacity: 0.75 !important;
+        border: 2px solid rgba(80, 50, 20, 0.7) !important;
         font-weight: bold !important;
     }
     
     .cell-btn.locked:hover {
-        background-color: #d0d0d0 !important;
-        opacity: 0.7 !important;
+        opacity: 0.75 !important;
+        border: 2px solid rgba(80, 50, 20, 0.7) !important;
     }
     
     .cell-btn:not(.locked):hover {

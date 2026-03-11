@@ -152,7 +152,7 @@
 
 
         .navbar {
-            background: linear-gradient(135deg, var(--primary), #34495e) !important;
+            background: #a82a2a;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
         }
 
@@ -246,6 +246,29 @@
             color: var(--secondary);
             opacity: 0.3;
         }
+
+        .navbar-nav .nav-item {
+            margin-right: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            color: #fae4c1;
+        }
+
+        .navbar-brand {
+            margin-right: 5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            object-fit: contain;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -254,7 +277,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="index.php">
-                <i class="bi bi-book"></i> ShinobIA
+                <img src="image.php?f=logo_header.png" alt="ShinobIA">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -262,23 +285,23 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php"><i class="bi bi-house"></i> Accueil</a>
+                        <a class="nav-link" href="index.php"></i> Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=game"><i class="bi bi-journal-bookmark"></i> Games</a>
+                        <a class="nav-link" href="index.php?controller=game"></i> Games</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=leaderboard"><i class="bi bi-journal-bookmark"></i> Leaderboard</a>
+                        <a class="nav-link" href="index.php?controller=leaderboard"></i> Leaderboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=succes"><i class="bi bi-trophy"></i> Succès</a>
+                        <a class="nav-link" href="index.php?controller=succes"></i> Succès</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <?php if (isset($_SESSION["user"])): ?>
                         <li class="nav-item">
-                            <span class="nav-link text-light">
-                                <i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION["user"]["name"]) ?>
+                            <span class="nav-link">
+                                <img src="image.php?f=icons/user_account_masque.png" alt="User" style="height: 20px; object-fit: contain; margin-right: 8px; vertical-align: middle;"> <?= htmlspecialchars($_SESSION["user"]["name"]) ?>
                             </span>
                         </li>
                         <li class="nav-item">
