@@ -115,6 +115,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?controller=leaderboard"><i class="bi bi-journal-bookmark"></i> Leaderboard</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?controller=succes"><i class="bi bi-trophy"></i> Succès</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <?php if (isset($_SESSION["user"])): ?>
