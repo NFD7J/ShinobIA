@@ -342,7 +342,7 @@
 
     <footer>
         <div class="container text-center">
-            <p class="mb-0"><img src="image.php?f=logo_dark_shadow.png" alt="ShinobIA" style="height:20px; vertical-align:middle; margin-right:8px;">&copy; <?= date('Y') ?> ShinobIA — Tous droits réservés.</p>
+            <p class="mb-0"><img src="image.php?f=logo_header.png" alt="ShinobIA" style="height:20px; vertical-align:middle; margin-right:8px;">&copy; <?= date('Y') ?> ShinobIA — Tous droits réservés.</p>
         </div>
     </footer>
 
