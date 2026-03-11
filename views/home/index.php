@@ -1,9 +1,10 @@
 <style>
-    main{
+    main {
         background-image: url('../views/game/images/bckgrd_bois.jpg'), linear-gradient(180deg, #f8f6f1 0%, #f0ebe3 100%);
         background-size: cover;
         background-position: center;
     }
+
     .home-container {
         min-height: 100vh;
         position: relative;
@@ -54,6 +55,7 @@
         text-align: center;
         color: #fff;
     }
+
     .home-buttons .btn-primary:hover {
         background-color: #922020;
     }
@@ -71,6 +73,7 @@
         text-decoration: none;
         text-align: center;
     }
+
     .home-buttons .btn-outline:hover {
         background-color: #a82a2a;
         color: #fff;
@@ -110,6 +113,7 @@
         display: block;
         position: absolute;
         z-index: 1;
+        max-height: 650px;
     }
 
     .parchemin-content {
@@ -126,6 +130,8 @@
         justify-content: center;
         padding: 60px 30px 50px 30px;
         box-sizing: border-box;
+        margin-left: 35rem;
+        margin-top: 5rem;
     }
 
     .parchemin-content h2 {

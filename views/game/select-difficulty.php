@@ -85,7 +85,7 @@
                     <a href="index.php?controller=home" class="btn btn-outline-light">
                         <p>Retour à l'accueil</p>
 
-                        
+
                     </a>
                 </div>
             </div>
@@ -97,8 +97,8 @@
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
     @font-face {
-    font-family: 'Valentine Season';
-    src: url('fonts/valentine%20season.ttf') format('truetype');
+        font-family: 'Valentine Season';
+        src: url('fonts/valentine%20season.ttf') format('truetype');
     }
 
     h1 {
@@ -108,22 +108,26 @@
         font-size: 18px;
         text-align: center;
     }
+
     .transition-all:hover {
         transform: scale(1.05) !important;
         box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3) !important;
     }
+
     .rank_title {
         color: #A82A2A;
         font-family: 'Valentine Season', cursive;
         font-weight: normal;
         font-size: 3rem;
     }
+
     .main_container {
         background-color: #fae4c1;
         height: 100%;
-        max-width: 66%;
+        max-width: 80%;
         margin: 0 auto;
-    } 
+    }
+
     .card {
         width: 80%;
         margin: 0 auto;
@@ -133,10 +137,12 @@
         border: 2px solid #a82a2a !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
     }
-    .card p{
+
+    .card p {
         font-size: 0.7rem;
         width: 100%;
     }
+
     .py-5 {
         flex: 1;
         background-image: url('image.php?f=bckgrd_bois.jpg');
@@ -145,7 +151,9 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        padding: 0 !important;
     }
+
     .btn {
         font-family: ' ', cursive;
         font-size: 0.8rem;
@@ -161,10 +169,11 @@
         width: 240px;
         height: 56px;
         margin: 0 auto;
+        margin-bottom: 5rem;
     }
+
     .btn:hover {
         background-color: #a82a2a !important;
         color: #fff !important;
     }
-
 </style>
