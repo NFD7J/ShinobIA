@@ -274,6 +274,91 @@
             object-fit: contain;
             vertical-align: middle;
         }
+
+        /* === MODAL DÉCONNEXION === */
+        .modal-content {
+            background-color: #fae4c1;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            background-color: #fae4c1;
+            justify-content: center;
+            position: relative;
+        }
+
+        .modal-title {
+            color: #a82a2a;
+            font-weight: 700;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            text-align: center;
+        }
+
+        .modal-title img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .btn-close {
+            filter: invert(0.3);
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+        }
+
+        .modal-body {
+            color: #555;
+            font-size: 1rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .modal-footer {
+            background-color: #fae4c1;
+            padding: 1.2rem;
+            gap: 0.8rem;
+        }
+
+        .modal-footer .btn-secondary {
+            background-color: #fae4c1;
+            border: 1px solid #6d6d6d;
+            border-radius: 20px;
+            color: #6d6d6d;
+            font-weight: 600;
+            padding: 0.6rem 1.6rem;
+            transition: background-color 0.2s;
+        }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #7a7a7a;
+        }
+
+        .modal-footer .btn-danger {
+            background-color: #a82a2a;
+            border: none;
+            border-radius: 20px;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.6rem 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+
+        .modal-footer .btn-danger:hover {
+            background-color: #8a2222;
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -359,7 +444,10 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLogoutLabel"><i class="bi bi-box-arrow-right"></i> Déconnexion</h5>
+                    <h5 class="modal-title" id="modalLogoutLabel">
+                        <img src="image.php?f=logout_torii.png" alt="Logout Icon">
+                        Déconnexion
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">

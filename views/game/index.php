@@ -29,6 +29,56 @@
     .game-logo {
         max-height: 110px;
         display: inline-block;
+        margin-top: 2rem;
+    }
+
+    /* Contrôle du volume */
+    .volume-control {
+        background: rgba(230, 200, 150, 0.8);
+        border: 2px solid #8b6f47;
+        border-radius: 12px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        width: 160px;
+        height: 40px;
+    }
+
+    .volume-control button {
+        background: #a82a2a;
+        color: #fff;
+        border: none;
+        width: 25px;
+        height: 32px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+        flex-shrink: 0;
+    }
+
+    .volume-control button:hover {
+        background: linear-gradient(135deg, #c83030, #aa2828);
+    }
+
+    .volume-control input[type="range"] {
+        width: 50px;
+        cursor: pointer;
+        accent-color: #a82a2a;
+        height: 4px;
+    }
+
+    .volume-label {
+        color: #3d1a00;
+        font-weight: 600;
+        font-size: 0.8rem;
+        min-width: 35px;
+        text-align: right;
     }
 
     .game-layout {
@@ -289,9 +339,8 @@
     .hint-card button {
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #b52020, #8b0000);
+        background: #a82a2a;
         color: #fff;
-        border: 1px solid #6b0000;
         border-radius: 12px;
         padding: 6px 4px;
         font-weight: bold;
@@ -405,7 +454,7 @@
     .btn {
         font-family: ' ', cursive;
         font-size: 0.8rem;
-        border-radius: 20px;
+        border-radius: 12px;
         border: 2px solid #a82a2a !important;
         color: #A82A2A !important;
         background-color: #fff1db !important;
@@ -414,8 +463,8 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        width: 240px;
-        height: 56px;
+        width: 160px;
+        height: 40px;
         margin: 0 auto;
         margin-bottom: 5rem;
     }
@@ -576,7 +625,7 @@ if ($size == 6) {
 <div class="shinobi-game-wrapper" style="--cell-size: <?php echo $cellSize; ?>;">
     <!-- Titre -->
     <div class="text-center mb-3">
-        <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo" class="game-logo">
+        <img src="image.php?f=logo_light_shadow.png" alt="ShinoBinairo" class="game-logo">
     </div>
 
     <!-- Zone principale -->
@@ -650,6 +699,18 @@ if ($size == 6) {
                                 <?php endfor; ?>
                             </tbody>
                         </table>
+
+                        <!-- Contrôle du volume sous la grille -->
+                        <div style="margin-top: 3rem; display: flex; gap: 15px; align-items: center; justify-content: center;">
+                            <div class="volume-control">
+                                <button id="volumeToggle" title="Activer/Désactiver le son">
+                                    <i class="bi bi-volume-up"></i>
+                                </button>
+                                <input type="range" id="volumeSlider" min="0" max="100" value="100" title="Contrôler le volume">
+                                <span class="volume-label" id="volumeLabel">100%</span>
+                            </div>
+                            <a href="index.php?controller=game" class="btn btn-outline-light btn-sm" style="margin-bottom: 0;">Abandonner</a>
+                        </div>
                     </div>
 
                     <!-- PANNEAU DROIT: Chrono + Indice + Sensei -->
@@ -686,13 +747,6 @@ if ($size == 6) {
             </div>
         </div>
 
-        <!-- Actions sous le parchemin -->
-        <div class="actions-row">
-            <a href="index.php?controller=game" class="btn btn-outline-light btn-sm">Abandonner</a>
-        </div>
-
-
-
     </div>
 </div>
 
@@ -702,8 +756,82 @@ if ($size == 6) {
 <audio autoplay loop id="backgroundSound">
     <source src="../views/game/audio/background_music.mp3" type="audio/mpeg">
 </audio>
+<audio id="knifeBladeinSound" preload="auto">
+    <source src="../views/game/audio/knife_blade_in.mp3" type="audio/mpeg">
+</audio>
+<audio id="knifeBladeOutSound" preload="auto">
+    <source src="../views/game/audio/knife_blade_out.mp3" type="audio/mpeg">
+</audio>
 <script>
-    const backgroundSound = document.getElementById('backgroundSound').volume = 0.2; // Volume de la musique de fond
+    // Initialiser les sons
+    const backgroundSound = document.getElementById('backgroundSound');
+    const knifeBladeinSound = document.getElementById('knifeBladeinSound');
+    const knifeBladeOutSound = document.getElementById('knifeBladeOutSound');
+    const victorySound = document.getElementById('victorySound');
+
+    backgroundSound.volume = 0.2; // Volume initial de la musique de fond
+
+    // Récupérer les éléments du contrôle de volume
+    const volumeToggle = document.getElementById('volumeToggle');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volumeLabel = document.getElementById('volumeLabel');
+
+    let isMuted = false;
+    let previousVolume = 20; // 20% en tant que valeur par défaut
+
+    // Mettre à jour tous les volumes
+    function updateAllVolumes(volume) {
+        backgroundSound.volume = (volume / 100) * 0.2; // La musique max à 0.2
+        knifeBladeinSound.volume = volume / 100;
+        knifeBladeOutSound.volume = volume / 100;
+        victorySound.volume = volume / 100;
+    }
+
+    // Écouter le changement du slider
+    volumeSlider.addEventListener('input', function() {
+        const volume = parseInt(this.value);
+        previousVolume = volume; // Sauvegarder le volume précédent
+        isMuted = false;
+
+        updateAllVolumes(volume);
+        volumeLabel.textContent = volume + '%';
+
+        // Changer l'icône du bouton
+        updateVolumeIcon();
+    });
+
+    // Écouter le clic du bouton mute/unmute
+    volumeToggle.addEventListener('click', function() {
+        if (isMuted) {
+            // Unmute
+            isMuted = false;
+            volumeSlider.value = previousVolume;
+            updateAllVolumes(previousVolume);
+            volumeLabel.textContent = previousVolume + '%';
+        } else {
+            // Mute
+            isMuted = true;
+            volumeSlider.value = 0;
+            updateAllVolumes(0);
+            volumeLabel.textContent = '0%';
+        }
+        updateVolumeIcon();
+    });
+
+    // Mettre à jour l'icône du bouton volume
+    function updateVolumeIcon() {
+        const icon = volumeToggle.querySelector('i');
+        if (isMuted || volumeSlider.value == 0) {
+            icon.className = 'bi bi-volume-mute';
+        } else if (volumeSlider.value < 50) {
+            icon.className = 'bi bi-volume-down';
+        } else {
+            icon.className = 'bi bi-volume-up';
+        }
+    }
+
+    // Initialiser l'icône
+    updateVolumeIcon();
 </script>
 
 <!-- modal victoire -->
@@ -741,6 +869,11 @@ if ($size == 6) {
     let currentEmote = 'sensei_idea'; // Emote actuelle du sensei (persiste jusqu'à changement)
     let lastMoveType = null; // 'good' ou 'bad' (pour tracker l'humeur)
     let lastMoveTime = 0; // Timestamp du dernier coup (pour changer après inactivité)
+    let hintPenalties = {
+        easy: 30,
+        medium: 20,
+        hard: 10
+    }; // Pénalités d'indice en secondes
 
     // Compter le nombre de cellules à remplir (initialement vides)
     let cellsToFill = 0;
@@ -760,6 +893,9 @@ if ($size == 6) {
     document.querySelectorAll('.cell-btn').forEach(cell => {
         cell.addEventListener('click', handleCellClick);
     });
+
+    // Initialiser les pénalités
+    updatePenalties();
 
     function handleCellClick(e) {
         const button = e.target;
@@ -798,6 +934,23 @@ if ($size == 6) {
         // Incrémenter le compteur de coups
         moveCount++;
 
+        // Jouer les sons appropriés
+        if (nextValue === '') {
+            // Son de retrait (kunai/shuriken est enlevé)
+            const outSound = document.getElementById('knifeBladeOutSound');
+            if (outSound) {
+                outSound.currentTime = 0;
+                outSound.play().catch(err => console.log('Erreur audio out:', err));
+            }
+        } else if (nextValue === '0' || nextValue === '1') {
+            // Son de placement (kunai/shuriken est posé)
+            const inSound = document.getElementById('knifeBladeinSound');
+            if (inSound) {
+                inSound.currentTime = 0;
+                inSound.play().catch(err => console.log('Erreur audio in:', err));
+            }
+        }
+
         // Changer la couleur
         if (nextValue === '') {
             button.style.backgroundColor = 'rgba(255, 248, 200, 0.40)';
@@ -829,6 +982,7 @@ if ($size == 6) {
                 if (hasViolation) {
                     errors++;
                     document.getElementById('errors').textContent = errors;
+                    updatePenalties(); // Mettre à jour les pénalités
                     // Feedback d'ERREUR LOCAL (compassion + message motivant)
                     displayBadMoveLocal();
                 } else {
@@ -899,6 +1053,7 @@ if ($size == 6) {
 
             if (data.hint) {
                 hintsUsed++;
+                updatePenalties(); // Mettre à jour les pénalités
 
                 // Changer l'emote du sensei en pensif (il réfléchit pour donner l'indice)
                 const senseiImg = document.getElementById('senseiImage');
@@ -1276,6 +1431,25 @@ if ($size == 6) {
         }
 
         return true;
+    }
+
+    // Fonction pour formater les secondes en MM:SS
+    function formatPenalty(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `+${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    // Fonction pour calculer et afficher les pénalités
+    function updatePenalties() {
+        const errorPenalty = errors * 5; // 5 secondes par erreur
+        const hintPenalty = hintsUsed * hintPenalties[difficulty]; // Pénalité d'indice selon difficulté
+
+        // Afficher les pénalités
+        const penaltyElement = document.querySelector('.chrono-penalty');
+        if (penaltyElement) {
+            penaltyElement.innerHTML = `Pénalité erreurs ${formatPenalty(errorPenalty)}<br />Pénalité indice ${formatPenalty(hintPenalty)}`;
+        }
     }
 
     // Vérification automatique après chaque clic
