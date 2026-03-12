@@ -270,6 +270,83 @@
         color: #d0f0d0;
     }
 
+    .modal-victoire {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+        color: #fff8e8;
+        font-family: 'Georgia', serif;
+        font-size: 2rem;
+        z-index: 10000;
+    }
+    .modal-victoire-content{
+        position: relative;
+        background: rgba(0,0,0,0);
+        width: fit-content;
+        height: fit-content;
+    }
+    .modal-victoire-text{
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        color: #fae4c1;
+        position: absolute;
+        top: 20%;
+        right: 20%;
+        text-align: center;
+    }
+    .btn-modal {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        border: none;
+        display: block;
+        width: 60%;
+        margin: 0 auto;
+        border-radius: 20px;
+        border: 1px solid #fff8e8;
+    }
+    .btn-new-grid{
+        background-color: #fae4c1;
+        color: #a82a2a;
+    }
+    .btn-new-grid:hover {
+        background-color: #d2c1a2;
+        color: #a82a2a;
+        border: 1px solid #d2c1a2;
+    }
+    .btn-new-grid:focus,
+    .btn-new-grid:active {
+        background-color: #d2c1a2;
+        color: #a82a2a;
+        border-color: #a82a2a;
+        box-shadow: 0 0 0 0.2rem rgba(168, 42, 42, 0.35);
+    }
+
+    .btn-retour{
+        background-color: #a82a2a; 
+        color: #fae4c1;
+    }
+    .btn-retour:hover {
+        background-color: #8e2222;
+        color: #fae4c1;
+        border: 1px solid #fae4c1;
+    }
+    .btn-retour:focus,
+    .btn-retour:active {
+        background-color: #8e2222;
+        color: #fae4c1;
+        border-color: #fae4c1;
+        box-shadow: 0 0 0 0.2rem rgba(142, 34, 34, 0.45);
+    }
+
     @keyframes shake {
 
         0%,
@@ -403,6 +480,20 @@
                 <p id="hintText" class="mt-2 mb-0" style="font-size:0.85rem;"></p>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<!-- modal victoire -->
+<div class="modal-victoire">
+    <div class="modal-victoire-content">
+        <img src="image.php?f=sensei_ellips_win.png" alt="modal victoire">
+        <div class="modal-victoire-text">
+            <p style="font-weight: 900; font-size: 35px;" class="mb-0">Mission accomplie !</p>
+            <p>Un coup, une victoire : l'essence même du shinobi</p>
+            <p class="mb-5 mt-4" >TEMPS <span id="victoryTime"></span> | ERREURS <span id="victoryErrors"></span></p>
+            <a class="btn btn-modal mb-3 btn-new-grid" href="index.php?controller=game&action=play&difficulty=<?php echo $difficulty; ?>">Nouvelle grille</a>
+            <a class="btn btn-modal btn-retour" href="index.php?controller=home">Retour au dojo</a>
         </div>
     </div>
 </div>
@@ -984,7 +1075,7 @@
             console.log('checkAutomatic: grille ne respecte pas les règles du Binero');
             return; // Règles non respectées
         }
-
+        
         // 🎉 LA GRILLE EST COMPLÈTE ET RESPECTE LES RÈGLES!
         finishGame();
     }
@@ -1014,59 +1105,8 @@
         if (errEl) errEl.textContent = String(errors);
         if (hintEl) hintEl.textContent = String(hintsUsed);
 
-        // Afficher la modale (Bootstrap si présent)
-        console.log('finishGame: showing victory modal');
-        let modalEl = document.getElementById('victoryModal');
-        if (typeof bootstrap !== 'undefined') {
-            if (!modalEl) {
-                console.log('finishGame: modal markup missing, creating dynamic modal');
-                // create minimal modal and append to body
-                modalEl = document.createElement('div');
-                modalEl.className = 'modal fade';
-                modalEl.id = 'victoryModal';
-                modalEl.setAttribute('tabindex', '-1');
-                modalEl.innerHTML = `
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">🎉 Bravo !</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p id="victoryMessage">La grille est correcte.</p>
-                                <ul class="list-unstyled">
-                                    <li>Temps: <strong id="victoryTime">${formatTime(timeElapsed)}</strong></li>
-                                    <li>Erreurs: <strong id="victoryErrors">${errors}</strong></li>
-                                    <li>Indices: <strong id="victoryHints">${hintsUsed}</strong></li>
-                                </ul>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="index.php?controller=game" class="btn btn-primary">Nouvelle partie</a>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            </div>
-                        </div>
-                    </div>`;
-                document.body.appendChild(modalEl);
-            }
-            try {
-                const vm = new bootstrap.Modal(modalEl);
-                vm.show();
-            } catch (e) {
-                console.error('finishGame: bootstrap modal show error', e);
-                // fallback simple display
-                modalEl.classList.add('show');
-                modalEl.style.display = 'block';
-                document.body.classList.add('modal-open');
-            }
-        } else if (modalEl) {
-            // Fallback simple
-            modalEl.classList.add('show');
-            modalEl.style.display = 'block';
-            document.body.classList.add('modal-open');
-        } else {
-            // Ultimate fallback
-            alert('🎉 BRAVO! Vous avez résolu la grille!\n\n⏱️ Temps: ' + formatTime(timeElapsed) + '\n❌ Erreurs: ' + errors + '\n💡 Indices utilisés: ' + hintsUsed);
-        }
+        const modalEl = document.querySelector('.modal-victoire');
+        modalEl.style.display = 'flex';
     }
 
     // Vérifier la solution
