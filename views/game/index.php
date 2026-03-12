@@ -30,18 +30,6 @@
         display: inline-block;
     }
 
-    .game-container {
-        min-height: 100vh;
-        position: relative;
-        background-color: #fae4c1;
-        width: 80%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 50px 20px 50px 20px;
-    }
-
     .game-layout {
         display: flex;
         flex-direction: column;
@@ -304,7 +292,6 @@
 </style>
 
 <div class="shinobi-game-wrapper">
-    <div class="game-container">
         <!-- Titre -->
         <div class="text-center mb-3">
             <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo" class="game-logo">
@@ -404,7 +391,6 @@
             </div>
 
         </div>
-    </div>
 </div>
 
 <script>
@@ -423,6 +409,11 @@
     let moveCount = 0; // Compteur de coups du joueur
     let lastAPICallMove = 0; // Dernier coup où l'API a été appelée
     let cellModificationTimers = {}; // Timers pour vérifier les violations après délai
+    let lastGoodMoveTime = 0; // Cooldown pour éviter spam de feedback bons coups
+    let lastErrorCommentTime = 0; // Cooldown pour les commentaires d'erreur (max 1 par 4s)
+    let currentEmote = 'sensei_idea'; // Emote actuelle du sensei (persiste jusqu'à changement)
+    let lastMoveType = null; // 'good' ou 'bad' (pour tracker l'humeur)
+    let lastMoveTime = 0; // Timestamp du dernier coup (pour changer après inactivité)
 
     // Compter le nombre de cellules à remplir (initialement vides)
     let cellsToFill = 0;
@@ -511,7 +502,11 @@
                 if (hasViolation) {
                     errors++;
                     document.getElementById('errors').textContent = errors;
-                    triggerSenseiCommentary('error');
+                    // Feedback d'ERREUR LOCAL (compassion + message motivant)
+                    displayBadMoveLocal();
+                } else {
+                    // ✅ BON COUP validé! Feedback LOCAL immédiat (pas d'API)
+                    displayGoodMoveLocal();
                 }
             }
             // IMPORTANT: Appeler checkAutomatic APRÈS vérifier les violations
@@ -522,10 +517,11 @@
         // Appeler l'API à intervalle adapté selon l'avancement et les erreurs
         // - Plus fréquent si beaucoup d'erreurs ou peu avancé
         // - Moins fréquent si bien avancé et pas d'erreur
+        // Feedback "Ninja" => commentaires variés de l'IA tous les 10-15 coups
         const progress = parseInt(document.getElementById('progress').textContent);
         const errorCount = parseInt(document.getElementById('errors').textContent);
 
-        let apiInterval = 15; // Par défaut : tous les 15 coups
+        let apiInterval = 15; // Par défaut : tous les 15 coups pour feedback ninja
         if (errorCount >= 3) apiInterval = 12; // Plus fréquent si erreurs
         if (progress >= 80) apiInterval = 18; // Moins fréquent si bien avancé
 
@@ -656,6 +652,70 @@
         return false;
     }
 
+    // Affichage local d'un bon coup (SANS appel API pour économiser)
+    function displayGoodMoveLocal() {
+        const senseiImg = document.getElementById('senseiImage');
+        if (!senseiImg) return;
+
+        // Mettre l'emote sensei_kawaii (content/approuvé) et PERSISTER
+        currentEmote = 'sensei_kawaii';
+        lastMoveType = 'good';
+        lastMoveTime = Date.now();
+
+        senseiImg.src = `image.php?f=emotes_sensei/sensei_kawaii.png`;
+        senseiImg.alt = 'sensei_kawaii';
+
+        // Messages positifs variés et motivants - THÈME NINJA & BINEIRO
+        const goodComments = [
+            'Coup de maître!',
+            'Logique ninja!',
+            'Pattern maîtrisé!',
+            'Stratégie gagnante!',
+            'Analyse parfaite!',
+            'Précision du sabre!',
+            'Tactique implacable!',
+            'L\'art du Binero!',
+            'Piège évité!',
+            'Équilibre trouvé!'
+        ];
+
+        const randomComment = goodComments[Math.floor(Math.random() * goodComments.length)];
+        queueSenseiComment(randomComment);
+    }
+
+    // Affichage local d'un mauvais coup (erreur motivante - SANS appel API)
+    function displayBadMoveLocal() {
+        const senseiImg = document.getElementById('senseiImage');
+        if (!senseiImg) return;
+
+        // Emote sensei_fear ou sensei_doubt (inquiet/déçu) et PERSISTER
+        const emotes = ['sensei_fear', 'sensei_doubt'];
+        const randomEmote = emotes[Math.floor(Math.random() * emotes.length)];
+        currentEmote = randomEmote;
+        lastMoveType = 'bad';
+        lastMoveTime = Date.now();
+
+        senseiImg.src = `image.php?f=emotes_sensei/${randomEmote}.png`;
+        senseiImg.alt = randomEmote;
+
+        // Messages d'erreur MOTIVANTS & THÉMATIQUES - NINJA & BINEIRO
+        const badComments = [
+            '3 identiques de suite!',
+            'Déséquilibre 0-1!',
+            'Relecture requise!',
+            'Scannez la ligne!',
+            'Logique brisée!',
+            'Colonne surchargée!',
+            'Trop d\'un côté!',
+            'À repenser...',
+            'Les règles l\'interdisent!',
+            'Coup interdit!'
+        ];
+
+        const randomComment = badComments[Math.floor(Math.random() * badComments.length)];
+        queueSenseiComment(randomComment);
+    }
+
     // Fonction déclenchée pour faire appel à l'API et afficher un commentaire
     async function triggerSenseiCommentary(type) {
         if (gameFinished) return;
@@ -672,7 +732,8 @@
                     timeElapsed: timeElapsed,
                     errors: errors,
                     hintsUsed: hintsUsed,
-                    progress: parseInt(document.getElementById('progress').textContent)
+                    progress: parseInt(document.getElementById('progress').textContent),
+                    moveType: type // ← 'error' ou 'regular' (plus 'good_move' = local)
                 })
             });
 
@@ -683,11 +744,14 @@
 
             const data = await response.json();
             if (data.comment) {
-                // Utiliser l'expression retournée par le backend, sinon fallback
-                let emote = data.expression ? mapExpressionToEmote(data.expression) : getSenseiEmoteFromStats();
+                // Déterminer l'emote selon le type
+                let emote = 'sensei_kawaii';
 
                 if (type === 'error') {
-                    emote = 'sensei_fear'; // Peur en cas d'erreur (override)
+                    emote = 'sensei_fear'; // Peur en cas d'erreur
+                } else {
+                    // Pour 'regular': utiliser l'expression du backend
+                    emote = data.expression ? mapExpressionToEmote(data.expression) : getSenseiEmoteFromStats();
                 }
 
                 // Mettre à jour l'image du sensei
@@ -764,8 +828,8 @@
         textOverlay.className = 'senseiTextBubble';
         textOverlay.style.cssText = `
             position: absolute;
-            right: -100px;
-            top: 50%;
+            right: 0.1rem;
+            top: 30%;
             transform: translateY(-50%);
             background: linear-gradient(135deg, #e8d5b5 0%, #d9c49a 100%);
             border: 3px solid #8b6f47;
@@ -1168,14 +1232,26 @@
         const elapsed = Math.floor((Date.now() - startTime) / 1000);
         document.getElementById('timer').textContent = formatTime(elapsed);
 
-        // Mettre à jour l'emote du sensei toutes les 10 secondes pour réagir au temps passé
+        // Mettre à jour l'emote du sensei SEULEMENT si inactivité depuis 45s
+        // Sinon garder l'emote du dernier coup (good/bad)
         if (elapsed % 10 === 0 && elapsed > 0) {
-            const senseiImg = document.getElementById('senseiImage');
-            if (senseiImg) {
-                const newEmote = getSenseiEmoteFromStats();
-                senseiImg.src = `image.php?f=emotes_sensei/${newEmote}.png`;
-                senseiImg.alt = newEmote;
+            const timeSinceLastMove = (Date.now() - lastMoveTime) / 1000;
+
+            // Si > 45s depuis dernier coup: changer vers emote dynamique
+            // Sinon: garder l'emote du coup (kawaii pour bon, fear/doubt pour bad)
+            if (timeSinceLastMove > 45) {
+                const senseiImg = document.getElementById('senseiImage');
+                if (senseiImg) {
+                    const newEmote = getSenseiEmoteFromStats();
+                    // Si on a déjà une emote kawaii/fear, garder celle-ci pour pas changer trop
+                    if (currentEmote !== newEmote) {
+                        currentEmote = newEmote;
+                        senseiImg.src = `image.php?f=emotes_sensei/${newEmote}.png`;
+                        senseiImg.alt = newEmote;
+                    }
+                }
             }
+            // Sinon: garder l'emote actuelle (du dernier coup)
         }
     }, 1000);
 
