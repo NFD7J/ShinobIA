@@ -1117,6 +1117,7 @@
             },
             body: JSON.stringify({
                 hintsUsed: hintsUsed,
+                errors: errors,
                 timeElapsed: timeElapsed
             })
         });

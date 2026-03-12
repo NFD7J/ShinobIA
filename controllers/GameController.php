@@ -196,6 +196,7 @@ class GameController extends Controller
 
         $input       = json_decode(file_get_contents('php://input'), true);
         $hintsUsed   = (int)($input['hintsUsed']   ?? 0);
+        $nbErrors    = (int)($input['errors']      ?? 0);
         $timeElapsed = (int)($input['timeElapsed']  ?? 0);
         $difficulty  = $_SESSION['current_game']['difficulty'];
         $userId      = (int)$_SESSION['user']['id'];
@@ -211,6 +212,7 @@ class GameController extends Controller
             grilleId: $grilleId,
             duration: $timeElapsed,
             nbIndices: $hintsUsed,
+            nbErrors: $nbErrors,
             points: $this->calcPoints($difficulty, $timeElapsed, $hintsUsed)
         );
 
