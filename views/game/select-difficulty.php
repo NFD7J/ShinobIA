@@ -96,10 +96,6 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
-    @font-face {
-        font-family: 'Valentine Season';
-        src: url('fonts/valentine%20season.ttf') format('truetype');
-    }
 
     h1 {
         color: #000000;
