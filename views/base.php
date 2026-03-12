@@ -134,6 +134,11 @@
             font-style: italic;
         }
 
+        @font-face {
+            font-family: 'Valentine Season';
+            src: url('fonts/valentine%20season.ttf') format('truetype');
+        }
+
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
