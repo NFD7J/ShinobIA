@@ -21,7 +21,7 @@ foreach ($leaderboard as $entry) {
     <div class="logo_container" style="text-align: center;">
         <img src="image.php?f=leaderboard/sensei_tropy_logo.png" alt="Logo" class="mb-3" style="width: 615px; height: 215px; margin-top: 112px; margin-bottom: 98px; ">
         <h1 class="mb-4">CLASSEMENT</h1>
-        <p>Devenez une légende de ShinoBinairo</p>
+        <p class="legende">Devenez une légende de ShinoBinairo</p>
     </div>
     
 
@@ -169,7 +169,7 @@ foreach ($leaderboard as $entry) {
         letter-spacing: 0.15em;
     }
 
-    p {
+    p.legende {
         color: #000;
         font-family: 'Montserrat regular', sans-serif;
 
@@ -200,6 +200,7 @@ foreach ($leaderboard as $entry) {
         align-items: center;
         justify-content: center;
     }
+
     #leaderboardTabs .nav-link.active {
         background: #a82a2a;
         color: #fff1db;
