@@ -484,6 +484,16 @@
     </div>
 </div>
 
+<audio id="victorySound" preload="auto">
+    <source src="../views/game/audio/shamisen_win.mp3" type="audio/mpeg">
+</audio>
+<audio autoplay loop id="backgroundSound">
+    <source src="../views/game/audio/background_music.mp3" type="audio/mpeg">
+</audio>
+<script>
+    const backgroundSound = document.getElementById('backgroundSound').volume = 0.2; // Volume de la musique de fond
+</script>
+
 <!-- modal victoire -->
 <div class="modal-victoire">
     <div class="modal-victoire-content">
@@ -1107,6 +1117,17 @@
 
         const modalEl = document.querySelector('.modal-victoire');
         modalEl.style.display = 'flex';
+
+        // Fermer la modal en cliquant en dehors du contenu
+        modalEl.addEventListener('click', function(e) {
+            if (e.target === modalEl) {
+                modalEl.style.display = 'none';
+            }
+        });
+
+        // Jouer le son de victoire
+        const victorySound = document.getElementById('victorySound');
+        victorySound.play();
     }
 
     // Vérifier la solution

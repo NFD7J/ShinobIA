@@ -92,6 +92,9 @@
         </div>
     </div>
 </div>
+<audio preload="auto" id="selectSound">
+    <source src="../views/game/audio/swoosh_grid_select.mp3" type="audio/mpeg">
+</audio>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
@@ -173,3 +176,13 @@
         color: #fff !important;
     }
 </style>
+<script>
+    // Jouer le son de sélection
+    const selectSound = document.getElementById('selectSound');
+    document.querySelectorAll('.col-md-4').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            selectSound.currentTime = 0; // Revenir au début du son
+            selectSound.play();
+        });
+    });
+</script>
