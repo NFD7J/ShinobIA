@@ -9,6 +9,7 @@
         align-items: center;
         justify-content: center;
         font-family: 'Georgia', serif;
+        overflow-x: hidden;
     }
 
     .shinobi-title {
@@ -86,30 +87,103 @@
     .parchemin-content {
         position: absolute;
         top: 0;
-        left: 0;
+        left: 25rem;
         right: 0;
         bottom: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 30px 60px;
+        padding: 30px 20px;
+        box-sizing: border-box;
     }
 
     .parchemin-inner {
         display: flex;
-        align-items: center;
-        justify-content: space-around;
-        gap: 60px;
-        width: 100%;
-        margin-left: 20rem;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 35px;
+        max-width: 100%;
+        padding-top: 20px;
+        margin: 0 auto;
+        box-sizing: border-box;
     }
 
-    .parchemin-stats {
+    /* Panneaux latéraux */
+    .left-panel,
+    .right-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        flex: 0 0 auto;
+        min-width: 145px;
+    }
+
+
+    .difficulty-card,
+    .stat-card,
+    .chrono-card,
+    .hint-card {
+        background: rgba(230, 200, 150, 0.8);
+        border: 2px solid #8b6f47;
+        border-radius: 15px;
+        padding: 14px;
         text-align: center;
         color: #3d1a00;
         font-family: 'Georgia', serif;
-        flex: 0 0 auto;
-        min-width: 120px;
+    }
+
+    .difficulty-card {
+        min-height: 100px;
+    }
+
+    .stat-card {
+        min-height: 85px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .stat-card h4 {
+        color: #2a1000;
+        margin: 6px 0 0 0;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .stat-card small {
+        color: #6b4226;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .difficulty-card img {
+        width: 55px;
+        height: 55px;
+        object-fit: contain;
+        margin-bottom: 6px;
+    }
+
+    .difficulty-card .difficulty-name {
+        font-weight: bold;
+        color: #b52020;
+        font-size: 0.85rem;
+        display: none;
+    }
+
+    .difficulty-card .difficulty-level {
+        font-size: 0.75rem;
+        color: #2a1000;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+    }
+
+    .stat-icon {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
     }
 
     .parchemin-grid-col {
@@ -119,64 +193,131 @@
         flex: 0 0 auto;
     }
 
+    .parchemin-sensei-section {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex: 0 0 auto;
+    }
+
     .parchemin-sensei {
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0;
-        height: 320px;
+        flex: 0 0 auto;
+        height: auto;
         position: relative;
     }
 
     .parchemin-sensei img {
-        max-height: 100%;
+        max-height: 280px;
         width: auto;
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
     }
 
-    .parchemin-timer {
-        text-align: center;
-        color: #3d1a00;
+    .sensei-message-zone {
+        background: linear-gradient(135deg, rgba(220, 200, 170, 0.85) 0%, rgba(230, 210, 180, 0.85) 100%);
+        border: 2px solid #9d7c54;
+        border-radius: 12px;
+        padding: 16px 18px;
+        min-height: 100px;
+        min-width: 180px;
+        max-width: 250px;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         font-family: 'Georgia', serif;
-        margin-bottom: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        left: -12rem;
     }
 
-    .parchemin-timer small {
-        color: #6b4226;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .parchemin-timer h3 {
+    .sensei-message-zone .message-content {
         color: #2a1000;
-        margin: 0;
-        font-size: 2rem;
+        font-size: 0.9rem;
+        text-align: center;
+        line-height: 1.6;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
     }
 
-    .parchemin-stats {
-        text-align: center;
-        color: #3d1a00;
+    .chrono-card {
+        min-height: 45px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 150px;
+    }
+
+    .chrono-card .chrono-icon {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        margin: 0 auto 4px;
+    }
+
+    .chrono-card .chrono-time {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #b52020;
+        letter-spacing: 2px;
+    }
+
+    .chrono-card .chrono-penalty {
+        font-size: 0.55rem;
+        color: #6b4226;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 2px;
+        line-height: 1;
+    }
+
+    .hint-card {
+        min-height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        max-width: 150px;
+    }
+
+    .hint-card button {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #b52020, #8b0000);
+        color: #fff;
+        border: 1px solid #6b0000;
+        border-radius: 12px;
+        padding: 6px 4px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 0.55rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        transition: background 0.2s;
         font-family: 'Georgia', serif;
     }
 
-    .parchemin-stats small {
-        color: #6b4226;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        display: block;
-        margin-bottom: 2px;
+    .hint-card button:hover {
+        background: linear-gradient(135deg, #d52020, #aa0000);
     }
 
-    .parchemin-stats h3,
-    .parchemin-stats h4 {
-        color: #2a1000;
-        margin: 0;
+    .hint-card button img {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
     }
 
-    .parchemin-stats .stat-block {
-        margin-bottom: 18px;
+    :root {
+        --cell-size: 60px;
     }
 
     #bineroGrid {
@@ -184,15 +325,18 @@
         border: 2px solid rgba(80, 50, 20, 0.7);
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
         background: linear-gradient(135deg, rgba(205, 185, 145, 0.50) 0%, rgba(255, 252, 245, 0.75) 50%, rgba(205, 185, 145, 0.50) 100%);
+        table-layout: fixed;
     }
 
     #bineroGrid td {
         padding: 0;
+        width: var(--cell-size, 60px);
+        height: var(--cell-size, 60px);
     }
 
     .cell-btn {
-        width: 60px;
-        height: 60px;
+        width: var(--cell-size, 60px);
+        height: var(--cell-size, 60px);
         background: transparent;
         background-size: 70%;
         background-repeat: no-repeat;
@@ -258,6 +402,24 @@
         color: #d0f0d0;
     }
 
+    .btn {
+        font-family: ' ', cursive;
+        font-size: 0.8rem;
+        border-radius: 20px;
+        border: 2px solid #a82a2a !important;
+        color: #A82A2A !important;
+        background-color: #fff1db !important;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 240px;
+        height: 56px;
+        margin: 0 auto;
+        margin-bottom: 5rem;
+    }
+
     @keyframes shake {
 
         0%,
@@ -289,108 +451,164 @@
             transform: translateX(0);
         }
     }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes fadeOutScale {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        to {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+    }
 </style>
 
-<div class="shinobi-game-wrapper">
-        <!-- Titre -->
-        <div class="text-center mb-3">
-            <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo" class="game-logo">
-            <div>
-                <span class="badge bg-<?php echo match ($difficulty) {
-                                            'easy' => 'success',
-                                            'medium' => 'warning',
-                                            'hard' => 'danger',
-                                            default => 'secondary'
-                                        }; ?> fs-6 px-3 mt-1">
-                    <?php echo match ($difficulty) {
-                        'easy' => 'FACILE',
-                        'medium' => 'MOYEN',
-                        'hard' => 'DIFFICILE',
-                        default => $difficulty
-                    }; ?>
-                </span>
-            </div>
-        </div>
+<?php
+// Calculer la taille adaptée des cellules selon la grille
+$cellSize = '60px';
+if ($size == 6) {
+    $cellSize = '55px';
+} elseif ($size == 8) {
+    $cellSize = '48px';
+} elseif ($size == 10) {
+    $cellSize = '42px';
+}
+?>
+<div class="shinobi-game-wrapper" style="--cell-size: <?php echo $cellSize; ?>;">
+    <!-- Titre -->
+    <div class="text-center mb-3">
+        <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo" class="game-logo">
+    </div>
 
-        <!-- Zone principale -->
-        <div class="game-layout">
+    <!-- Zone principale -->
+    <div class="game-layout">
 
-            <!-- Parchemin + Grille + Stats -->
-            <div class="parchemin-zone">
-                <img src="../views/game/images/parchemin.png" alt="parchemin" class="parchemin-img">
-                <div class="parchemin-content">
-                    <div class="parchemin-inner">
+        <!-- Parchemin + Grille + Stats -->
+        <div class="parchemin-zone">
+            <img src="../views/game/images/parchemin.png" alt="parchemin" class="parchemin-img">
+            <div class="parchemin-content">
+                <div class="parchemin-inner">
 
-                        <!-- Stats à gauche (erreurs + progrès) -->
-                        <div class="parchemin-stats">
-                            <div class="stat-block">
-                                <small>&#10060; Erreurs</small>
-                                <h4 id="errors" class="fw-bold">0</h4>
-                            </div>
-                            <div class="stat-block">
-                                <small>&#128202; Progres</small>
-                                <h4 id="progress" class="fw-bold">0%</h4>
-                            </div>
+                    <!-- PANNEAU GAUCHE: Difficulté + Erreurs + Progrès -->
+                    <div class="left-panel">
+                        <!-- Difficulté -->
+                        <div class="difficulty-card">
+                            <img src="image.php?f=grille_jeux/<?php echo match ($difficulty) {
+                                                                    'easy' => 'niveau_facile_genin.png',
+                                                                    'medium' => 'niveau_moyen_chunin.png',
+                                                                    'hard' => 'niveau_difficile_jonin.png',
+                                                                    default => 'niveau_facile_genin.png'
+                                                                }; ?>" alt="Niveau">
+                            <div class="difficulty-name">Genin / Chunin / Jonin</div>
+                            <div class="difficulty-level"><?php echo match ($difficulty) {
+                                                                'easy' => 'FACILE',
+                                                                'medium' => 'MOYEN',
+                                                                'hard' => 'DIFFICILE',
+                                                                default => $difficulty
+                                                            }; ?></div>
                         </div>
 
-                        <!-- Grille au milieu -->
-                        <div class="parchemin-grid-col">
-                            <div class="parchemin-timer">
-                                <small>&#9201; Temps</small>
-                                <h3 id="timer" class="fw-bold">00:00</h3>
-                            </div>
-                            <table id="bineroGrid">
-                                <tbody>
-                                    <?php for ($i = 0; $i < count($grid); $i++): ?>
-                                        <tr>
-                                            <?php for ($j = 0; $j < count($grid[$i]); $j++): ?>
-                                                <?php
-                                                $val = $grid[$i][$j];
-                                                $hasValue = $val !== null && $val !== '';
-                                                $displayValue = $hasValue ? ($val == 1 ? '1' : '0') : '';
-                                                ?>
-                                                <td>
-                                                    <input type="button"
-                                                        class="cell-btn <?php echo $hasValue ? 'locked' : ''; ?>"
-                                                        id="cell_<?php echo $i; ?>_<?php echo $j; ?>"
-                                                        value="<?php echo $displayValue; ?>"
-                                                        data-row="<?php echo $i; ?>"
-                                                        data-col="<?php echo $j; ?>"
-                                                        data-value="<?php echo $displayValue; ?>"
-                                                        data-locked="<?php echo $hasValue ? 'true' : 'false'; ?>"
-                                                        <?php echo $hasValue ? 'disabled' : ''; ?>>
-                                                </td>
-                                            <?php endfor; ?>
-                                        </tr>
-                                    <?php endfor; ?>
-                                </tbody>
-                            </table>
+                        <!-- Erreurs -->
+                        <div class="stat-card">
+                            <img class="stat-icon" src="image.php?f=grille_jeux/error_shuriken.png" alt="Erreurs">
+                            <small>ERREURS</small>
+                            <h4 id="errors">0</h4>
                         </div>
 
-                        <!-- Sensei à droite -->
-                        <div class="parchemin-sensei">
-                            <img id="senseiImage" src="image.php?f=sensei_landingpage.png" alt="Sensei">
+                        <!-- Progrès -->
+                        <div class="stat-card">
+                            <img class="stat-icon" src="image.php?f=grille_jeux/progres_fujisan.png" alt="Progrès">
+                            <small>PROGRÈS</small>
+                            <h4 id="progress">0%</h4>
                         </div>
-
                     </div>
+
+                    <!-- GRILLE AU CENTRE -->
+                    <div class="parchemin-grid-col">
+                        <table id="bineroGrid">
+                            <tbody>
+                                <?php for ($i = 0; $i < count($grid); $i++): ?>
+                                    <tr>
+                                        <?php for ($j = 0; $j < count($grid[$i]); $j++): ?>
+                                            <?php
+                                            $val = $grid[$i][$j];
+                                            $hasValue = $val !== null && $val !== '';
+                                            $displayValue = $hasValue ? ($val == 1 ? '1' : '0') : '';
+                                            ?>
+                                            <td>
+                                                <input type="button"
+                                                    class="cell-btn <?php echo $hasValue ? 'locked' : ''; ?>"
+                                                    id="cell_<?php echo $i; ?>_<?php echo $j; ?>"
+                                                    value="<?php echo $displayValue; ?>"
+                                                    data-row="<?php echo $i; ?>"
+                                                    data-col="<?php echo $j; ?>"
+                                                    data-value="<?php echo $displayValue; ?>"
+                                                    data-locked="<?php echo $hasValue ? 'true' : 'false'; ?>"
+                                                    <?php echo $hasValue ? 'disabled' : ''; ?>>
+                                            </td>
+                                        <?php endfor; ?>
+                                    </tr>
+                                <?php endfor; ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- PANNEAU DROIT: Chrono + Indice + Sensei -->
+                    <div class="right-panel">
+                        <!-- Chrono -->
+                        <div class="chrono-card">
+                            <img class="chrono-icon" src="image.php?f=grille_jeux/chrono_hourglass.svg" alt="Chrono">
+                            <div class="chrono-time" id="timer">00:00</div>
+                            <div class="chrono-penalty">Pénalité erreurs +00:00<br />Pénalité indice +00:00</div>
+                        </div>
+
+                        <!-- Bouton Indice -->
+                        <div class="hint-card">
+                            <button id="hintBtn" type="button">
+                                <img src="image.php?f=grille_jeux/clue_lightbulb.svg" alt="Indice">
+                                <span>INDICE</span>
+                            </button>
+                        </div>
+
+                        <!-- Sensei + Zone de messages -->
+                        <div class="parchemin-sensei-section">
+                            <div class="parchemin-sensei">
+                                <img id="senseiImage" src="image.php?f=grille_jeux/sensei_smile.png" alt="Sensei">
+                            </div>
+                            <div class="sensei-message-zone" id="senseiMessageZone">
+                                <div class="message-content" id="senseiMessageContent">
+                                    <span style="color: #999;">Sensei Nidō</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <!-- Actions sous le parchemin -->
-            <div class="actions-row">
-                <button class="btn btn-hint" id="hintBtn">&#128161; Indice</button>
-                <a href="index.php?controller=game" class="btn btn-outline-light btn-sm">&#127968; Retour aux niveaux</a>
-            </div>
-
-            <div class="d-none" id="hintCard" style="background: rgba(20,10,3,0.85); border-radius: 8px; padding: 14px 20px; color: #f5e6c8; max-width: 500px;">
-                <div class="d-flex justify-content-between align-items-start">
-                    <strong>&#128161; Indice</strong>
-                    <button type="button" class="btn-close btn-close-white btn-sm" id="closeHintBtn"></button>
-                </div>
-                <p id="hintText" class="mt-2 mb-0" style="font-size:0.85rem;"></p>
-            </div>
-
         </div>
+
+        <!-- Actions sous le parchemin -->
+        <div class="actions-row">
+            <a href="index.php?controller=game" class="btn btn-outline-light btn-sm">Abandonner</a>
+        </div>
+
+
+
+    </div>
 </div>
 
 <script>
@@ -537,8 +755,6 @@
 
     // Bouton indice
     document.getElementById('hintBtn').addEventListener('click', async function() {
-        if (!confirm('Utiliser un indice? (cela ne pénalise pas votre score)')) return;
-
         try {
             // Convertir la grille en format proper pour l'API (Integer[][])
             const gridToSend = playerGrid.map(row =>
@@ -595,10 +811,7 @@
         }
     });
 
-    // Fermer la carte d'indice
-    document.getElementById('closeHintBtn').addEventListener('click', function() {
-        document.getElementById('hintCard').classList.add('d-none');
-    });
+
 
     // Vérifie les violations de règles du Binero pour une cellule donnée
     function checkRuleViolations(row, col, value) {
@@ -798,98 +1011,34 @@
         }
     }
 
-    // Affiche le commentaire du sensei dans la bulle
+    // Affiche le commentaire du sensei dans la zone dédiée
     function displaySenseiComment(comment, onComplete) {
-        const senseiImg = document.getElementById('senseiImage');
-        if (!senseiImg) {
+        const messageZone = document.getElementById('senseiMessageZone');
+        const messageContent = document.getElementById('senseiMessageContent');
+
+        if (!messageZone || !messageContent) {
             if (onComplete) onComplete();
             return;
         }
 
-        // Créer un conteneur parent pour les bulles s'il n'existe pas
-        let bubbleContainer = senseiImg.parentElement.querySelector('#senseiBubbleContainer');
-        if (!bubbleContainer) {
-            bubbleContainer = document.createElement('div');
-            bubbleContainer.id = 'senseiBubbleContainer';
-            bubbleContainer.style.cssText = `
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-            `;
-            senseiImg.parentElement.style.position = 'relative';
-            senseiImg.parentElement.insertBefore(bubbleContainer, senseiImg);
-        }
-
-        // Créer une nouvelle bulle unique
-        const textOverlay = document.createElement('div');
-        textOverlay.className = 'senseiTextBubble';
-        textOverlay.style.cssText = `
-            position: absolute;
-            right: 0.1rem;
-            top: 30%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #e8d5b5 0%, #d9c49a 100%);
-            border: 3px solid #8b6f47;
-            border-radius: 25px;
-            padding: 16px 20px;
-            max-width: 280px;
-            font-size: 0.95rem;
-            color: #2a1900;
-            font-family: 'Georgia', serif;
-            font-weight: 500;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            z-index: 1000;
-            line-height: 1.5;
-            text-align: center;
-            white-space: normal;
-            word-wrap: break-word;
-            animation: bubbleAppear 0.3s ease-out;
-            pointer-events: auto;
-        `;
-
-        textOverlay.textContent = comment;
-        bubbleContainer.appendChild(textOverlay);
-
-        // Afficher la bulle 15 secondes, puis la retirer
+        // Ajouter une animation d'apparition
+        messageContent.style.animation = 'none';
         setTimeout(() => {
-            textOverlay.style.animation = 'bubbleDisappear 0.3s ease-out';
+            messageContent.style.animation = 'fadeInScale 0.3s ease-out';
+        }, 10);
+
+        // Afficher le nouveau message
+        messageContent.textContent = comment;
+        messageZone.style.opacity = '1';
+
+        // Garder le message 4 secondes
+        setTimeout(() => {
+            messageContent.style.animation = 'fadeOutScale 0.3s ease-out';
             setTimeout(() => {
-                textOverlay.remove();
+                messageContent.textContent = '';
                 if (onComplete) onComplete();
             }, 300);
-        }, 15000);
-    }
-
-    // Ajouter les animations CSS si pas déjà présentes
-    if (!document.getElementById('senseiAnimations')) {
-        const style = document.createElement('style');
-        style.id = 'senseiAnimations';
-        style.textContent = `
-                @keyframes bubbleAppear {
-                    from {
-                        opacity: 0;
-                        transform: translateY(-50%) translateX(10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(-50%) translateX(0);
-                    }
-                }
-                @keyframes bubbleDisappear {
-                    from {
-                        opacity: 1;
-                        transform: translateY(-50%) translateX(0);
-                    }
-                    to {
-                        opacity: 0;
-                        transform: translateY(-50%) translateX(-10px);
-                    }
-                }
-            `;
-        document.head.appendChild(style);
+        }, 4000);
     }
 
     // Map les expressions du Sensei (du backend) aux fichiers d'emotes

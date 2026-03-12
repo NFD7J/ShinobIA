@@ -285,16 +285,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php"></i> Accueil</a>
+                        <a class="nav-link" href="index.php"></i>Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=game"></i> Games</a>
+                        <a class="nav-link" href="index.php?controller=game"></i>Grille</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=leaderboard"></i> Leaderboard</a>
+                        <a class="nav-link" href="index.php?controller=leaderboard"></i>Classement</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=succes"></i> Succès</a>
+                        <a class="nav-link" href="index.php?controller=succes"></i>Succès</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
