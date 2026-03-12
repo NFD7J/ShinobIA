@@ -4,6 +4,7 @@ namespace App\controllers;
 
 use App\models\GameModel;
 use App\models\GridModel;
+use App\Models\LeaderboardModel;
 use App\models\SuccesModel;
 use App\services\BineroService;
 
@@ -206,6 +207,7 @@ class GameController extends Controller
         $grilleId  = $gridModel->save($difficulty);
 
         // 2. Sauvegarder la partie dans la table `game`
+        $finalTime = $this->calcFinalTime($difficulty, $timeElapsed, $nbErrors, $hintsUsed);
         $gameModel = new GameModel();
         $gameModel->save(
             userId: $userId,
@@ -213,8 +215,12 @@ class GameController extends Controller
             duration: $timeElapsed,
             nbIndices: $hintsUsed,
             nbErrors: $nbErrors,
-            points: $this->calcPoints($difficulty, $timeElapsed, $hintsUsed)
+            points: $finalTime
         );
+
+        // 3. Mettre à jour le classement
+        $leaderboardModel = new LeaderboardModel();
+        $leaderboardModel->addEntry($userId, $difficulty, $finalTime);
 
         // 3. Vérifier et débloquer les succès
         $succesModel = new SuccesModel();
@@ -227,15 +233,15 @@ class GameController extends Controller
         ]);
     }
 
-    private function calcPoints(string $difficulty, int $duration, int $hints): int
+    private function calcFinalTime(string $difficulty, int $duration, int $errors, int $hints): int
     {
-        $base = match ($difficulty) {
-            'easy' => 100,
-            'medium' => 200,
-            'hard' => 400,
-            default => 100
+        $hintPenalty = match ($difficulty) {
+            'easy'   => 30,
+            'medium' => 20,
+            'hard'   => 10,
+            default  => 30
         };
-        $penalty = $hints * 10 + (int)($duration / 30) * 5;
-        return max(0, $base - $penalty);
+        $penalty = ($errors * 5) + ($hints * $hintPenalty);
+        return $duration + $penalty;
     }
 }
