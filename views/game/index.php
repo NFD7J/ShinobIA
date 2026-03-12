@@ -418,147 +418,148 @@
         height: 56px;
         margin: 0 auto;
         margin-bottom: 5rem;
+    }
 
-        .modal-victoire {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            align-items: center;
-            justify-content: center;
-            color: #fff8e8;
-            font-family: 'Georgia', serif;
-            font-size: 2rem;
-            z-index: 10000;
+    .modal-victoire {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        align-items: center;
+        justify-content: center;
+        color: #fff8e8;
+        font-family: 'Georgia', serif;
+        font-size: 2rem;
+        z-index: 10000;
+    }
+
+    .modal-victoire-content {
+        position: relative;
+        background: rgba(0, 0, 0, 0);
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .modal-victoire-text {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        color: #fae4c1;
+        position: absolute;
+        top: 20%;
+        right: 20%;
+        text-align: center;
+    }
+
+    .btn-modal {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        border: none;
+        display: block;
+        width: 60%;
+        margin: 0 auto;
+        border-radius: 20px;
+        border: 1px solid #fff8e8;
+    }
+
+    .btn-new-grid {
+        background-color: #fae4c1;
+        color: #a82a2a;
+    }
+
+    .btn-new-grid:hover {
+        background-color: #d2c1a2;
+        color: #a82a2a;
+        border: 1px solid #d2c1a2;
+    }
+
+    .btn-new-grid:focus,
+    .btn-new-grid:active {
+        background-color: #d2c1a2;
+        color: #a82a2a;
+        border-color: #a82a2a;
+        box-shadow: 0 0 0 0.2rem rgba(168, 42, 42, 0.35);
+    }
+
+    .btn-retour {
+        background-color: #a82a2a;
+        color: #fae4c1;
+    }
+
+    .btn-retour:hover {
+        background-color: #8e2222;
+        color: #fae4c1;
+        border: 1px solid #fae4c1;
+    }
+
+    .btn-retour:focus,
+    .btn-retour:active {
+        background-color: #8e2222;
+        color: #fae4c1;
+        border-color: #fae4c1;
+        box-shadow: 0 0 0 0.2rem rgba(142, 34, 34, 0.45);
+    }
+
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0);
         }
 
-        .modal-victoire-content {
-            position: relative;
-            background: rgba(0, 0, 0, 0);
-            width: fit-content;
-            height: fit-content;
+        10%,
+        90% {
+            transform: translateX(-5px);
         }
 
-        .modal-victoire-text {
-            font-family: "Montserrat", sans-serif;
-            font-weight: 400;
-            font-size: 16px;
-            color: #fae4c1;
-            position: absolute;
-            top: 20%;
-            right: 20%;
-            text-align: center;
+        20%,
+        80% {
+            transform: translateX(5px);
         }
 
-        .btn-modal {
-            font-family: "Montserrat", sans-serif;
-            font-weight: 600;
-            font-size: 20px;
-            border: none;
-            display: block;
-            width: 60%;
-            margin: 0 auto;
-            border-radius: 20px;
-            border: 1px solid #fff8e8;
+        30%,
+        70% {
+            transform: translateX(-5px);
         }
 
-        .btn-new-grid {
-            background-color: #fae4c1;
-            color: #a82a2a;
+        40%,
+        60% {
+            transform: translateX(5px);
         }
 
-        .btn-new-grid:hover {
-            background-color: #d2c1a2;
-            color: #a82a2a;
-            border: 1px solid #d2c1a2;
+        50% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
         }
 
-        .btn-new-grid:focus,
-        .btn-new-grid:active {
-            background-color: #d2c1a2;
-            color: #a82a2a;
-            border-color: #a82a2a;
-            box-shadow: 0 0 0 0.2rem rgba(168, 42, 42, 0.35);
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes fadeOutScale {
+        from {
+            opacity: 1;
+            transform: scale(1);
         }
 
-        .btn-retour {
-            background-color: #a82a2a;
-            color: #fae4c1;
+        to {
+            opacity: 0;
+            transform: scale(0.95);
         }
-
-        .btn-retour:hover {
-            background-color: #8e2222;
-            color: #fae4c1;
-            border: 1px solid #fae4c1;
-        }
-
-        .btn-retour:focus,
-        .btn-retour:active {
-            background-color: #8e2222;
-            color: #fae4c1;
-            border-color: #fae4c1;
-            box-shadow: 0 0 0 0.2rem rgba(142, 34, 34, 0.45);
-        }
-
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            10%,
-            90% {
-                transform: translateX(-5px);
-            }
-
-            20%,
-            80% {
-                transform: translateX(5px);
-            }
-
-            30%,
-            70% {
-                transform: translateX(-5px);
-            }
-
-            40%,
-            60% {
-                transform: translateX(5px);
-            }
-
-            50% {
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeOutScale {
-            from {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            to {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-        }
+    }
 </style>
 
 <?php
