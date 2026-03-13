@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="text-center mt-5">
-                    <a href="index.php?controller=home" class="btn btn-outline-light">
+                    <a href="index.php?controller=home" class="btn-return btn-outline-light">
                         <p>RETOUR À L'ACCUEIL</p>
 
 
@@ -163,7 +163,7 @@
         padding: 0 !important;
     }
 
-    .btn {
+    .btn-return{
         font-family: 'Montserrat', sans-serif;
         font-size: 0.8rem;
         border-radius: 20px;

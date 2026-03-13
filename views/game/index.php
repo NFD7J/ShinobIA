@@ -878,7 +878,7 @@ if ($size == 6) {
                         </table>
 
                         <!-- Contrôle du volume sous la grille -->
-                        <div style="margin-top: 3rem; display: flex; gap: 15px; align-items: center; justify-content: center;">
+                        <div style="margin-top: 2rem; display: flex; gap: 15px; align-items: center; justify-content: center;">
                             <div class="volume-control">
                                 <button id="volumeToggle" title="Activer/Désactiver le son">
                                     <i class="bi bi-volume-up"></i>
