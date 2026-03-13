@@ -67,18 +67,11 @@
         min-height: 100vh;
     }
 
-    main {
-        background-color: transparent;
-        padding-top: 0;
-    }
-
     .guest-login-container {
-        background-color: #fae4c1;
+        background-color: rgba(250, 228, 193, 0.95);
         padding: 40px;
+        backdrop-filter: blur(5px);
         min-height: 100vh;
-        border-radius: 0;
-        width: 80%;
-        margin: -100px auto 0 auto;
     }
 
     .card {
