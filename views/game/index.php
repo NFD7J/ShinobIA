@@ -161,6 +161,7 @@
     /* Panneaux latéraux */
     .left-panel,
     .right-panel {
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -216,10 +217,9 @@
     }
 
     .difficulty-card .difficulty-name {
-        font-weight: bold;
+        font-family: "Valentine Season", sans-serif;
         color: #b52020;
-        font-size: 0.85rem;
-        display: none;
+        font-size: 1.8rem;
     }
 
     .difficulty-card .difficulty-level {
@@ -555,6 +555,17 @@
         box-shadow: 0 0 0 0.2rem rgba(142, 34, 34, 0.45);
     }
 
+    .regle_jeu{
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.75rem;
+        color: #a82a2a;
+        align-items: center;
+        font-weight: bold;
+        position: absolute;
+        top: -1.5rem;
+        left: 1rem;
+    }
+
     @keyframes shake {
 
         0%,
@@ -610,6 +621,148 @@
             transform: scale(0.95);
         }
     }
+
+    /* MODAL DES RÈGLES - Thème Shinobi */
+    .modal-content {
+        background-color: #fae4c1;
+        border: 3px solid #8b6f47;
+        border-radius: 20px;
+        padding: 45px 40px;
+        box-shadow: 0 12px 50px rgba(0, 0, 0, 0.35),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        font-family: "Montserrat", sans-serif;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .modal-content::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            radial-gradient(circle at 20% 50%, rgba(139, 111, 71, 0.04) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(185, 32, 32, 0.02) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .modal-content h2 {
+        color: #b52020;
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 8px;
+        margin-top: 0;
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
+        position: relative;
+        z-index: 1;
+        letter-spacing: 0.5px;
+    }
+
+    .parchemin-subtitle {
+        text-align: center;
+        color: #3d1a00;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 32px;
+        font-style: italic;
+        position: relative;
+        z-index: 1;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+    }
+
+    .parchemin-rules {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 32px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .parchemin-rule {
+        background: rgba(220, 200, 170, 0.5);
+        border-left: 5px solid #b52020;
+        border-radius: 10px;
+        padding: 18px 20px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .parchemin-rule:hover {
+        border-left-color: #d52020;
+    }
+
+    .parchemin-rule h3 {
+        color: #b52020;
+        font-size: 1.15rem;
+        font-weight: 800;
+        margin: 0 0 8px 0;
+        letter-spacing: 0.3px;
+    }
+
+    .parchemin-rule p {
+        color: #3d1a00;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .parchemin-rule strong {
+        color: #a82a2a;
+        font-weight: 800;
+    }
+
+    .parchemin-bottom {
+        background: linear-gradient(135deg, rgba(185, 32, 32, 0.08), rgba(168, 42, 42, 0.06));
+        border: 2px solid rgba(181, 32, 32, 0.35);
+        border-radius: 14px;
+        padding: 22px 24px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.3);
+    }
+
+    .parchemin-bottom h4 {
+        color: #a82a2a;
+        font-size: 1.25rem;
+        font-weight: 900;
+        margin: 0 0 10px 0;
+        letter-spacing: 0.5px;
+    }
+
+    .parchemin-bottom p {
+        color: #3d1a00;
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin: 0;
+        font-style: italic;
+        font-weight: 500;
+    }
+
+    .modal-dialog {
+        max-width: 720px;
+    }
+
+    .modal.fade .modal-content {
+        animation: slideInDown 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slideInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
 
 <?php
@@ -641,6 +794,7 @@ if ($size == 6) {
                     <!-- PANNEAU GAUCHE: Difficulté + Erreurs + Progrès -->
                     <div class="left-panel">
                         <!-- Difficulté -->
+                        <a class="regle_jeu" data-bs-toggle="modal" data-bs-target="#modalRules" href="#">Règle du jeu <i class="bi bi-info-circle"></i></a>
                         <div class="difficulty-card">
                             <img src="image.php?f=grille_jeux/<?php echo match ($difficulty) {
                                                                     'easy' => 'niveau_facile_genin.png',
@@ -648,7 +802,12 @@ if ($size == 6) {
                                                                     'hard' => 'niveau_difficile_jonin.png',
                                                                     default => 'niveau_facile_genin.png'
                                                                 }; ?>" alt="Niveau">
-                            <div class="difficulty-name">Genin / Chunin / Jonin</div>
+                            <div class="difficulty-name"><?php echo match ($difficulty) {
+                                                                'easy' => 'Genin',
+                                                                'medium' => 'Chunin',
+                                                                'hard' => 'Jonin',
+                                                                default => 'Genin'
+                                                            }; ?></div>
                             <div class="difficulty-level"><?php echo match ($difficulty) {
                                                                 'easy' => 'FACILE',
                                                                 'medium' => 'MOYEN',
@@ -748,6 +907,37 @@ if ($size == 6) {
             </div>
         </div>
 
+    </div>
+</div>
+
+<!-- MODAL des règles du jeu -->
+<div class="modal fade" id="modalRules" tabindex="-1" aria-labelledby="modalRulesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <h2>Comment jouer au Shinobinairo ?</h2>
+            <p class="parchemin-subtitle">Équilibre la grille pour devenir un maître Ninja<br>en suivant les conseils du Sensei Nidō.</p>
+
+            <div class="parchemin-rules">
+                <div class="parchemin-rule">
+                    <h3>Remplissez la grille</h3>
+                    <p>Chaque case doit contenir un <strong>Shuriken</strong> ✦ ou un <strong>Kunai</strong> 🗡</p>
+                </div>
+                <div class="parchemin-rule">
+                    <h3>Respectez les règles</h3>
+                    <p>Pas plus de <strong>deux symboles</strong> consécutifs identiques.<br>Chaque ligne contient <strong>autant</strong> de Shurikens que de Kunais.</p>
+                </div>
+                <div class="parchemin-rule">
+                    <h3>La voie de l'excellence</h3>
+                    <p>Résous les grilles avec l'agilité d'un ninja pour graver ton<br>nom au sommet du classement !</p>
+                </div>
+            </div>
+
+            <div class="parchemin-bottom">
+                <h4>Prêts à entrer dans la légende ?</h4>
+                <p>Rejoignez le clan Shinobinairo et prouvez que la logique<br>est votre arme la plus aiguisée.</p>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
     </div>
 </div>
 
@@ -1596,6 +1786,7 @@ if ($size == 6) {
             display: flex; align-items: center; gap: 14px;
             box-shadow: 0 6px 24px rgba(0,0,0,0.3);
             animation: slideIn 0.4s ease; min-width: 260px; max-width: 320px;
+            z-index: 10000;
         `;
 
         const isIcon = icon.startsWith('bi-');
