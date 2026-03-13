@@ -424,6 +424,22 @@
         opacity: 0.75;
     }
 
+    /* Ligne complète et correcte */
+    #bineroGrid tr.row-correct {
+        background-color: rgba(76, 175, 80, 0.15);
+        box-shadow: inset 0 0 8px rgba(76, 175, 80, 0.4);
+    }
+
+    #bineroGrid tr.row-correct td {
+        box-shadow: inset 0 0 4px rgba(76, 175, 80, 0.3);
+    }
+
+    /* Colonne complète et correcte */
+    #bineroGrid td.col-correct {
+        background-color: rgba(76, 175, 80, 0.2);
+        box-shadow: inset 0 0 6px rgba(76, 175, 80, 0.4);
+    }
+
     .btn-hint {
         background: linear-gradient(135deg, #c8900a, #9a6e08);
         color: #fffde0;
@@ -555,7 +571,7 @@
         box-shadow: 0 0 0 0.2rem rgba(142, 34, 34, 0.45);
     }
 
-    .regle_jeu{
+    .regle_jeu {
         font-family: "Montserrat", sans-serif;
         font-size: 0.75rem;
         color: #a82a2a;
@@ -629,7 +645,7 @@
         border-radius: 20px;
         padding: 45px 40px;
         box-shadow: 0 12px 50px rgba(0, 0, 0, 0.35),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            inset 0 1px 0 rgba(255, 255, 255, 0.4);
         font-family: "Montserrat", sans-serif;
         position: relative;
         overflow: hidden;
@@ -642,7 +658,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: 
+        background-image:
             radial-gradient(circle at 20% 50%, rgba(139, 111, 71, 0.04) 0%, transparent 50%),
             radial-gradient(circle at 80% 80%, rgba(185, 32, 32, 0.02) 0%, transparent 50%);
         pointer-events: none;
@@ -758,6 +774,7 @@
             opacity: 0;
             transform: translateY(-50px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -794,7 +811,7 @@ if ($size == 6) {
                     <!-- PANNEAU GAUCHE: Difficulté + Erreurs + Progrès -->
                     <div class="left-panel">
                         <!-- Difficulté -->
-                        <a class="regle_jeu" data-bs-toggle="modal" data-bs-target="#modalRules" href="#">Règle du jeu <i class="bi bi-info-circle"></i></a>
+                        <a class="regle_jeu" data-bs-toggle="modal" data-bs-target="#modalRules" href="#">Règles du jeu <i class="bi bi-info-circle"></i></a>
                         <div class="difficulty-card">
                             <img src="image.php?f=grille_jeux/<?php echo match ($difficulty) {
                                                                     'easy' => 'niveau_facile_genin.png',
@@ -1183,6 +1200,7 @@ if ($size == 6) {
             }
             // IMPORTANT: Appeler checkAutomatic APRÈS vérifier les violations
             checkAutomatic();
+            updateCorrectRows(); // Mettre à jour les lignes correctes
             delete cellModificationTimers[cellKey];
         }, 900);
 
@@ -1318,6 +1336,88 @@ if ($size == 6) {
         if (count0 > expected || count1 > expected) return true;
 
         return false;
+    }
+
+    // Vérifie et met à jour les lignes et colonnes complètes et correctes
+    function updateCorrectRows() {
+        const rows = document.querySelectorAll('#bineroGrid tbody tr');
+
+        // ===== VÉRIFIER LES LIGNES =====
+        rows.forEach((row, rowIndex) => {
+            const cells = row.querySelectorAll('.cell-btn');
+            let isRowComplete = true;
+            let isRowCorrect = true;
+
+            // Vérifier si la ligne est complète
+            cells.forEach(cell => {
+                const value = cell.value;
+                if (value === '' || value === null) {
+                    isRowComplete = false;
+                }
+            });
+
+            // Si complète, vérifier si elle est correcte
+            if (isRowComplete) {
+                cells.forEach(cell => {
+                    const col = parseInt(cell.dataset.col);
+                    const correctValue = solutionData[rowIndex][col];
+                    const playerValue = cell.value === '' ? null : parseInt(cell.value);
+
+                    if (playerValue !== correctValue) {
+                        isRowCorrect = false;
+                    }
+                });
+            }
+
+            // Ajouter ou enlever la classe selon le résultat
+            if (isRowComplete && isRowCorrect) {
+                row.classList.add('row-correct');
+            } else {
+                row.classList.remove('row-correct');
+            }
+        });
+
+        // ===== VÉRIFIER LES COLONNES =====
+        for (let colIndex = 0; colIndex < gridSize; colIndex++) {
+            let isColComplete = true;
+            let isColCorrect = true;
+
+            // Vérifier si la colonne est complète
+            for (let rowIndex = 0; rowIndex < gridSize; rowIndex++) {
+                const cell = document.querySelector(`#cell_${rowIndex}_${colIndex}`);
+                if (!cell || cell.value === '' || cell.value === null) {
+                    isColComplete = false;
+                    break;
+                }
+            }
+
+            // Si complète, vérifier si elle est correcte
+            if (isColComplete) {
+                for (let rowIndex = 0; rowIndex < gridSize; rowIndex++) {
+                    const cell = document.querySelector(`#cell_${rowIndex}_${colIndex}`);
+                    const correctValue = solutionData[rowIndex][colIndex];
+                    const playerValue = cell.value === '' ? null : parseInt(cell.value);
+
+                    if (playerValue !== correctValue) {
+                        isColCorrect = false;
+                        break;
+                    }
+                }
+            }
+
+            // Ajouter ou enlever la classe aux cellules de la colonne
+            for (let rowIndex = 0; rowIndex < gridSize; rowIndex++) {
+                const cell = document.querySelector(`#cell_${rowIndex}_${colIndex}`);
+                const td = cell ? cell.closest('td') : null;
+                if (td) {
+                    if (isColComplete && isColCorrect) {
+                        td.classList.add('col-correct');
+                    } else {
+                        td.classList.remove('col-correct');
+                    }
+                }
+            }
+        }
     }
 
     // Affichage local d'un bon coup (SANS appel API pour économiser)
