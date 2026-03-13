@@ -38,4 +38,18 @@ class AuthModel extends Dbconnect
         $result = $this->request->fetch();
         return $result->nb > 0;
     }
+
+    public function createGuestUser(User $user): int
+    {
+        $this->request = $this->connection->prepare(
+            "INSERT INTO user (mail, password, name) VALUES (:mail, :password, :name)"
+        );
+        $this->request->execute([
+            "mail" => $user->getEmail(),
+            "password" => $user->getPassword(),
+            "name" => $user->getName()
+        ]);
+        
+        return (int)$this->connection->lastInsertId();
+    }
 }

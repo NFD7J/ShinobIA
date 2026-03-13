@@ -238,6 +238,7 @@
             <?php if (!isset($_SESSION['user'])): ?>
                 <a href="index.php?controller=auth&action=login" class="btn-primary">CONNEXION</a>
                 <a href="index.php?controller=auth&action=register" class="btn-outline">INSCRIPTION</a>
+                <a href="index.php?controller=auth&action=guestLogin" class="btn-outline">JOUER EN GUEST</a>
             <?php else: ?>
                 <a href="index.php?controller=game&action=index" class="btn-primary">JOUER</a>
             <?php endif; ?>

@@ -20,9 +20,9 @@ class LeaderboardModel extends DbConnect
 
     public function getLeaderboard()
     {
-    $sql = "SELECT l.*, u.name AS username 
+    $sql = "SELECT l.*, COALESCE(u.name, CONCAT('Guest - ', l.guest_name)) AS username
             FROM leaderboard l
-            JOIN user u ON l.user_id = u.user_id
+            LEFT JOIN user u ON l.user_id = u.user_id
             ORDER BY l.total_points ASC";
     $result = $this->connection->query($sql);
     $leaderboard = [];
@@ -39,7 +39,7 @@ class LeaderboardModel extends DbConnect
     return $leaderboard;
     }
 
-    public function addEntry($userId, $difficulty, $totalPoints)
+    public function addEntry(int $userId, string $difficulty, int $totalPoints, ?string $guestName = null)
     {
         // Récupérer le rang actuel pour la difficulté
         $sql = "SELECT MAX(rang) AS max_rang FROM leaderboard WHERE difficulty = :difficulty";
@@ -50,21 +50,23 @@ class LeaderboardModel extends DbConnect
         $newRang = $maxRang + 1;
 
         // Insérer la nouvelle entrée
-        $sql = "INSERT INTO leaderboard (user_id, difficulty, total_points, rang) 
-                VALUES (:user_id, :difficulty, :total_points, :rang)";
+        $sql = "INSERT INTO leaderboard (user_id, difficulty, total_points, rang, guest_name) 
+                VALUES (:user_id, :difficulty, :total_points, :rang, :guest_name)";
         $stmt = $this->connection->prepare($sql);
         return $stmt->execute([
             'user_id' => $userId,
             'difficulty' => $difficulty,
             'total_points' => $totalPoints,
-            'rang' => $newRang
+            'rang' => $newRang,
+            'guest_name' => $guestName
         ]);
     }
 
     public function getlastGameEntry($userId, $difficulty)
     {
-        $sql = "SELECT * FROM leaderboard 
-                JOIN user u ON leaderboard.user_id = u.user_id
+        $sql = "SELECT *, COALESCE(u.name, CONCAT('Guest - ', guest_name)) AS username
+                FROM leaderboard 
+                LEFT JOIN user u ON leaderboard.user_id = u.user_id
                 WHERE leaderboard.user_id = :user_id AND leaderboard.difficulty = :difficulty 
                 ORDER BY leaderboard.leaderboard_id DESC LIMIT 1";
 
@@ -78,7 +80,7 @@ class LeaderboardModel extends DbConnect
             return new Leaderboard(
                 $row->leaderboard_id,
                 $row->user_id,
-                $row->name,
+                $row->username,
                 $row->difficulty,
                 $row->total_points,
                 $row->rang

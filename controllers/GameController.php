@@ -201,6 +201,8 @@ class GameController extends Controller
         $timeElapsed = (int)($input['timeElapsed']  ?? 0);
         $difficulty  = $_SESSION['current_game']['difficulty'];
         $userId      = (int)$_SESSION['user']['id'];
+        $isGuest     = $_SESSION['user']['is_guest'] ?? false;
+        $guestName   = $isGuest ? $_SESSION['user']['name'] : null;
 
         // 1. Sauvegarder la grille dans la table `grille`
         $gridModel = new GridModel();
@@ -220,11 +222,14 @@ class GameController extends Controller
 
         // 3. Mettre à jour le classement
         $leaderboardModel = new LeaderboardModel();
-        $leaderboardModel->addEntry($userId, $difficulty, $finalTime);
+        $leaderboardModel->addEntry($userId, $difficulty, $finalTime, $guestName);
 
-        // 3. Vérifier et débloquer les succès
-        $succesModel = new SuccesModel();
-        $newSuccesses = $succesModel->checkAndUnlock($userId);
+        // 4. Vérifier et débloquer les succès (seulement pour les utilisateurs enregistrés)
+        $newSuccesses = [];
+        if (!$isGuest) {
+            $succesModel = new SuccesModel();
+            $newSuccesses = $succesModel->checkAndUnlock($userId);
+        }
 
         unset($_SESSION['current_game']);
         echo json_encode([

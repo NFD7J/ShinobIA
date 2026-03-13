@@ -50,6 +50,45 @@ class AuthController extends Controller
         exit();
     }
 
+    public function guestLogin()
+    {
+        if (isset($_SESSION["user"])) {
+            header("location: index.php");
+            exit();
+        }
+
+        if (isset($_POST["guest_name"])) {
+            if (!empty($_POST["guest_name"])) {
+                $guestName = htmlspecialchars(trim($_POST["guest_name"]), ENT_QUOTES, 'UTF-8');
+                
+                // Créer un nouvel utilisateur "guest" dans la BD
+                $user = new User();
+                $user->setEmail("guest_" . uniqid() . "@localhost");
+                $user->setName($guestName);
+                $user->setPassword(password_hash("GUEST_TEMP", PASSWORD_BCRYPT));
+                
+                $authModel = new AuthModel();
+                $guestUserId = $authModel->createGuestUser($user);
+                
+                // Créer la session guest avec l'ID généré
+                $_SESSION["user"] = [
+                    "id" => $guestUserId,
+                    "name" => $guestName,
+                    "mail" => "guest@localhost",
+                    "is_guest" => true
+                ];
+                
+                header("location: index.php?controller=game&action=index");
+                exit();
+            } else {
+                $error = "Veuillez entrer un pseudonyme";
+                $this->render("auth/guestLogin", ["error" => $error ?? "", "title" => "Jouer en Guest"]);
+            }
+        } else {
+            $this->render("auth/guestLogin", ["title" => "Jouer en Guest"]);
+        }
+    }
+
     public function register()
     {
         if (isset($_SESSION["user"])) {
