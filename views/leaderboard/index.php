@@ -19,7 +19,7 @@ foreach ($leaderboard as $entry) {
 <div class="hero-section">
 <div class="lb-wrapper">
     <div class="logo_container" style="text-align: center;">
-        <img src="image.php?f=leaderboard/sensei_tropy_logo.png" alt="Logo" class="mb-3" style="width: 615px; height: 215px; margin-top: 112px; margin-bottom: 98px; ">
+        <img src="image.php?f=leaderboard/sensei_tropy_logo.png" alt="Logo" class="mb-3" style="margin-top: 4rem; margin-bottom: 98px; ">
         <h1 class="mb-4">CLASSEMENT</h1>
         <p class="legende">Devenez une légende de ShinoBinairo</p>
     </div>
@@ -138,6 +138,8 @@ foreach ($leaderboard as $entry) {
         src: url('fonts/valentine%20season.ttf') format('truetype');
     }
 
+    
+
     /* --- Layout --- */
     .hero-section {
         flex: 1;
@@ -167,15 +169,30 @@ foreach ($leaderboard as $entry) {
         font-size: 30px;
         text-align: center;
         letter-spacing: 0.15em;
+        margin-top:-3rem;
+    }
+
+    .mb-3 {
+        margin-top:4rem;
+        max-height: 250px;
+        width: auto;
+        margin-bottom: -5rem;
+        transform: translateX(-120px)
     }
 
     p.legende {
         color: #000;
         font-family: 'Montserrat regular', sans-serif;
-
-        font-size: 24px;
+        font-weight: 400;
+        font-size: 16px;
         text-align: center;
+        margin-top: -1rem;
+        margin-bottom: 3rem;
 
+    }
+
+    .logo_container {
+        margin-top: -3rem;
     }
 
     /* --- Nav tabs --- */
@@ -221,7 +238,7 @@ foreach ($leaderboard as $entry) {
         width: 80%;
         margin: 0 auto;
         border: 2px solid #a82a2a !important;
-        border-radius: 0;
+        border-radius: 20px;
         overflow: hidden;
         background: transparent;
     }
@@ -275,6 +292,8 @@ foreach ($leaderboard as $entry) {
         background-color: #a82a2a !important;
         color: #fff !important;
     }
+
+    
 
     .fw-semibold {
         color: black;
