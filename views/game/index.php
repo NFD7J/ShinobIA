@@ -1892,7 +1892,7 @@ if ($size == 6) {
         const isIcon = icon.startsWith('bi-');
         const iconHtml = isIcon ?
             `<i class="bi ${icon}" style="font-size:2rem; color:#f39c12;"></i>` :
-            `<img src="public/images/succes/${icon}" style="width:40px;height:40px;object-fit:contain;">`;
+            `<img src="image.php?f=succes/${icon}" style="width:40px;height:40px;object-fit:contain;">`;
 
         toast.innerHTML = `
             ${iconHtml}
