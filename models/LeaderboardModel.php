@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Models;
 
@@ -13,30 +13,28 @@ class LeaderboardModel extends DbConnect
     {
         // Recuperation de toutes les parties pour les afficher dans le classement
         $leaderboard = $this->getLeaderboard();
-
-
     }
 
 
     public function getLeaderboard()
     {
-    $sql = "SELECT l.*, COALESCE(u.name, CONCAT('Guest - ', l.guest_name)) AS username
+        $sql = "SELECT l.*, COALESCE(u.name, CONCAT('Guest - ', l.guest_name)) AS username
             FROM leaderboard l
             LEFT JOIN user u ON l.user_id = u.user_id
             ORDER BY l.total_points ASC";
-    $result = $this->connection->query($sql);
-    $leaderboard = [];
-    while ($row = $result->fetch()) {
-        $leaderboard[] = new Leaderboard(
-            $row->leaderboard_id,
-            $row->user_id,
-            $row->username,
-            $row->difficulty,
-            $row->total_points,
-            $row->rang ?? 0
-        );
-    }
-    return $leaderboard;
+        $result = $this->connection->query($sql);
+        $leaderboard = [];
+        while ($row = $result->fetch()) {
+            $leaderboard[] = new Leaderboard(
+                $row->leaderboard_id,
+                $row->user_id,
+                $row->username,
+                $row->difficulty,
+                $row->total_points,
+                $row->rang ?? 0
+            );
+        }
+        return $leaderboard;
     }
 
     public function addEntry(int $userId, string $difficulty, int $totalPoints, ?string $guestName = null)
@@ -129,5 +127,4 @@ class LeaderboardModel extends DbConnect
         $result = $stmt->fetch();
         return $result->count >= 10;
     }
-
 }

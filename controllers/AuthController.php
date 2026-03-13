@@ -1,4 +1,5 @@
 <?php
+
 namespace App\controllers;
 
 use App\entities\User;
@@ -60,16 +61,16 @@ class AuthController extends Controller
         if (isset($_POST["guest_name"])) {
             if (!empty($_POST["guest_name"])) {
                 $guestName = htmlspecialchars(trim($_POST["guest_name"]), ENT_QUOTES, 'UTF-8');
-                
+
                 // Créer un nouvel utilisateur "guest" dans la BD
                 $user = new User();
                 $user->setEmail("guest_" . uniqid() . "@localhost");
                 $user->setName($guestName);
                 $user->setPassword(password_hash("GUEST_TEMP", PASSWORD_BCRYPT));
-                
+
                 $authModel = new AuthModel();
                 $guestUserId = $authModel->createGuestUser($user);
-                
+
                 // Créer la session guest avec l'ID généré
                 $_SESSION["user"] = [
                     "id" => $guestUserId,
@@ -77,7 +78,7 @@ class AuthController extends Controller
                     "mail" => "guest@localhost",
                     "is_guest" => true
                 ];
-                
+
                 header("location: index.php?controller=game&action=index");
                 exit();
             } else {

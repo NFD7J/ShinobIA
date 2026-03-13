@@ -1,4 +1,5 @@
 <?php
+
 namespace App\models;
 
 use App\entities\User;
@@ -49,7 +50,7 @@ class AuthModel extends Dbconnect
             "password" => $user->getPassword(),
             "name" => $user->getName()
         ]);
-        
+
         return (int)$this->connection->lastInsertId();
     }
 }

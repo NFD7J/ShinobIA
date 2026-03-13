@@ -21,13 +21,13 @@
                     <form method="POST" action="index.php?controller=auth&action=guestLogin">
                         <div class="mb-3">
                             <label for="guest_name" class="form-label">Pseudonyme</label>
-                            <input type="text" 
-                                   class="form-control form-control-lg" 
-                                   id="guest_name" 
-                                   name="guest_name" 
-                                   placeholder="Ex: Ninja123, ShinobiMaster..."
-                                   maxlength="30"
-                                   required>
+                            <input type="text"
+                                class="form-control form-control-lg"
+                                id="guest_name"
+                                name="guest_name"
+                                placeholder="Ex: Ninja123, ShinobiMaster..."
+                                maxlength="30"
+                                required>
                             <small class="form-text text-muted">Min 3 caractères, Max 30</small>
                         </div>
 
@@ -39,17 +39,17 @@
                     <hr>
 
                     <p class="text-center text-muted">
-                        Vous avez un compte? 
+                        Vous avez un compte?
                         <a href="index.php?controller=auth&action=login">Se connecter</a>
                     </p>
                     <p class="text-center text-muted">
-                        Pas encore de compte? 
+                        Pas encore de compte?
                         <a href="index.php?controller=auth&action=register">S'inscrire</a>
                     </p>
 
                     <div class="alert alert-info mt-4">
                         <small>
-                            <strong>💡 Astuce:</strong> En tant que guest, votre score apparaîtra dans le classement 
+                            <strong>💡 Astuce:</strong> En tant que guest, votre score apparaîtra dans le classement
                             avec votre pseudonyme. Vous pourrez créer un compte ultérieurement pour tracker vos progrès!
                         </small>
                     </div>
@@ -66,50 +66,50 @@
         background-position: center;
         min-height: 100vh;
     }
-    
+
     .guest-login-container {
         background-color: rgba(250, 228, 193, 0.95);
         border-radius: 30px;
         padding: 40px;
         backdrop-filter: blur(5px);
     }
-    
+
     .card {
         border-radius: 20px;
         border: 2px solid #a82a2a;
         background-color: #fae4c1;
     }
-    
+
     .card-title {
         color: #a82a2a;
         font-weight: 700;
     }
-    
+
     .btn-primary {
         background-color: #a82a2a;
         border-color: #a82a2a;
         font-weight: 600;
     }
-    
+
     .btn-primary:hover {
         background-color: #8b2222;
         border-color: #8b2222;
     }
-    
+
     .form-control:focus {
         border-color: #a82a2a;
         box-shadow: 0 0 0 0.2rem rgba(168, 42, 42, 0.25);
     }
-    
+
     a {
         color: #a82a2a;
         text-decoration: none;
     }
-    
+
     a:hover {
         text-decoration: underline;
     }
-    
+
     .alert-info {
         background-color: #a82a2a;
         border-color: #8b2222;
