@@ -411,6 +411,17 @@
         background-image: url('image.php?f=kunai.svg');
     }
 
+    /* Cellules correctes du joueur - avec vert visible */
+    #bineroGrid tr.row-correct .cell-btn:not(.locked) {
+        box-shadow: inset 0 0 8px rgba(76, 175, 80, 0.8) !important;
+        border: 2px solid rgba(76, 175, 80, 0.6) !important;
+    }
+
+    #bineroGrid td.col-correct .cell-btn:not(.locked) {
+        box-shadow: inset 0 0 8px rgba(76, 175, 80, 0.8) !important;
+        border: 2px solid rgba(76, 175, 80, 0.6) !important;
+    }
+
     .cell-btn:not([disabled]):hover {
         background-color: rgba(255, 220, 80, 0.70) !important;
         border-color: #7a3b0a !important;
