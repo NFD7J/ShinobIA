@@ -30,8 +30,9 @@
     }
 
     .home-logo img {
-        max-height: 170px;
-        width: auto;
+        margin-top: 4rem;
+        width: 615px;
+        height: 215px;
     }
 
     .home-buttons {
@@ -212,7 +213,7 @@
     <!-- Hero : logo + boutons -->
     <div class="home-hero">
         <div class="home-logo">
-            <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo">
+            <img src="image.php?f=logo_dark_shadow.png" alt="ShinoBinairo" class="mb-3" style="width: 615px; height: 215px; margin-top: -3rem;">
         </div>
 
         <div class="home-buttons">
