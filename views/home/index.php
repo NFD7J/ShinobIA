@@ -105,7 +105,7 @@
 
     .home-sensei-top {
         top: 20px;
-        right: 20px;
+        right: 200px;
         max-height: 200px;
         z-index: 1;
     }
