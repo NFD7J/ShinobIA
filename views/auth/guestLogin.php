@@ -4,7 +4,7 @@
             <div class="card shadow-lg">
                 <div class="card-body p-5">
                     <h1 class="card-title text-center mb-4">
-                        <img src="image.php?f=logo_header.png" alt="ShinobIA" style="height: 50px; margin-right: 10px;">
+                        <img src="image.php?f=logo_dark_shadow.png" alt="ShinobIA" style="height: 50px; margin-right: 10px;">
                         Jouer en Guest
                     </h1>
 
