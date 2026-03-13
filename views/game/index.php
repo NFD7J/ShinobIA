@@ -202,7 +202,7 @@
     }
 
     .stat-card small {
-        color: #6b4226;
+        color: #a82a2a;
         font-size: 0.65rem;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -305,6 +305,7 @@
     }
 
     .chrono-card .chrono-icon {
+        color: #a82a2a;
         width: 32px;
         height: 32px;
         object-fit: contain;
@@ -717,7 +718,7 @@ if ($size == 6) {
                     <div class="right-panel">
                         <!-- Chrono -->
                         <div class="chrono-card">
-                            <img class="chrono-icon" src="image.php?f=grille_jeux/chrono_hourglass.svg" alt="Chrono">
+                            <img class="chrono-icon" src="image.php?f=grille_jeux/chrono_hourglass_red.svg" alt="Chrono">
                             <div class="chrono-time" id="timer">00:00</div>
                             <div class="chrono-penalty">Pénalité erreurs +00:00<br />Pénalité indice +00:00</div>
                         </div>
@@ -1295,14 +1296,14 @@ if ($size == 6) {
         messageContent.textContent = comment;
         messageZone.style.opacity = '1';
 
-        // Garder le message 4 secondes
+        // Garder le message 6 secondes
         setTimeout(() => {
             messageContent.style.animation = 'fadeOutScale 0.3s ease-out';
             setTimeout(() => {
                 messageContent.textContent = '';
                 if (onComplete) onComplete();
             }, 300);
-        }, 4000);
+        }, 10000);
     }
 
     // Map les expressions du Sensei (du backend) aux fichiers d'emotes
