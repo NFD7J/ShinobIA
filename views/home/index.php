@@ -14,7 +14,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0 20px 50px 20px;
+        padding: 0 20px 0 20px;
     }
 
     /* --- Hero section (logo + boutons) --- */
@@ -89,8 +89,6 @@
 
     .home-sensei {
         position: absolute;
-        bottom: 10px;
-        left: 10px;
         z-index: 2;
     }
 
@@ -98,7 +96,26 @@
         max-height: 280px;
         width: auto;
         filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+        transform: translateY(-200px)
     }
+
+    .home-sensei-bottom img {
+        transform: scaleX(-1);
+    }
+
+    .home-sensei-top {
+        top: 20px;
+        right: 20px;
+        max-height: 200px;
+        z-index: 1;
+    }
+
+    .home-sensei-bottom {
+        bottom: 60px;
+        left: -50px;
+        max-height: 220px;
+    }
+
 
     /* --- Parchemin --- */
     .parchemin-section {
@@ -106,6 +123,7 @@
         width: 100%;
         display: flex;
         justify-content: center;
+        overflow: hidden;
     }
 
     .parchemin-bg {
@@ -228,6 +246,10 @@
 
     <!-- Sensei + Parchemin -->
     <div class="home-sensei-parchemin">
+        <!-- Sensei top right -->
+        <div class="home-sensei home-sensei-top">
+            <img src="image.php?f=emotes_sensei/sensei_smile.png" alt="Sensei Smile">
+        </div>
 
         <div class="parchemin-section">
             <img src="image.php?f=parchemin_860x1000.png" alt="Parchemin" class="parchemin-bg">
@@ -255,6 +277,11 @@
                     <p>Rejoignez le clan Shinobinairo et prouvez que la logique<br>est votre arme la plus aiguisée.</p>
                 </div>
             </div>
+        </div>
+
+        <!-- Sensei bottom left (flipped) -->
+        <div class="home-sensei home-sensei-bottom">
+            <img src="image.php?f=emotes_sensei/sensei_idea.png" alt="Sensei Idea">
         </div>
     </div>
 </div>
