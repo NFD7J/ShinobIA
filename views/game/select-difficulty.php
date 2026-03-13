@@ -4,11 +4,11 @@
             <div class="col-12">
                 <div class="logo_container" style="text-align: center;">
 
-                    <img src="image.php?f=logo_dark_shadow.png" alt="Logo" class="mb-3" style="width: 615px; height: 215px; margin-top: 112px; margin-bottom: 98px; ">
+                    <img src="image.php?f=logo_dark_shadow.png" alt="Logo" class="mb-3" style="width: 615px; height: 215px; margin-top: 4rem; margin-bottom: 98px; ">
                     <h1 class="mb-4">SELECTIONNEZ VOTRE TAILLE DE GRILLE</h1>
                 </div>
 
-                <div class="row g-4 justify-content-center" style="gap: 1.5rem 0;">
+                <div class="row g-1 justify-content-center" style="gap: 0.8rem 0;">
                     <!-- Facile -->
                     <div class="col-md-4">
                         <a href="index.php?controller=game&action=play&difficulty=easy"
@@ -19,7 +19,7 @@
                             <div class="card shadow-lg transition-all"
                                 style="cursor: pointer; transform: scale(1); transition: all 0.3s ease;">
                                 <div class="card-body text-center p-3">
-                                    <div class="d-flex align-items-center mb-1">
+                                    <div class="d-flex align-items-center justify-content-center mb-1">
                                         <img src="image.php?f=difficulty/niveau_facile_genin.png" alt="Facile" style="width: 55px; height: 55px; object-fit: contain; margin-right: 8px;">
                                         <h5 class="card-title mb-0 rank_title">Genin</h5>
                                     </div>
@@ -28,7 +28,7 @@
                                         Grille 6x6<br>
                                         Parfait pour débuter
                                     </p>
-                                    <img src="image.php?f=difficulty/grille_6x6.png" alt="grille 6x6" style="max-width: 100%; max-height: 90px; object-fit: contain;">
+                                    <img src="image.php?f=difficulty/grille_6x6.png" alt="grille 6x6" style="max-width: 100%; object-fit: contain;">
                                 </div>
                             </div>
                         </a>
@@ -42,7 +42,7 @@
                             <div class="card shadow-lg transition-all"
                                 style="cursor: pointer; transform: scale(1); transition: all 0.3s ease;">
                                 <div class="card-body text-center p-3">
-                                    <div class="d-flex align-items-center mb-1">
+                                    <div class="d-flex align-items-center justify-content-center mb-1">
                                         <img src="image.php?f=difficulty/niveau_moyen_chunin.png" alt="Moyen" style="width: 55px; height: 55px; object-fit: contain; margin-right: 8px;">
                                         <h5 class="card-title mb-0 rank_title">Chunin</h5>
                                     </div>
@@ -51,7 +51,7 @@
                                         Grille 8x8<br>
                                         Pour les joueurs expérimentés
                                     </p>
-                                    <img src="image.php?f=difficulty/grille_8x8.png" alt="grille 8x8" style="max-width: 100%; max-height: 90px; object-fit: contain;">
+                                    <img src="image.php?f=difficulty/grille_8x8.png" alt="grille 8x8" style="max-width: 100%; object-fit: contain;">
                                 </div>
                             </div>
                         </a>
@@ -65,7 +65,7 @@
                             <div class="card shadow-lg transition-all"
                                 style="cursor: pointer; transform: scale(1); transition: all 0.3s ease;">
                                 <div class="card-body text-center p-3">
-                                    <div class="d-flex align-items-center mb-1">
+                                    <div class="d-flex align-items-center justify-content-center mb-1">
                                         <img src="image.php?f=difficulty/niveau_difficile_jonin.png" alt="Difficile" style="width: 55px; height: 55px; object-fit: contain; margin-right: 8px;">
                                         <h5 class="card-title mb-0 rank_title">Jonin</h5>
                                     </div>
@@ -74,7 +74,7 @@
                                         Grille 10x10<br>
                                         Pour les vrais ninjas
                                     </p>
-                                    <img src="image.php?f=difficulty/grille_10x10.png" alt="grille 10x10" style="max-width: 100%; max-height: 90px; object-fit: contain;">
+                                    <img src="image.php?f=difficulty/grille_10x10.png" alt="grille 10x10" style="max-width: 100%; object-fit: contain;">
                                 </div>
                             </div>
                         </a>
@@ -83,7 +83,7 @@
 
                 <div class="text-center mt-5">
                     <a href="index.php?controller=home" class="btn btn-outline-light">
-                        <p>Retour à l'accueil</p>
+                        <p>RETOUR À L'ACCUEIL</p>
 
 
                     </a>
@@ -142,6 +142,16 @@
         width: 100%;
     }
 
+    .row>.col-md-4 {
+        margin-right: -20px;
+        z-index: 1;
+        position: relative;
+    }
+
+    .row>.col-md-4:hover {
+        z-index: 2;
+    }
+
     .py-5 {
         flex: 1;
         background-image: url('image.php?f=bckgrd_bois.jpg');
@@ -154,12 +164,12 @@
     }
 
     .btn {
-        font-family: ' ', cursive;
+        font-family: 'Montserrat', sans-serif;
         font-size: 0.8rem;
         border-radius: 20px;
         border: 2px solid #a82a2a !important;
-        color: #A82A2A !important;
-        background-color: #fff1db !important;
+        color: #fff1db;
+        background-color: #A82A2A;
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
@@ -168,7 +178,12 @@
         width: 240px;
         height: 56px;
         margin: 0 auto;
-        margin-bottom: 5rem;
+        margin-bottom: 4rem;
+    }
+
+    .btn p {
+        margin: 0;
+        padding: 0;
     }
 
     .btn:hover {

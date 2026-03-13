@@ -262,6 +262,25 @@
             font-size: 0.9rem;
             letter-spacing: 0.5px;
             color: #fae4c1;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fae4c1;
+            border: 2px solid #fae4c1;
+            background-color: rgba(250, 228, 193, 0.1);
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #fae4c1;
+            border: 2px solid #fae4c1;
+            background-color: rgba(250, 228, 193, 0.15);
+            font-weight: 700;
+            border-radius: 20px;
+            padding: 0.5rem;
         }
 
         .navbar-brand {
@@ -379,7 +398,7 @@
                         <a class="nav-link" href="index.php"></i>Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=game"></i>Grille</a>
+                        <a class="nav-link" href="index.php?controller=game"></i>Grilles</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?controller=leaderboard"></i>Classement</a>
@@ -438,6 +457,41 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Déterminer la page actuelle et ajouter la classe "active" au lien correspondant
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUrl = window.location.href;
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+            navLinks.forEach(link => {
+                // Récupérer le href du lien
+                const href = link.getAttribute('href');
+
+                // Vérifier si le lien correspond à la page actuelle
+                if (href && currentUrl.includes(href.split('?')[0])) {
+                    // Vérifier si c'est un lien avec paramètre controller
+                    if (href.includes('controller=')) {
+                        const linkController = new URL(href, window.location.origin).searchParams.get('controller');
+                        const currentController = new URL(currentUrl, window.location.origin).searchParams.get('controller');
+
+                        if (linkController === currentController) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    } else if (href === 'index.php' && !currentUrl.includes('controller=')) {
+                        // C'est la page d'accueil
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
 
     <!-- Modal déconnexion -->
     <div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="modalLogoutLabel" aria-hidden="true">
