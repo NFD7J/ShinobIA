@@ -2,10 +2,31 @@
 ?>
 
 <style>
+    @font-face {
+        font-family: 'Valentine Season';
+        src: url('fonts/valentine%20season.ttf') format('truetype');
+    }
     main {
         background-image: url('../views/game/images/bckgrd_bois.jpg'), linear-gradient(180deg, #f8f6f1 0%, #f0ebe3 100%);
         background-size: cover;
         background-position: center;
+    }
+
+    h1 {
+        color: #000;
+        font-family: 'Montserrat semibold', sans-serif;
+        font-weight: 700;
+        font-size: 30px;
+        text-align: center;
+        letter-spacing: 0.15em;
+    }
+
+    h5 {
+        color: #000;
+        font-family: 'Montserrat regular', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        text-align: center;
     }
 
     .successes-container {
@@ -27,19 +48,17 @@
     .successes-logo {
         max-height: 250px;
         width: auto;
-        margin-bottom: 1rem;
+        margin-bottom: -2rem;
+        transform: translateX(-120px)
+        
     }
 
-    .successes-header h1 {
-        color: #2c3e50;
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
+    
 
     .successes-header p {
         color: #555;
         font-size: 1.1rem;
+        display: none;
     }
 
     .successes-grid {
@@ -178,9 +197,7 @@
 
     <div class="successes-header">
         <img src="image.php?f=succes/sensei_success_logo.png" alt="ShinoBinairo Logo" class="successes-logo">
-        <h1>
-            Succès
-        </h1>
+        <h1>SUCCÈS</h1>
         <p>
             <?php if (isset($_SESSION['user'])): ?>
                 <?php
@@ -192,6 +209,7 @@
                 Connectez-vous pour suivre votre progression
             <?php endif; ?>
         </p>
+        <h5>Chaque exploit est un pas de plus sur le chemin du Shinobi</h5>
     </div>
 
     <?php if (isset($_SESSION['user']) && isset($successes)): ?>
